@@ -6,6 +6,7 @@
 ## 動かし方
 
 ´docker-compose up --build -d´
+´docker-compose restart´
 
 ## 日程
 | 日時                     | イベント                  | 目標                                    |
