@@ -26,3 +26,6 @@ $ ./scripts/run.sh
 
 ## 報告
 gunicornおよびnginx，Flaskは動作確認のために使用しています．担当者が自由に置き換えてください
+
+## メモ：githubリポジトリ
+https://github.com/Mikka-t/mm-enshu-2024
