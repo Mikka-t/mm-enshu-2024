@@ -5,11 +5,18 @@
 
 ## 動かし方
 
+一番最初
 ```
-docker-compose up --build -d
+$ docker-compose up --build -d
 ```
+2回目以降
 ```
-docker-compose restart
+$ docker-compose restart
+```
+（追記）restartしてからurlを表示するスクリプト
+```
+$ chmod u+x scripts/run.sh
+$ ./scripts/run.sh
 ```
 
 ## 日程
@@ -19,3 +26,6 @@ docker-compose restart
 
 ## 報告
 gunicornおよびnginx，Flaskは動作確認のために使用しています．担当者が自由に置き換えてください
+
+## メモ：githubリポジトリ
+https://github.com/Mikka-t/mm-enshu-2024
