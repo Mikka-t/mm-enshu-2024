@@ -5,11 +5,18 @@
 
 ## 動かし方
 
+一番最初
 ```
-docker-compose up --build -d
+$ docker-compose up --build -d
 ```
+2回目以降
 ```
-docker-compose restart
+$ docker-compose restart
+```
+（追記）restartしてからurlを表示するスクリプト
+```
+$ chmod u+x scripts/run.sh
+$ ./scripts/run.sh
 ```
 
 ## 日程
