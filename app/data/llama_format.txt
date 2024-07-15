@@ -1,0 +1,46 @@
+Knowledge Graph:
+
+Node 1: Egg
+Type: ingredient
+
+Node 2: Granulated Sugar
+Type: ingredient
+
+Node 3: Flour
+Type: ingredient
+
+Node 4: Unsalted Butter
+Type: ingredient
+
+Node 5: Heavy Cream
+Type: ingredient
+
+Node 6: Strawberry
+Type: ingredient
+
+Node 7: Batter
+Type: intermediate
+
+Node 8: Sponge Batter
+Type: intermediate
+
+Node 9: Baked Sponge Cake
+Type: intermediate
+
+Node 10: Whipped Cream
+Type: intermediate
+
+Node 11: Decoration Cake
+Type: final
+
+Edge 1: Egg - Batter (mix)
+Edge 2: Granulated Sugar - Batter (mix)
+Edge 3: Flour - Batter (mix)
+Edge 4: Batter - Sponge Batter (mix)
+Edge 5: Unsalted Butter - Sponge Batter (mix)
+Edge 6: Sponge Batter - Baked Sponge Cake (bake)
+Edge 7: Heavy Cream - Whipped Cream (whip)
+Edge 8: Granulated Sugar - Whipped Cream (whip)
+Edge 9: Baked Sponge Cake - Decoration Cake (layer)
+Edge 10: Whipped Cream - Decoration Cake (layer)
+Edge 11: Strawberry - Decoration Cake (layer)
