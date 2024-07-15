@@ -33,6 +33,7 @@ llamaを使う際はapp/.token/lammaにtokenを入れる．（generate_graph.py�
 ```
 r8_Ae7dJFIefdfaejfaioejfioajef
 ```
+tokenは[replicateのサイト](https://replicate.com/account/api-tokens)で作る．
 
 ## 日程
 | 日時                     | イベント                  | 目標                                    |
