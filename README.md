@@ -27,6 +27,12 @@ $ ./scripts/replace_app.sh
 ```
 $ docker logs [コンテナ名]
 ```
+llamaを使う際はapp/.token/lammaにtokenを入れる．（generate_graph.pyでtokenを読込む）
+
+例：app/.token/lamma 内
+```
+r8_Ae7dJFIefdfaejfaioejfioajef
+```
 
 ## 日程
 | 日時                     | イベント                  | 目標                                    |

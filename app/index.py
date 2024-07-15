@@ -13,18 +13,14 @@ matplotlib.get_cachedir()
 
 font_family = 'TakaoPGothic'
 
-def display_knowledge_graph():
-    # # JSON形式の知識グラフ
-    with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
-        knowledge_graph = json.load(f)
-
+def display_knowledge_graph(graph):
     # NetworkXグラフを作成
     G = nx.DiGraph()
 
-    for node in knowledge_graph["nodes"]:
+    for node in graph["nodes"]:
         G.add_node(node["id"], type=node["type"])
 
-    for edge in knowledge_graph["edges"]:
+    for edge in graph["edges"]:
         G.add_edge(edge["source"], edge["target"], action=edge["action"])
 
     # # # グラフを描画
@@ -51,8 +47,12 @@ def display_knowledge_graph():
     <html>
     <head><title>Knowledge Graph</title></head>
     <body>
-    <h1>ショートケーキのレシピ知識グラフ</h1>
     <img src="data:image/png;base64,{{ image_base64 }}">
+    <form action="/submit_url" method="post">
+    <label for="url">Enter URL:</label>
+    <input type="text" id="url" name="url">
+    <button type="submit">Submit</button>
+    </form>
     </body>
     </html>
     '''

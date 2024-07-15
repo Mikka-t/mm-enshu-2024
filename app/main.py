@@ -1,12 +1,36 @@
-from flask import Flask
+from flask import Flask, request
 from index import display_knowledge_graph
+from generate_graph import generate_graph
+import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return display_knowledge_graph()
+    # # JSON形式の知識グラフ
+    with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
+        graph = json.load(f)
+    return display_knowledge_graph(graph)
+
+@app.route('/submit_url', methods=['POST'])
+def submit_url():
+    url = request.form.get('url')
+    # ここでURLを使った処理を行う
+    with open(f'data/url2graph.json', 'r', encoding='utf-8') as f:
+        url2graph = json.load(f)
     
+    if url in url2graph:
+        graph = url2graph[url]
+    else:
+        llm_output, graph = generate_graph(url)
+        if llm_output is None:
+            return "error"
+        url2graph[url] = graph
+        with open(f'data/url2graph.json', 'w', encoding='utf-8') as f:
+            json.dump(url2graph, f, ensure_ascii=False, indent=4)
+
+    return display_knowledge_graph(graph)
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8000)
