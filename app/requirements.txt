@@ -1,2 +1,5 @@
 Flask
 gunicorn
+matplotlib
+networkx
+pybase64
