@@ -13,10 +13,19 @@ $ docker-compose up --build -d
 ```
 $ docker-compose restart
 ```
-（追記）restartしてからurlを表示するスクリプト
+restartしてからurlを表示するスクリプト
 ```
-$ chmod u+x scripts/run.sh
+$ chmod u+x scripts/run.sh  # 初回のみ
 $ ./scripts/run.sh
+```
+appの内容をコンテナ内にコピーし，コンテナをrestart
+```
+$ chmod u+x scripts/replace_app.sh  # 初回のみ
+$ ./scripts/replace_app.sh
+```
+エラーの確認
+```
+$ docker logs [コンテナ名]
 ```
 
 ## 日程
