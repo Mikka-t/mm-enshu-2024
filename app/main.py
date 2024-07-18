@@ -1,15 +1,25 @@
 from flask import Flask, request
 from index import display_knowledge_graph
 from generate_graph import generate_graph
+from graph2recipe import get_subgraph_str
 import json
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    # # JSON形式の知識グラフ
-    with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
-        graph = json.load(f)
+    # JSON形式の知識グラフ
+    # クエリパラメータを取得
+    dish_name = request.args.get('dish', 'toy_graph')  # デフォルトは'toy_graph'
+    if dish_name != "toy_graph":
+        graph = get_subgraph_str(dish_name)
+    else:
+        try:
+            with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
+                graph = json.load(f)
+        except FileNotFoundError:
+            return "File not found", 404
+
     return display_knowledge_graph(graph)
 
 @app.route('/submit_url', methods=['POST'])
