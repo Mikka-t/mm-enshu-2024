@@ -52,9 +52,9 @@ def parse_dish_name(dish_name):
     Future work: 単語の類似度など検索機能？
     中間発表用なので単純に対応してるものだけ格納
     """
-    dish_parser = {"cake":"デコレーションケーキ", "curry":"カレーライス", "tart": "タルト"}
-    if dish_name in dish_parser:
-        ret = dish_parser[dish_name]
+    dish_set = set(["デコレーションケーキ", "カレーライス", "いちごタルト"])
+    if dish_name in dish_set:
+        ret = dish_name
     else:
         # Error
         ret = "デコレーションケーキ"
