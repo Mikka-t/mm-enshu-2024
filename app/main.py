@@ -15,7 +15,7 @@ def index():
         graph = get_subgraph_str(dish_name)
     else:
         try:
-            with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
+            with open('data/toy_graph_big.json', 'r', encoding='utf-8') as f:
                 graph = json.load(f)
         except FileNotFoundError:
             return "File not found", 404
