@@ -1,22 +1,29 @@
-from flask import Flask, request
-from index import display_knowledge_graph
+from flask import Flask, request,render_template
+from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
 import json
 
 app = Flask(__name__)
 
+import os
+
+CD = "/"
+CD = os.getcwd() + "/app/"
 @app.route('/')
 def index():
     # # JSON形式の知識グラフ
-    with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
+    with open(CD+'data/toy_graph.json', 'r', encoding='utf-8') as f:
         graph = json.load(f)
-    return display_knowledge_graph(graph)
+    
+    send_data = convert_json(graph)
+    # print(send_data)
+    return render_template("result.html",json_data = send_data)
 
 @app.route('/submit_url', methods=['POST'])
 def submit_url():
     url = request.form.get('url')
     # ここでURLを使った処理を行う
-    with open(f'data/url2graph.json', 'r', encoding='utf-8') as f:
+    with open(CD+f'data/url2graph.json', 'r', encoding='utf-8') as f:
         url2graph = json.load(f)
     
     if url in url2graph:
@@ -29,8 +36,8 @@ def submit_url():
         with open(f'data/url2graph.json', 'w', encoding='utf-8') as f:
             json.dump(url2graph, f, ensure_ascii=False, indent=4)
 
-    return display_knowledge_graph(graph)
+    return render_template("result.html")
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8001,debug=True)

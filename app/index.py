@@ -59,3 +59,26 @@ def display_knowledge_graph(graph):
 
     return render_template_string(html_template, image_base64=image_base64)
     # return 'hello world!!'
+
+def convert_json(data:json)->dict:
+    nodes = data["nodes"]
+    edges = data["edges"]
+    convert_nodes = []
+    convert_edges = []
+    node_type = {"ingredient":1,"intermediate":2,"final":3}
+    for node in nodes:
+        convert_nodes.append({"id": node["id"], "label": node["id"], "group": node_type[node["type"]]})
+
+    for edge in edges:
+        convert_edges.append({"from": edge['source'], "to": edge['target'], "label": edge['action']})
+    
+    return {"nodes":convert_nodes,"edges":convert_edges}
+
+
+if __name__ =="__main__":
+    with open("./app/data/toy_graph_eng.json","r",encoding="utf-8") as f:
+        data = json.load(f)
+    data = convert_json(data)
+
+    for key,value in data.items():
+        print(value)
