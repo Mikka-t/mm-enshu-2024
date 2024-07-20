@@ -1,8 +1,11 @@
 from flask import Flask, request
 from index import display_knowledge_graph
 from generate_graph import generate_graph
-from graph2recipe import get_subgraph_str
+from graph2recipe import get_subgraph_str, subgraph2recipe_str
 import json
+
+# LLM にレシピを生成させる時は True にする。無駄なプロンプト実行を防ぐためテスト時は False
+USE_LLM_FLAG = False
 
 app = Flask(__name__)
 
@@ -13,6 +16,10 @@ def index():
     dish_name = request.args.get('dish', 'toy_graph')  # デフォルトは'toy_graph'
     if dish_name != "toy_graph":
         graph = get_subgraph_str(dish_name)
+        if USE_LLM_FLAG:
+            # TODO: フロントエンドに表示
+            recipe = subgraph2recipe_str(graph)
+            print("LLM Output: ", recipe)
     else:
         try:
             with open('data/toy_graph.json', 'r', encoding='utf-8') as f:

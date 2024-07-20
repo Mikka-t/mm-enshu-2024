@@ -1,4 +1,5 @@
 from graph2recipe_utils import *
+import replicate
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
 def get_subgraph_str(target_node: str):
@@ -48,6 +49,41 @@ def get_subgraph_str(target_node: str):
 
     subgraph = {"nodes": subgraph_nodes, "edges": subgraph_edges}
     return subgraph
+
+# 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
+def subgraph2recipe_str(graph):
+    nodes, edges = graph["nodes"], graph["edges"]
+
+    with open('./.token/llama', 'r') as f:
+        api_token = f.read().strip()
+    print('api_token:', api_token)
+    client = replicate.Client(api_token=api_token)
+
+    # ノードとエッジの情報をテキスト形式で整形
+    nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}"}}' for node in nodes])
+    edges_text = ', '.join([f'{{"source": "{edge["source"]}", "target": "{edge["target"]}", "action": "{edge["action"]}"}}' for edge in edges])
+    
+    graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
+
+    print("サブグラフ: ",graph_text)
+    
+    prompt = "jsonファイルの内容: " + graph_text + "\n" + \
+        "このようなjsonファイルがあります。このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。" + \
+        "レシピ名から始めて、材料と作り方を書いてください。\n"
+    
+    # Replicate APIを使用してLLMにプロンプトを送信し、レシピの文章を生成
+    # Why llama-2 ? generate_graph.pyと統一
+    output = client.run(
+        "meta/meta-llama-3-70b-instruct",
+        input={"prompt": prompt}
+    )
+    
+    # 出力を結合してレシピの文章を生成
+    output_list = list(output)
+    output_str = "".join(output_list)
+    
+    return output_str
+
 
 # ノードID等がintで管理されていることを前提にした関数．
 # 中間発表時点ではtoy_graphのノードIDがstrで管理されているので、使いません
@@ -108,3 +144,6 @@ if __name__ == "__main__":
     subgraph = get_subgraph_str("カレーライス")
     with open(f'data/toy_subgraph_curry.json', 'w', encoding='utf-8') as f:
         json.dump(subgraph, f, ensure_ascii=False, indent=4)
+
+    recipe = subgraph2recipe(get_subgraph_str("いちごタルト"))  
+    print("Output: ", recipe)
