@@ -2,35 +2,43 @@
     "nodes": [
         {
             "id": "豚ロース",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "300g"
         },
         {
             "id": "薄力粉",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ1"
         },
         {
             "id": "すりおろし生姜",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ2"
         },
         {
             "id": "しょうゆ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ2"
         },
         {
             "id": "砂糖",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ1"
         },
         {
             "id": "料理酒",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ1"
         },
         {
             "id": "ごま油",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ1"
         },
         {
             "id": "キャベツ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         },
         {
             "id": "たれ",

@@ -2,47 +2,58 @@
     "nodes": [
         {
             "id": "ニンニク",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "3片"
         },
         {
             "id": "玉ねぎ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "1個"
         },
         {
             "id": "鶏もも肉",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "300g"
         },
         {
             "id": "有塩バター",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "40g"
         },
         {
             "id": "カットトマト缶",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "250g"
         },
         {
             "id": "生クリーム",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100ml"
         },
         {
             "id": "(A)",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         },
         {
             "id": "カレールー",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "3個"
         },
         {
             "id": "しょうゆ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "大さじ1"
         },
         {
             "id": "ごはん",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "800g"
         },
         {
             "id": "パセリ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         },
         {
             "id": "ルー",

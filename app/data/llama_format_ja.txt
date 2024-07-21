@@ -1,46 +1,50 @@
 Knowledge Graph:
 
-Node 1: 卵
+Node 1: 食パン
 Type: ingredient
+Quantity: 2枚
 
-Node 2: グラニュー糖
+Node 2: 卵
 Type: ingredient
+Quantity: 1個
 
-Node 3: 小麦粉
+Node 3: 牛乳
 Type: ingredient
+Quantity: 100ml
 
-Node 4: 無塩バター
+Node 4: 砂糖
 Type: ingredient
+Quantity: 大さじ1
 
-Node 5: 生クリーム
+Node 5: 有塩バター
 Type: ingredient
+Quantity: 10g
 
-Node 6: いちご
+Node 6: オレンジ
 Type: ingredient
+Quantity: 2枚
 
-Node 7: バッター
+Node 7: 粉糖
+Type: ingredient
+Quantity: 適量
+
+Node 8: はちみつ
+Type: ingredient
+Quantity: 大さじ1
+
+Node 9: 卵液
 Type: intermediate
 
-Node 8: スポンジバッター
-Type: intermediate
-
-Node 9: 焼いたスポンジケーキ
-Type: intermediate
-
-Node 10: ホイップクリーム
-Type: intermediate
-
-Node 11: デコレーションケーキ
+Node 10: フレンチトースト
 Type: final
 
-Edge 1: 卵 - バッター（混ぜる）
-Edge 2: グラニュー糖 - バッター（混ぜる）
-Edge 3: 小麦粉 - バッター（混ぜる）
-Edge 4: バッター - スポンジバッター（混ぜる）
-Edge 5: 無塩バター - スポンジバッター（混ぜる）
-Edge 6: スポンジバッター - 焼いたスポンジケーキ（焼く）
-Edge 7: 生クリーム - ホイップクリーム（泡立てる）
-Edge 8: グラニュー糖 - ホイップクリーム（泡立てる）
-Edge 9: 焼いたスポンジケーキ - デコレーションケーキ（重ねる）
-Edge 10: ホイップクリーム - デコレーションケーキ（重ねる）
-Edge 11: いちご - デコレーションケーキ（重ねる）
+Edge 1: 食パン - 卵液（浸す）
+Edge 2: 卵 - 卵液（混ぜる）
+Edge 3: 牛乳 - 卵液（混ぜる）
+Edge 4: 砂糖 - 卵液（混ぜる）
+Edge 5: 卵液 - 食パン（浸す）
+Edge 6: 有塩バター - 食パン（焼く）
+Edge 7: 食パン - フレンチトースト（盛り付ける）
+Edge 8: オレンジ - フレンチトースト（添える）
+Edge 9: 粉糖 - フレンチトースト（かける）
+Edge 10: はちみつ - フレンチトースト（かける）
