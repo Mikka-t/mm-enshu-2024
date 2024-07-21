@@ -13,12 +13,12 @@ SELECT_LLM = "LLama"
 def parse_to_json(input_string):
     # TODO: 色々なパターンのテキストに対応する
     # ノードのセクションを解析
-    node_pattern = re.compile(r"Node \d+: ([^\n]+)\nType: ([^\n]+)")
+    node_pattern = re.compile(r"Node \d+: ([^\n]+)\nType: ([^\n]+)\nQuantity: ([^\n]+)")
     nodes = []
     for match in node_pattern.finditer(input_string):
-        node_id, node_type = match.groups()
-        nodes.append({"id": node_id, "type": node_type})
-
+        node_id, node_type, quantity = match.groups()
+        nodes.append({"id": node_id, "type": node_type, "quantity": quantity})
+    
     # エッジのセクションを解析
     # edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+) \(([^)]+)\)") # コメント：修正前のコード．
     edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+)（([^）]+)）") # コメント：修正後のコード．制限によりLLamaで動くかのチェックができていない・

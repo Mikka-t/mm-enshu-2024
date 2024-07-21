@@ -27,7 +27,7 @@ def display_knowledge_graph(graph):
     for edge in graph["edges"]:
         G.add_edge(edge["source"], edge["target"], action=edge["action"])
 
-    # グラフを描画
+    # # # グラフを描画
     pos = nx.spring_layout(G)
     plt.figure(figsize=(12, 8))
     
@@ -45,14 +45,14 @@ def display_knowledge_graph(graph):
     edge_labels = {(u, v): d['action'] for u, v, d in G.edges(data=True)}
     nx.draw_networkx_edge_labels(G, pos, edge_labels=edge_labels, font_color='red', font_family=font_family)
 
-    # 画像をバッファに保存
+    # # 画像をバッファに保存
     buf = io.BytesIO()
     plt.savefig(buf, format='png')
     buf.seek(0)
     image_base64 = base64.b64encode(buf.getvalue()).decode('utf-8')
     buf.close()
 
-    # HTMLテンプレート
+    # # HTMLテンプレート
     html_template = '''
     <html>
     <head><title>Knowledge Graph</title></head>
