@@ -1,0 +1,46 @@
+Knowledge Graph:
+
+Node 1: 卵
+Type: ingredient
+
+Node 2: グラニュー糖
+Type: ingredient
+
+Node 3: 小麦粉
+Type: ingredient
+
+Node 4: 無塩バター
+Type: ingredient
+
+Node 5: 生クリーム
+Type: ingredient
+
+Node 6: いちご
+Type: ingredient
+
+Node 7: バッター
+Type: intermediate
+
+Node 8: スポンジバッター
+Type: intermediate
+
+Node 9: 焼いたスポンジケーキ
+Type: intermediate
+
+Node 10: ホイップクリーム
+Type: intermediate
+
+Node 11: デコレーションケーキ
+Type: final
+
+Edge 1: 卵 - バッター（混ぜる）
+Edge 2: グラニュー糖 - バッター（混ぜる）
+Edge 3: 小麦粉 - バッター（混ぜる）
+Edge 4: バッター - スポンジバッター（混ぜる）
+Edge 5: 無塩バター - スポンジバッター（混ぜる）
+Edge 6: スポンジバッター - 焼いたスポンジケーキ（焼く）
+Edge 7: 生クリーム - ホイップクリーム（泡立てる）
+Edge 8: グラニュー糖 - ホイップクリーム（泡立てる）
+Edge 9: 焼いたスポンジケーキ - デコレーションケーキ（重ねる）
+Edge 10: ホイップクリーム - デコレーションケーキ（重ねる）
+Edge 11: いちご - デコレーションケーキ（重ねる）
