@@ -1,0 +1,100 @@
+{
+    "nodes": [
+        {
+            "id": "豚ロース",
+            "type": "ingredient"
+        },
+        {
+            "id": "薄力粉",
+            "type": "ingredient"
+        },
+        {
+            "id": "すりおろし生姜",
+            "type": "ingredient"
+        },
+        {
+            "id": "しょうゆ",
+            "type": "ingredient"
+        },
+        {
+            "id": "砂糖",
+            "type": "ingredient"
+        },
+        {
+            "id": "料理酒",
+            "type": "ingredient"
+        },
+        {
+            "id": "ごま油",
+            "type": "ingredient"
+        },
+        {
+            "id": "キャベツ",
+            "type": "ingredient"
+        },
+        {
+            "id": "たれ",
+            "type": "intermediate"
+        },
+        {
+            "id": "焼いた豚ロース",
+            "type": "intermediate"
+        },
+        {
+            "id": "料理",
+            "type": "final"
+        }
+    ],
+    "edges": [
+        {
+            "source": "豚ロース",
+            "target": "焼いた豚ロース",
+            "action": "焼く"
+        },
+        {
+            "source": "薄力粉",
+            "target": "豚ロース",
+            "action": "まぶす"
+        },
+        {
+            "source": "すりおろし生姜",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "しょうゆ",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "砂糖",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "料理酒",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "ごま油",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "たれ",
+            "target": "焼いた豚ロース",
+            "action": "かける"
+        },
+        {
+            "source": "キャベツ",
+            "target": "料理",
+            "action": "付け合わせる"
+        },
+        {
+            "source": "焼いた豚ロース",
+            "target": "料理",
+            "action": "盛り付ける"
+        }
+    ]
+}
