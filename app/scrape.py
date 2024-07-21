@@ -153,12 +153,17 @@ def scrape(url):
     if soup is None:
         return
     
-    if 'kurashiru' in domain:
-        return extract_kurashiru(soup)
-    elif 'delishkitchen' in domain:
-        return extract_delish_kitchen(soup)
-    elif 'sirogohan' in domain:
-        return extract_sirogohan_com(soup)
-    else:
+    # 特定のサイト用にスクレイピング，エラーが発生した場合は通常のテキストを返す
+    try:
+        if 'kurashiru' in domain:
+            return extract_kurashiru(soup)
+        elif 'delishkitchen' in domain:
+            return extract_delish_kitchen(soup)
+        elif 'sirogohan' in domain:
+            return extract_sirogohan_com(soup)
+        else:
+            return remove_extra_newlines(soup.get_text(separator='\n'))
+        
+    except Exception as e:
+        print(f"Error during extraction: {e}")
         return remove_extra_newlines(soup.get_text(separator='\n'))
-
