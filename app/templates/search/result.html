@@ -18,10 +18,10 @@
 
 <div id="mynetwork"></div>
 <div class="slider-container">
-    ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20">
+    <!-- ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20"> -->
     エッジ幅: <input type="range" id="edgeWidth" min="1" max="10" value="1">
     エッジ長: <input type="range" id="edgeLength" min="300" max="1000" value="1">
-    フォントサイズ: <input type="range" id="fontSize" min="10" max="30" value="15">
+    フォントサイズ: <input type="range" id="fontSize" min="10" max="50" value="30">
     
 </div>
 <script>
@@ -60,9 +60,9 @@
     const network = new vis.Network(container, networkData, options);
 
     // スライダーの設定
-    document.getElementById('nodeSize').addEventListener('input', function () {
-        network.setOptions({ nodes: { size: parseInt(this.value) } });
-    });
+    // document.getElementById('nodeSize').addEventListener('input', function () {
+    //     network.setOptions({ nodes: { size: parseInt(this.value) } });
+    // });
     document.getElementById('edgeWidth').addEventListener('input', function () {
         network.setOptions({ edges: { width: parseInt(this.value) } });
     });

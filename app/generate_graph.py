@@ -6,6 +6,7 @@ import re
 import json
 import openai
 
+
 # 使用するLLMの選択，デフォルトはChatGPT
 # SELECT_LLM = "LLama" 
 SELECT_LLM = "ChatGPT" 
