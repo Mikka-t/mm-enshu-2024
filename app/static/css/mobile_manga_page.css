@@ -1,0 +1,235 @@
+
+.details, .summary, .details_content {
+    font-size: 16px; /* 好みのフォントサイズに調整してください */
+}
+
+.details {
+    .summary {
+        position: relative;
+        display: block;
+        padding: 10px 10px 10px 30px;
+        cursor: pointer;
+        /* カーソルをポインターに */
+        font-weight: bold;
+        background-color: #e2f0f7;
+        transition: 0.2s;
+
+        &::-webkit-details-marker {
+            display: none;
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            display: block;
+            top: 50%;
+            transform: translateY(-50%);
+            transition: 0.2s;
+            left: 0.1em;
+            width: 1.5em;
+            height: 1.5em;
+            background: url('https://api.iconify.design/icon-park/right.svg') no-repeat center / contain;
+        }
+    }
+
+    &.is-opened>.summary::after {
+        transform: translateY(-50%) rotate(90deg);
+    }
+
+    .summary:hover {
+        background-color: #ccebfb;
+    }
+
+
+
+    .details_content {
+        position: relative;
+        overflow: hidden;
+        padding: 5px 0px 0px 15px;/*summaryからどれくらい離れてるかを決める*/
+        height: auto;
+        opacity: 1;
+        visibility: visible;
+        transition: padding .25s, height .25s, opacity .25s;
+    }
+
+    &:not(.is-opened)>.details_content {
+        height: 0;
+        opacity: 0;
+        overflow: hidden;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+
+    &+.details {
+        margin-top: 5px;
+        /*項目と項目との隙間を決める*/
+    }
+}
+
+
+.main_content {
+    width: 100%;
+    /* height: 50px; */
+    /* 水平方向の中央揃え */
+    margin: 0 auto;
+}
+
+#list-container li {
+    list-style-type: none; /* リストの点を消す */
+    margin: 10px; /* マージンで少し間隔を開ける */
+    padding: 10px; /* パディングで文字と枠の間隔を開ける */
+    background-color: #dbffe1; /* 背景色を緑にする */
+    color: white; /* 文字色を白にする */
+    border-radius: 10px; /* 四隅をラウンドさせる */
+    transition: background-color 0.3s; /* 背景色の変化を滑らかにする */
+}
+
+#list-container li a {
+    text-decoration: none; /* リンクの下線を消す */
+    color: rgb(0, 0, 0); /* リンクの文字色を黒にする */
+    display: block; /* リンクをブロック要素にして、li全体がクリッカブルになるようにする */
+}
+
+#list-container li:hover {
+    background-color: rgba(0, 0, 0, 0.1); /* ホバー時に背景色を少し暗くする */
+}
+
+
+
+.about_manga_container{
+    width: 100%;
+    /* height: 50px; */
+    /* 水平方向の中央揃え */
+    margin: 0 auto;
+    
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  .other-link-container{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+  }
+  
+  .manga-item {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .manga-item img {
+            width: 153px;
+            height: 218px;
+            display: block;
+            margin: 0 auto;
+        }
+        .manga-item a {
+            text-decoration: none;
+            color: #000;
+        }
+        .manga-title {
+            margin-top: 5px;
+        }
+
+
+
+.manga_img{
+
+    /* width:100px; */
+    margin: 0 auto;
+}
+
+a{
+    color: #0000EE; /*これで一度訪れたリンクでも色が同じになる*/
+    /* text-decoration: none; */
+}
+ 
+
+a:visited{
+    color: #0000EE; /*これで一度訪れたリンクでも色が同じになる*/
+}
+
+
+
+.table_list-container {
+    position: relative;
+    overflow: hidden;
+    width: 90vw; /* コンテナの幅をビューポート幅に設定 */
+  }
+
+  .similar_table_list-container {
+    position: relative;
+    overflow: hidden;
+    width: 90vw; /* コンテナの幅をビューポート幅に設定 */
+  }
+  
+  .sections-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* セクションが横に並ぶように設定 */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .similar_sections-wrapper {
+    display: flex;
+    flex-wrap: nowrap; /* セクションが横に並ぶように設定 */
+    overflow-x: auto;
+    scroll-behavior: smooth;
+  }
+  
+  .area {
+    flex: 0 0 auto;
+    width: 90vw; /* 各セクションの幅をビューポートの幅に設定 */
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .similar_area {
+    flex: 0 0 auto;
+    width: 90vw; /* 各セクションの幅をビューポートの幅に設定 */
+    padding: 0px;
+    box-sizing: border-box;
+  }
+  
+  .scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #dbffe1;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    height: 100px;
+  }
+  
+  .similar_scroll-btn {
+    position: absolute;
+    top: 2%;
+    transform: translateY(-50%);
+    background-color: #dbffe1;
+    border: none;
+    cursor: pointer;
+    z-index: 10;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  
+  .prev {
+    left: 0px;
+  }
+  
+  .next {
+    right: 0px;
+  }
+  
+  .similar_prev {
+    left: 0px;
+  }
+  
+  .similar_next {
+    right: 0px;
+  }
+
+  .manga_img_container{
+    text-align: center;
+  }

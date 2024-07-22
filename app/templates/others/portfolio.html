@@ -1,0 +1,575 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div style="text-align: center;">
+  <a style="border-radius: 5px;background: #37d118;padding: 5px;color: #FFF;">ポートフォリオ</a>
+</div>
+ 
+<div>
+  <!-- {% block title %}【谷口令】の解説{% endblock %} -->
+</div>
+
+<div>
+  <h4>谷口令</h4>
+  <hr size="5">
+</div>
+{% endblock %}
+{% block content %}
+<script src="{{ url_for('static', filename='js/manga_page.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_manga_page.css') }}?v={{ now() }}" media="screen and (min-width:10px) and (max-width:500px)"> <!-- スマホ画面向け-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manga_page.css') }}?v={{ now() }}" media="screen and (min-width:501px)"> <!--PC画面向け-->
+
+
+
+<div class="about_manga_container">
+  <div class="img_and_info_container" style="text-align: center;">
+    <div class="manga_img_container" ><a class="manga_img"><img style="width: 50%;height: auto;box-shadow: 10px 10px 4px #a3a3a3 ;" src="{{ info['img_url'] }}"></a></div>
+    <div class="manga_genre_container" style="text-align: left; ">
+      <p> <b>自己分析による評価</b>:計画性がなさそう、自由人</p>
+    </div>
+    
+  </div>
+  <div id="sections-container" class="table_list-container" style="border: solid; border-color:#d6d6d6; border-radius: 5%;">
+    
+    {% if info["table_dict"]|length > 1 %}
+    <button class="scroll-btn prev" onclick="scrollSection(-1)">&#10094;</button>
+    <button class="scroll-btn next" onclick="scrollSection(1)">&#10095;</button>
+    {% endif %}
+    <div class="sections-wrapper">
+      {% for title, dict_ in info["table_dict"].items() %}
+      <section class="area">
+        <h3 style="text-align:center; text-decoration:underline;">{{ title }}</h3>
+        {% for subtitle, disc in dict_.items() %}
+        <p><b>{{ subtitle }}:</b>{{ disc | safe }}</p>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+</div>
+
+</div>
+<hr size="5">
+<div class="other-link-container">
+ 
+    <h3 style="text-align:center">自分関連の外部サイト</h3>
+  <div style="text-align:center" >
+    <a href="https://twitter.com/ray_bow_">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAA3ElEQVR4Ac2SGQDFMBBE1ylOcYpTner0neK0TnGpU53iFKc6xWl+p+f25D7InZ295Cv0mGjFUOzWDVVVa/WykaBiaBBFfsiyory3JASRjs8mInqxUGRw47CIBIy7Ew0Sh0nED4OXCwkNh8h7GrrgCkVK9a7w6Q2BjoVa6Oo9EZEDVJ7I1M4UeMDXzIEhvoukFxNMaP8o4gpon1l9qnqc7DcPIgpd7Ce0t/fJVO0q0qIsVeuY1XwNYK1gwm8J2GAqvHRF5mD7BcG0Rl6yegjw0BqdakE8Bni0RyjyDf4Y1Y0n0wNT4wAAAABJRU5ErkJggg=="
+        alt="X" height="32px">
+    </a>
+
+    <a href="https://www.pixiv.net/users/20525860">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADqUlEQVR4AbxWA7AlSRC8x8DZtsJn2w6dbTN8DpzNz7PNtW3btr/xumdys7YqthcTE/tWHZHjrsxCV88u60ZVKWfni4iORB2B7Yw6s31R4NSLjJ3fJrCT8Hbg3pjcEZ6IdwBpbLZdEKHklxGRojziTEC5QoyP3Dz8ay/8lhDmqkvI15SQrbbnlYaEdykwLnLzsIpAmvcZM5wRok+Ij+xcSdIaQggriI8Nn+uzFCHGRe5UYkIIMhVKWqTBS/53+GhchCHLYixpBta0A3XEYl53WxDj2UEeR//kKFDnqYgUIckvdGKuSj064JsSXh0RQQhlLGsBfpkR4YWhHg/39XhqgMcn4yPMbogho80D30yNcMi3nP+pOJEiIuGhTviMZ3rwHD1a1abEfRfHOPcfh2ylRMTwsZ4zhIT+hi4eC5ri9ULP+1uikSIikZxGT/jZYfjyGDbQUAIO/UrJslVaExvDaoHvj/zeYUa9zpUUnfqbE4eS07Fx2JX8hs4eLR4Scvw2M4KMRgo4jIZZeKl5LdaqjQvouTP9I+hIIdRVogCq13zd3ctDRpMDTmQU7uuh9/X05BAR8HmaAEXeovjnrAg2cFdPL8/IkyaAuXq0nxLe24sT3mpnVZcrINi6pZuHDfw9O6KDKQIUGoWu82Nc/A/J3muXCoeMujIEyHv5TiJYsiDMYk0Ua7R3ZJIF2AtW/n4str2+1oJ6YisEZEyAfC+1I0NW0r7fqP3MhvOTJkvHy1tBPtF/6yNw9I8OrQ4cWtB7fJUagYCMFtJWCggFfcV/xs4xeGms3qf3AcM2CijUaPoqJ4RV8NIwXQW0uzUCdBUc/oOjF+kCCrW6Ak7+1aHZh/AfFPK/NQK0ox38lea2sGEHrA7XWeuEQjZuVeiit3X32o6VvEwBtgraI+AmMWTbbtgLDLYXXN3Jc8kpuedJNqtAvhUCnjQBztK5ug3owj7x+qgIjzM6d7DDPUiS98ZGmLomeD2ERXfWXy6p+219Ci781+HZgR69Fuq/gA98iHg9oy5G5cQIF7H6sxUpW3EZAjbuhFJI77cj87EW1O6sicNYmLJJ7f5lKaTnE90xg+dbK+CDEh6xzWllKyvZGklBvVLCzw0VoX8kEKcKiJMakRDtRq9+se3Yx5Cd0ogCWPmEzSkfcdJPKQ3qH5Hk8p85MWonR/hheiRnikpop2tHMkY0SvE3y6fAW8CI7EaRxZjNcrwdE8YZsMKGQNxS0DEZ6K7ZwHdOB7x7DgDk/b2t3wK9bgAAAABJRU5ErkJggg=="
+       alt="ピクシブ" height="32px">
+    </a>
+    <a href="https://github.com/TANIGUCHIREI">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAb1BMVEX////4+Pi3ubtvcnZNUVU+Q0cpLjLr6+x3en0sMTYkKS59gIORk5aUl5n8/Pzw8PFTV1tbX2Pc3d5DSEzn5+g3PECLjpFKTlKFh4qxs7XCxMUwNTq/wcLh4uPV1tZzd3o/Q0jOz9CmqKpjZ2qfoaSrd37mAAABPUlEQVR4AW3TBZKEMBAF0B8GCHzcnbW5/xm30qEyknklcU/DgQpuYRTHUXgLFHw6SemkmcYrlcd8kRYlnlQ1PU0Fp434Qde75Qd+1FUQKiRZjyGfTGNjKhWMmSQXYO3Ibao3MlqBnSRzADhk/ycAdcqclSSHnEUD+KLt8KalMQMqpl3izU5jKxHQGCq8Ud80fq4VfuFZaIyQO4wVPEre5g+RrIAPJrkQSL8OPjv3htQmH8guU5uwgseeP7ITMYBnpdFgvlJPcx0zoLjjzS/FDrVRvH6xsqDYlLx29huRUaFx6YuI1mhKMbddf9trEzca7rmRk/FxpiRXiJO8FDBURyb4yfO7glC8TOpacmAc4ElMEWlc2oGckjwvYVFEB5wjouE6uLBwquypQym/scKrM4njElYaJy182q15aDj/oQMZkS8JH3IAAAAASUVORK5CYII="
+         alt="github" height="32px">
+    </a>
+    <a href="https://www.youtube.com/@rt_ou2710">
+        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAA3ElEQVR4Ae2WIQzDIBBFEdPV6Ip6L2Y3Me9NMzuB98GbWrysqHf1otWYismm+vYFTRCEhXXjJrjkmSslLwHgi8vjxkoRKAL/J0BCSHAHGhjQgxHMwIKnY/Px+taNHd2/Bmg3p4wKuIH0Y1RQAB+ugDJxDgn0GQVMSMBmFJhDApSTYwLLQtR13xNAo0oWINS6ErXtpxInX0CmC3g1TURNkypQ+QL1IYG9hiFFRPIL8C8B/ybkO4bsFxH7Vcz+GLE/x5yBRL+LZDVQkTi2Ochn70dimQpFspKKi0AReAF/IVUTZ3/BGQAAAABJRU5ErkJggg=="
+         alt="YouTube" height="32px">
+    </a>
+    <hr size="5">
+    <h3 style="text-align:center">選考の程、何卒よろしくお願いします</h3>
+
+
+  </div>
+  
+</div>
+<hr size="5">
+<div class="main_content">
+  <div class="details">
+      {% if info["h2_html"] %}
+    {{ info["h2_html"] | safe}}
+    {% endif %}
+  </div>
+  
+  <hr size="5">
+  
+
+  <div id="sections-container" class="similar_table_list-container" name="sections-container_2" >
+    <button class="similar_scroll-btn similar_prev" onclick="similar_scrollSection(-1)">&#10094;</button>
+    <button class="similar_scroll-btn similar_next" onclick="similar_scrollSection(1)">&#10095;</button>
+    <div class="similar_sections-wrapper">
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている漫画</h2>
+        <div class="similar-manga-table">
+          <table>
+            {% for manga in info['similar_manga_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in manga %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ているアニメ</h2>
+        <div class="similar-anime-table">
+          <table>
+            {% for anime in info['similar_anime_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in anime %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている小説</h2>
+        <div class="similar-novel-table">
+          <table>
+            {% for novel in info['similar_novel_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in novel %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <div id="sections-container" class="similar_table_list-container" name="sections-container_4">
+    <button class="similar_scroll-btn similar_prev" onclick="similar_scrollSection(-1)">&#10094;</button>
+    <button class="similar_scroll-btn similar_next" onclick="similar_scrollSection(1)">&#10095;</button>
+    <div class="similar_sections-wrapper">
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている漫画</h2>
+        <div class="similar-manga-table">
+          <table>
+            {% for manga in info['similar_manga_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in manga %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ているアニメ</h2>
+        <div class="similar-anime-table">
+          <table>
+            {% for anime in info['similar_anime_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in anime %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている小説</h2>
+        <div class="similar-novel-table">
+          <table>
+            {% for novel in info['similar_novel_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in novel %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+    </div>
+  </div>
+  
+</div>
+
+
+  
+  <div class="categories_container">
+      <hr size="5">
+    <h2 style="text-align:center">関連カテゴリ</h2>
+    <ul id="list-container">
+      <li><a ><b>hogehoge</b></a></li>
+    </ul>
+  </div>
+  
+
+ 
+
+</div>
+
+<script>
+  //スマホかPCかで表示する類似作品リストを決める
+  var sw = window.screen.width;
+  const container_2 = document.getElementsByName("sections-container_2").item(0);
+  const container_4 = document.getElementsByName("sections-container_4").item(0);
+  
+  if(sw<500){
+    container_4.remove();
+    console.log("deleted contaier4");
+  }else{
+    container_2.remove();
+    console.log("deleted contaier2");
+
+  }
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hash = "{{character_id}}"; //ここにどこに飛ぶのかを記載する
+    console.log(hash);
+  
+    if (hash) {
+      // ハッシュ値に対応するdetails要素を取得
+      const detail = document.querySelector(hash);
+      console.log(detail);
+      if (detail) {
+        // 親要素がdetailsタグであれば、再帰的に開く
+        const openDetails = function(element) {
+          try{
+            element.open = true;
+            openDetails(element.parentElement);
+          }
+          catch{
+            console.log(element.tagName);
+          }
+        };
+        openDetails(detail);
+        // スクロール位置を調整
+         // スクロール位置を調整するために少し遅延させる
+      setTimeout(() => {
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' }); //block:'center'とすれば真ん中に表示されるようになる
+      }, 100); // 100ミリ秒後に実行
+      }
+    }
+  });
+
+
+  //以下は任意の点にスクロールした後に最も近いsectionに移るためのもの
+
+  
+  let isScrolling;
+let disableAutoScrollAdjustment = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateArrowVisibility(); // ページ読み込み時に矢印の可視性を更新
+});
+
+
+document.querySelector('.sections-wrapper').addEventListener('scroll', function() {
+  if (disableAutoScrollAdjustment) {
+    return;
+  }
+  updateArrowVisibility(); // スクロール時に矢印の可視性を更新
+
+  window.clearTimeout(isScrolling);
+  isScrolling = setTimeout(function() {
+    const sections = document.querySelectorAll('.area');
+    let closest = null;
+    let closestDist = Infinity;
+    const wrapper = document.querySelector('.sections-wrapper');
+    const wrapperScrollLeft = wrapper.scrollLeft;
+    const wrapperWidth = wrapper.offsetWidth;
+
+    sections.forEach(section => {
+      const sectionX = section.offsetLeft - wrapperScrollLeft + section.offsetWidth / 2 - wrapperWidth / 2;
+      const dist = Math.abs(sectionX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = section;
+      }
+    });
+
+    if (closest) {
+      wrapper.scrollTo({
+        top: 0,
+        left: closest.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, 150);
+});
+
+function scrollSection(direction) {
+  disableAutoScrollAdjustment = true;
+  const container = document.querySelector('.sections-wrapper');
+  const sections = document.querySelectorAll('.area');
+  const currentScroll = container.scrollLeft;
+  let targetIndex = 0;
+
+  // 現在のセクションを見つける
+  for (let i = 0; i < sections.length; i++) {
+    const sectionStart = sections[i].offsetLeft;
+    const sectionEnd = sectionStart + sections[i].offsetWidth;
+    if (currentScroll >= sectionStart && currentScroll < sectionEnd) {
+      targetIndex = i;
+      break;
+    }
+  }
+
+  // 移動方向に応じてターゲットセクションを決定
+  if (direction > 0 && targetIndex < sections.length - 1) {
+    // 右に移動
+    targetIndex++;
+  } else if (direction < 0 && targetIndex > 0) {
+    // 左に移動
+    targetIndex--;
+  }
+
+  // ターゲットセクションへスクロール
+  container.scrollTo({
+    top: 0,
+    left: sections[targetIndex].offsetLeft,
+    behavior: 'smooth'
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+    updateArrowVisibility(); // スクロール完了時に矢印の可視性を更新
+  });
+
+}
+
+function updateArrowVisibility() {
+  const container = document.querySelector('.sections-wrapper');
+  const totalScrollWidth = container.scrollWidth;
+  const currentScroll = container.scrollLeft;
+  const containerWidth = container.offsetWidth;
+
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+
+  // スクロール位置に基づいてボタンの表示を制御
+  if(currentScroll <= 0) {
+    prevButton.style.display = 'none';
+  } else {
+    prevButton.style.display = 'block';
+  }
+
+  if(currentScroll >= totalScrollWidth - containerWidth) {
+    nextButton.style.display = 'none';
+  } else {
+    nextButton.style.display = 'block';
+  }
+}
+</script>
+
+
+
+
+
+
+<!-- ここからは上記jsのコピペ、似ている作品用のもの -->
+<script>
+  //以下は任意の点にスクロールした後に最も近いsectionに移るためのもの
+
+  
+  let similar_sectionisScrolling;
+let similar_section_disableAutoScrollAdjustment = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+  similar_updateArrowVisibility(); // ページ読み込み時に矢印の可視性を更新
+});
+
+
+document.querySelector('.similar_sections-wrapper').addEventListener('scroll', function() {
+  if (similar_section_disableAutoScrollAdjustment) {
+    return;
+  }
+  similar_updateArrowVisibility(); // スクロール時に矢印の可視性を更新
+
+  window.clearTimeout(similar_sectionisScrolling);
+  similar_sectionisScrolling = setTimeout(function() {
+    const sections = document.querySelectorAll('.similar_area');
+    let closest = null;
+    let closestDist = Infinity;
+    const wrapper = document.querySelector('.similar_sections-wrapper');
+    const wrapperScrollLeft = wrapper.scrollLeft;
+    const wrapperWidth = wrapper.offsetWidth;
+
+    sections.forEach(section => {
+      const sectionX = section.offsetLeft - wrapperScrollLeft + section.offsetWidth / 2 - wrapperWidth / 2;
+      const dist = Math.abs(sectionX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = section;
+      }
+    });
+
+    if (closest) {
+      wrapper.scrollTo({
+        top: 0,
+        left: closest.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, 150);
+});
+
+function similar_scrollSection(direction) {
+  similar_section_disableAutoScrollAdjustment = true;
+  const container = document.querySelector('.similar_sections-wrapper');
+  const sections = document.querySelectorAll('.similar_area');
+  const currentScroll = container.scrollLeft;
+  let targetIndex = 0;
+
+  // 現在のセクションを見つける
+  for (let i = 0; i < sections.length; i++) {
+    const sectionStart = sections[i].offsetLeft;
+    const sectionEnd = sectionStart + sections[i].offsetWidth;
+    if (currentScroll >= sectionStart && currentScroll < sectionEnd) {
+      targetIndex = i;
+      break;
+    }
+  }
+
+  // 移動方向に応じてターゲットセクションを決定
+  if (direction > 0 && targetIndex < sections.length - 1) {
+    // 右に移動
+    targetIndex++;
+  } else if (direction < 0 && targetIndex > 0) {
+    // 左に移動
+    targetIndex--;
+  }
+
+  // ターゲットセクションへスクロール
+  container.scrollTo({
+    top: 0,
+    left: sections[targetIndex].offsetLeft,
+    behavior: 'smooth'
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    similar_section_disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    similar_section_disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+    similar_updateArrowVisibility(); // スクロール完了時に矢印の可視性を更新
+  });
+
+}
+
+function similar_updateArrowVisibility() {
+  const container = document.querySelector('.similar_sections-wrapper');
+  const totalScrollWidth = container.scrollWidth;
+  const currentScroll = container.scrollLeft;
+  const containerWidth = container.offsetWidth;
+
+  const prevButton = document.querySelector('.similar_prev');
+  const nextButton = document.querySelector('.similar_next');
+
+  // スクロール位置に基づいてボタンの表示を制御
+  if(currentScroll <= 0) {
+    prevButton.style.display = 'none';
+  } else {
+    prevButton.style.display = 'block';
+  }
+
+  if(currentScroll >= totalScrollWidth - containerWidth) {
+    nextButton.style.display = 'none';
+  } else {
+    nextButton.style.display = 'block';
+  }
+}
+</script>
+
+
+{% endblock %}

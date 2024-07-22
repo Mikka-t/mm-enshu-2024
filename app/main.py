@@ -2,9 +2,12 @@ from flask import Flask, request,render_template
 from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
 import json
+import time
 
 app = Flask(__name__)
-
+@app.context_processor
+def inject_now():
+    return {'now': lambda: int(time.time())} #ブラウザがキャッシュをしないようにcssなどのurlを変更するための対策用。こう書くことによってjinja2がみることができるようになる
 import os
 
 CD = "/"
@@ -17,7 +20,10 @@ def index():
     
     send_data = convert_json(graph)
     # print(send_data)
-    return render_template("result.html",json_data = send_data)
+    random_work = {"title":"a","img_url":"A","url":"a"}
+    category_list = ["カレー","ケーキ"]
+    # return render_template("result.html",json_data = send_data)
+    return render_template('search/index.html',full_categories_list=category_list,start_year=1900, end_year=2024,random_work=random_work)
 
 @app.route('/submit_url', methods=['POST'])
 def submit_url():
