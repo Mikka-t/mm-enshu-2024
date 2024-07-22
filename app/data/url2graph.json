@@ -1,3 +1,555 @@
 {
-    
+    "https://www.kurashiru.com/recipes/13dab368-7f0f-4885-8d72-905ba3ec3706": {
+        "nodes": [
+            {
+                "id": "食パン",
+                "type": "ingredient"
+            },
+            {
+                "id": "卵 (Mサイズ)",
+                "type": "ingredient"
+            },
+            {
+                "id": "牛乳",
+                "type": "ingredient"
+            },
+            {
+                "id": "砂糖",
+                "type": "ingredient"
+            },
+            {
+                "id": "有塩バター",
+                "type": "ingredient"
+            },
+            {
+                "id": "オレンジ",
+                "type": "ingredient"
+            },
+            {
+                "id": "粉糖",
+                "type": "ingredient"
+            },
+            {
+                "id": "はちみつ",
+                "type": "ingredient"
+            },
+            {
+                "id": "卵液",
+                "type": "intermediate"
+            },
+            {
+                "id": "浸した食パン",
+                "type": "intermediate"
+            },
+            {
+                "id": "焼いた食パン",
+                "type": "intermediate"
+            },
+            {
+                "id": "最終料理",
+                "type": "final"
+            }
+        ],
+        "edges": [
+            {
+                "source": "食パン",
+                "target": "浸した食パン",
+                "action": "半分に切る"
+            },
+            {
+                "source": "卵",
+                "target": "卵液",
+                "action": "混ぜる"
+            },
+            {
+                "source": "牛乳",
+                "target": "卵液",
+                "action": "混ぜる"
+            },
+            {
+                "source": "砂糖",
+                "target": "卵液",
+                "action": "混ぜる"
+            },
+            {
+                "source": "卵液",
+                "target": "浸した食パン",
+                "action": "浸す"
+            },
+            {
+                "source": "有塩バター",
+                "target": "浸した食パン",
+                "action": "焼く"
+            },
+            {
+                "source": "浸した食パン",
+                "target": "焼いた食パン",
+                "action": "焼く"
+            },
+            {
+                "source": "焼いた食パン",
+                "target": "最終料理",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "オレンジ",
+                "target": "最終料理",
+                "action": "添える"
+            },
+            {
+                "source": "粉糖",
+                "target": "最終料理",
+                "action": "かける"
+            },
+            {
+                "source": "はちみつ",
+                "target": "最終料理",
+                "action": "かける"
+            }
+        ]
+    },
+    "https://www.sirogohan.com/recipe/hanba-gu/": {
+        "nodes": [
+            {
+                "id": "合びき肉",
+                "type": "ingredient"
+            },
+            {
+                "id": "玉ねぎ",
+                "type": "ingredient"
+            },
+            {
+                "id": "サラダ油",
+                "type": "ingredient"
+            },
+            {
+                "id": "パン粉",
+                "type": "ingredient"
+            },
+            {
+                "id": "牛乳",
+                "type": "ingredient"
+            },
+            {
+                "id": "おろしにんにく",
+                "type": "ingredient"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient"
+            },
+            {
+                "id": "砂糖",
+                "type": "ingredient"
+            },
+            {
+                "id": "こしょう",
+                "type": "ingredient"
+            },
+            {
+                "id": "ケチャップ",
+                "type": "ingredient"
+            },
+            {
+                "id": "ウスターソース",
+                "type": "ingredient"
+            },
+            {
+                "id": "醤油",
+                "type": "ingredient"
+            },
+            {
+                "id": "タマネギ炒め",
+                "type": "intermediate"
+            },
+            {
+                "id": "ハンバーグタネ",
+                "type": "intermediate"
+            },
+            {
+                "id": "ハンバーグ",
+                "type": "intermediate"
+            },
+            {
+                "id": "ハンバーグソース",
+                "type": "intermediate"
+            },
+            {
+                "id": "料理",
+                "type": "final"
+            }
+        ],
+        "edges": [
+            {
+                "source": "玉ねぎ",
+                "target": "タマネギ炒め",
+                "action": "みじん切りにして炒める"
+            },
+            {
+                "source": "サラダ油",
+                "target": "タマネギ炒め",
+                "action": "炒める"
+            },
+            {
+                "source": "合びき肉",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "タマネギ炒め",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "パン粉",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "牛乳",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "おろしにんにく",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "塩",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "砂糖",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "こしょう",
+                "target": "ハンバーグタネ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ハンバーグタネ",
+                "target": "ハンバーグ",
+                "action": "成形する"
+            },
+            {
+                "source": "サラダ油",
+                "target": "ハンバーグ",
+                "action": "焼く"
+            },
+            {
+                "source": "ハンバーグ",
+                "target": "料理",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "ケチャップ",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ウスターソース",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "醤油",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ハンバーグソース",
+                "target": "料理",
+                "action": "かける"
+            }
+        ]
+    },
+    "https://delishkitchen.tv/recipes/279201309205202069": {
+        "nodes": [
+            {
+                "id": "豚バラ薄切り肉",
+                "type": "ingredient"
+            },
+            {
+                "id": "長ねぎ",
+                "type": "ingredient"
+            },
+            {
+                "id": "塩こしょう",
+                "type": "ingredient"
+            },
+            {
+                "id": "サラダ油",
+                "type": "ingredient"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient"
+            },
+            {
+                "id": "鶏ガラスープの素",
+                "type": "ingredient"
+            },
+            {
+                "id": "酢",
+                "type": "ingredient"
+            },
+            {
+                "id": "ごま油",
+                "type": "ingredient"
+            },
+            {
+                "id": "こしょう",
+                "type": "ingredient"
+            },
+            {
+                "id": "青い部分のみじん切りねぎ",
+                "type": "intermediate"
+            },
+            {
+                "id": "ねぎ塩だれ",
+                "type": "intermediate"
+            },
+            {
+                "id": "巻いた豚肉",
+                "type": "intermediate"
+            },
+            {
+                "id": "焼き豚",
+                "type": "intermediate"
+            },
+            {
+                "id": "料理",
+                "type": "final"
+            }
+        ],
+        "edges": [
+            {
+                "source": "青い部分のみじん切りねぎ",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "塩",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "鶏ガラスープの素",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "酢",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ごま油",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "こしょう",
+                "target": "ねぎ塩だれ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "豚バラ薄切り肉",
+                "target": "巻いた豚肉",
+                "action": "巻く"
+            },
+            {
+                "source": "長ねぎ（白い部分）",
+                "target": "巻いた豚肉",
+                "action": "巻く"
+            },
+            {
+                "source": "塩こしょう",
+                "target": "巻いた豚肉",
+                "action": "振る"
+            },
+            {
+                "source": "サラダ油",
+                "target": "焼き豚",
+                "action": "焼く"
+            },
+            {
+                "source": "巻いた豚肉",
+                "target": "焼き豚",
+                "action": "焼く"
+            },
+            {
+                "source": "焼き豚",
+                "target": "料理",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "ねぎ塩だれ",
+                "target": "料理",
+                "action": "かける"
+            }
+        ]
+    },
+    "https://cookpad.com/recipe/7864509": {
+        "nodes": [
+            {
+                "id": "エビ",
+                "type": "ingredient"
+            },
+            {
+                "id": "片栗粉",
+                "type": "ingredient"
+            },
+            {
+                "id": "油",
+                "type": "ingredient"
+            },
+            {
+                "id": "生姜",
+                "type": "ingredient"
+            },
+            {
+                "id": "にんにく",
+                "type": "ingredient"
+            },
+            {
+                "id": "長ネギ",
+                "type": "ingredient"
+            },
+            {
+                "id": "ごま油",
+                "type": "ingredient"
+            },
+            {
+                "id": "★ケチャップ",
+                "type": "ingredient"
+            },
+            {
+                "id": "★オイスターソース",
+                "type": "ingredient"
+            },
+            {
+                "id": "★ぽん酢",
+                "type": "ingredient"
+            },
+            {
+                "id": "★豆板醤",
+                "type": "ingredient"
+            },
+            {
+                "id": "★鶏がらスープ",
+                "type": "ingredient"
+            },
+            {
+                "id": "★水",
+                "type": "ingredient"
+            },
+            {
+                "id": "★ラカント（砂糖）",
+                "type": "ingredient"
+            },
+            {
+                "id": "調味料を合わせたもの",
+                "type": "intermediate"
+            },
+            {
+                "id": "焼いたエビ",
+                "type": "intermediate"
+            },
+            {
+                "id": "炒めた香味野菜",
+                "type": "intermediate"
+            },
+            {
+                "id": "仕上げたエビチリ",
+                "type": "final"
+            }
+        ],
+        "edges": [
+            {
+                "source": "エビ",
+                "target": "焼いたエビ",
+                "action": "片栗粉をまぶす"
+            },
+            {
+                "source": "片栗粉",
+                "target": "焼いたエビ",
+                "action": "まぶす"
+            },
+            {
+                "source": "焼いたエビ",
+                "target": "仕上げたエビチリ",
+                "action": "絡める"
+            },
+            {
+                "source": "油",
+                "target": "焼いたエビ",
+                "action": "焼く"
+            },
+            {
+                "source": "生姜",
+                "target": "炒めた香味野菜",
+                "action": "みじん切りにして炒める"
+            },
+            {
+                "source": "にんにく",
+                "target": "炒めた香味野菜",
+                "action": "みじん切りにして炒める"
+            },
+            {
+                "source": "長ネギ",
+                "target": "炒めた香味野菜",
+                "action": "加える"
+            },
+            {
+                "source": "★ケチャップ",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★オイスターソース",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★ぽん酢",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★豆板醤",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★鶏がらスープ",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★水",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "★ラカント（砂糖）",
+                "target": "調味料を合わせたもの",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ごま油",
+                "target": "炒めた香味野菜",
+                "action": "炒める"
+            },
+            {
+                "source": "調味料を合わせたもの",
+                "target": "炒めた香味野菜",
+                "action": "一煮立ちさせる"
+            }
+        ]
+    }
 }
