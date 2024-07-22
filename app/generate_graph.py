@@ -40,7 +40,7 @@ def parse_to_json(input_string):
     
     # エッジのセクションを解析
     # edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+) \(([^)]+)\)") # コメント：修正前のコード．
-    edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+)（([^）]+)") # コメント：修正後のコード．制限によりLLamaで動くかのチェックができていない・
+    edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+)（([^）]+))") # コメント：修正後のコード．制限によりLLamaで動くかのチェックができていない・
     edges = []
     for match in edge_pattern.finditer(input_string):
         source, target, action = match.groups()
