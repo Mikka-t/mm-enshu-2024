@@ -38,7 +38,8 @@ def create_node_dict_str(nodes, node_dict):
 # 中間発表用
 def get_graph_str():
     import json
-    with open('data/toy_graph_big.json', 'r', encoding='utf-8') as f:
+    path = 'data/toy_graph_big.json'
+    with open(path, 'r', encoding='utf-8') as f:
         graph = json.load(f)
     nodes, edges = graph["nodes"], graph["edges"]
     return nodes, edges

@@ -10,7 +10,7 @@
         {"id": "スポンジ生地", "type": "intermediate"},
         {"id": "焼いたスポンジ生地", "type": "intermediate"},
         {"id": "ホイップクリーム", "type": "intermediate"},
-        {"id": "デコレーションケーキ", "type": "final"},
+        {"id": "", "type": "final"},
         {"id": "バター", "type": "ingredient", "quantity": "50g"},
         {"id": "砂糖", "type": "ingredient", "quantity": "100g"},
         {"id": "卵黄", "type": "ingredient", "quantity": "2個"},

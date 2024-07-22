@@ -1,0 +1,3 @@
+User-agent: *
+Sitemap: http://yuruyuru-search.com/sitemap.xml
+Sitemap: http://yuruyuru-search.com/categories_sitemap.xml

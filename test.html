@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>知識グラフのビジュアライゼーション</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <style>
+        #mynetwork {
+            width: 800px;
+            height: 600px;
+            border: 1px solid lightgray;
+        }
+        .slider-container {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="mynetwork"></div>
+<div class="slider-container">
+    ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20">
+    エッジ幅: <input type="range" id="edgeWidth" min="1" max="10" value="1">
+    エッジ長: <input type="range" id="edgeLength" min="300" max="1000" value="1">
+    フォントサイズ: <input type="range" id="fontSize" min="10" max="30" value="15">
+    
+</div>
+<script>
+    // JSONデータ
+    const data = {
+        "nodes": [
+            {"id": "卵", "label": "卵", "group": 1},
+            {"id": "グラニュー糖", "label": "グラニュー糖", "group": 1},
+            {"id": "小麦粉", "label": "小麦粉", "group": 1},
+            {"id": "無塩バター", "label": "無塩バター", "group": 1},
+            {"id": "生クリーム", "label": "生クリーム", "group": 1},
+            {"id": "いちご", "label": "いちご", "group": 1},
+            {"id": "生地", "label": "生地", "group": 2},
+            {"id": "スポンジ生地", "label": "スポンジ生地", "group": 2},
+            {"id": "焼いたスポンジ生地", "label": "焼いたスポンジ生地", "group": 2},
+            {"id": "ホイップクリーム", "label": "ホイップクリーム", "group": 2},
+            {"id": "デコレーションケーキ", "label": "デコレーションケーキ", "group": 3}
+        ],
+        "edges": [
+            {"from": "卵", "to": "生地", "label": "混ぜる"},
+            {"from": "グラニュー糖", "to": "生地", "label": "混ぜる"},
+            {"from": "小麦粉", "to": "生地", "label": "混ぜる"},
+            {"from": "生地", "to": "スポンジ生地", "label": "混ぜる"},
+            {"from": "無塩バター", "to": "スポンジ生地", "label": "混ぜる"},
+            {"from": "スポンジ生地", "to": "焼いたスポンジ生地", "label": "焼く"},
+            {"from": "生クリーム", "to": "ホイップクリーム", "label": "ホイップする"},
+            {"from": "グラニュー糖", "to": "ホイップクリーム", "label": "ホイップする"},
+            {"from": "焼いたスポンジ生地", "to": "デコレーションケーキ", "label": "重ねる"},
+            {"from": "ホイップクリーム", "to": "デコレーションケーキ", "label": "重ねる"},
+            {"from": "いちご", "to": "デコレーションケーキ", "label": "重ねる"}
+        ]
+    };
+
+    console.log(data);
+    const container = document.getElementById('mynetwork');
+    const nodes = new vis.DataSet(data.nodes);
+    const edges = new vis.DataSet(data.edges);
+    const networkData = { nodes, edges };
+    const options = {
+    nodes: {
+        shape: 'circle',
+        size: 20,
+        font: { size: 30, face: 'Arial', align: 'center', multi: 'html' }
+    },
+    edges: {
+        width: 1,
+        length: 250,
+        font: { size: 30, align: 'horizontal' },
+        arrows: { to: { enabled: true, scaleFactor: 1 } }
+    },
+    physics: {
+        enabled: true,
+        barnesHut: {
+            gravitationalConstant: -20000,
+            centralGravity: 0.3,
+            springLength: 95,
+            springConstant: 0.04,
+            damping: 0.09,
+            avoidOverlap: 0.1
+        }
+    }
+};
+
+    const network = new vis.Network(container, networkData, options);
+
+    // スライダーの設定
+    document.getElementById('nodeSize').addEventListener('input', function () {
+        network.setOptions({ nodes: { size: parseInt(this.value) } });
+    });
+    document.getElementById('edgeWidth').addEventListener('input', function () {
+        network.setOptions({ edges: { width: parseInt(this.value) } });
+    });
+    document.getElementById('edgeLength').addEventListener('input', function () {
+        network.setOptions({ edges: { length: parseInt(this.value) } });
+    });
+    document.getElementById('fontSize').addEventListener('input', function () {
+        network.setOptions({
+            nodes: { font: { size: parseInt(this.value) } },
+            edges: { font: { size: parseInt(this.value) } }
+        });
+    });
+</script>
+</body>
+</html>

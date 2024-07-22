@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <div>
+    <!-- {% block title %}検索トップ{% endblock %} -->
+  </div>
+{% endblock %}
+
+{% block content %}
+
+
+  
+  <br>
+  <form method="post" action="/search" id="searchForm">
+    <h1 style="text-align: center;">レシピを検索する</h1>
+    
+    <hr>
+
+    
+
+    <!-- <div class="slider_container">
+      <label for="overview_rate"><span class="range_bar">概要</span></label>
+      <input type="range" id="overview_rate" name="overview_rate" min="0" max="100" disabled>
+      <label for="story_rate"><span class="range_bar">ストーリー</span></label>
+      <input type="range" id="story_rate" name="story_rate" min="0" max="100" disabled>
+      <label for="character_rate"><span class="range_bar">キャラクター</span></label>
+      <input type="range" id="character_rate" name="character_rate" min="0" max="100" disabled>
+    </div> -->
+
+    <div class="range-wrapper">
+      <div id="range"></div>
+    </div>
+
+    <!-- フォーム内に隠しフィールドを追加 -->
+    <input type="hidden" id="liData" name="liData">
+    <div class="autoComplete_container" >
+      <br>
+      <br>
+      <div style="text-align: center;"><label  >料理名前で探す</label></div>
+      <!-- <input type="radio" name="AndOR" value="AND" />AND
+      <input type="radio" name="AndOR" value="OR" checked/>OR -->
+      <input type="text" id="autoComplete">
+          <ul id="list-container"></ul>
+
+    </div>
+
+    <br>
+    <div style="text-align: center;"><label  >クックパッドのURLで検索</label></div>
+    <textarea id="inputText" name="inputText" rows="4" placeholder="料理のレシピURLをここに入力してください" required></textarea>
+    <!-- <input type="type" id="inputText" name="inputText" placeholder="検索したい質問の要素を入力してください" required> -->
+
+    <input type="submit" value="検索">
+
+    <div id="loadingIndicator" style="display: none;">
+      Loading...
+    </div>
+  </form>
+  
+{% endblock %}

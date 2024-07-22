@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <div>
+    <!-- <h1>{% block title %}ページが見つかりません{% endblock %}</h1> -->
+  </div>
+  <style>
+    .img-container{
+      display: flex;
+      justify-content: center;
+    }
+    img{
+      max-width: 100%;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+<h1 style="text-align: center;">ページが見つかりません！<br><a href="/">検索ホームに戻る</a></h1>
+
+<div class="img-container">
+  <img src="{{ url_for('static', filename='images/ページが見つかりません！.png') }}" alt="">
+</div>
+  
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <div>
+    <h1>{% block title %}お問い合わせ{% endblock %}</h1>
+  </div>
+{% endblock %}
+
+{% block content %}
+  <!-- <h1>お問い合わせフォーム</h1> -->
+
+  <form method="post" action="/contact" id="contactForm">
+    <div>
+      <label for="name">お名前(匿名でも構いません)</label>
+      <input type="text" id="name" name="name" placeholder="お名前を入力してください" required>
+    </div>
+    <br>
+
+    <div>
+      <label for="email">メールアドレス(任意)</label>
+      <input type="email" id="email" name="email" placeholder="メールアドレスを入力してください">
+    </div>
+    <br>
+
+    <div>
+      <label for="message">お問い合わせ内容</label>
+      <textarea id="message" name="message" rows="4" placeholder="お問い合わせ内容を入力してください" required></textarea>
+    </div>
+    <p>※送信ボタンを押す際に<b>確認画面はありません。</b>送信前に内容をご確認ください。</p>
+    <p>※誹謗中傷等の送信はお控えください。メンタルがやられます。</p>
+    <input type="submit" value="送信">
+  </form>
+  
+  
+{% endblock %}

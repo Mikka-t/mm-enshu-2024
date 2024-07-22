@@ -3,7 +3,7 @@ import replicate
 import openai
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
-def get_subgraph_str(target_node: str):
+def get_subgraph_str(target_node: str,):
     """
     Input: ノード名
     Output: graph (json形式)
@@ -55,7 +55,7 @@ def get_subgraph_str(target_node: str):
 def subgraph2recipe_str(graph):
     nodes, edges = graph["nodes"], graph["edges"]
 
-    with open('./.token/llama', 'r') as f:
+    with open('./app/.token/llama', 'r') as f:
         api_token = f.read().strip()
     print('api_token:', api_token)
     client = replicate.Client(api_token=api_token)

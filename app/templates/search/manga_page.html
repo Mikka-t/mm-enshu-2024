@@ -1,0 +1,619 @@
+{% extends 'base.html' %}
+
+{% block header %}
+
+<div style="text-align: center;">
+  {% if info["media_types"]["manga"] %}
+  <a style="border-radius: 5px;background: #37d118;padding: 5px;color: #FFF;">漫画</a>
+  {% endif %}
+  {% if info["media_types"]["anime"] %}
+  <a style="border-radius: 5px;background: #ff6f6f;padding: 5px;color: #FFF;">アニメ</a>
+  {% endif %}
+  {% if info["media_types"]["novel"] %}
+  <a style="border-radius: 5px;background: #6fa1ff;padding: 5px;color: #FFF;">小説</a>
+  {% endif %}
+</div>
+ 
+<div>
+  <!-- {% block title %}【{{ info["title"] }}】の解説と似た漫画・アニメ・小説{% endblock %} -->
+</div>
+
+{% if info["title"] %}
+<div>
+  <h4>{{ info["title"] }}</h4>
+  <hr size="5">
+</div>
+{% endif %}
+{% endblock %}
+{% block content %}
+<script src="{{ url_for('static', filename='js/manga_page.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/mobile_manga_page.css') }}?v={{ now() }}" media="screen and (min-width:10px) and (max-width:500px)"> <!-- スマホ画面向け-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manga_page.css') }}?v={{ now() }}" media="screen and (min-width:501px)"> <!--PC画面向け-->
+
+
+
+<div class="about_manga_container">
+  <div class="img_and_info_container" style="text-align: center;">
+    <div class="manga_img_container" ><a class="manga_img"><img style="width: 50%;height: auto;box-shadow: 10px 10px 4px #a3a3a3 ;" src="{{ info['img_url'] }}"></a></div>
+    <div class="manga_genre_container" style="text-align: left; ">
+      {% if info["genre"]!="" %} <p><b>ジャンル:</b>{{ info["genre"] | safe }}</p> {% endif %}
+      {% if info["theme"]!="" %}<p><b>題材:</b>{{ info["theme"] | safe }}</p>{% endif %}
+      {% if info["place"]!="" %}<p><b>舞台:</b>{{ info["place"] | safe }}</p>{% endif %}
+      {% if info["protagonist"]!="" %}<p><b>主人公の属性:</b>{{ info["protagonist"] | safe }}</p>{% endif %}
+      
+      <!-- <p> <b>発表年</b>:{{info['year']}}年</p> -->
+    </div>
+    
+  </div>
+   <!--  -->
+  <div id="sections-container" class="table_list-container" style="border: solid; border-color:#d6d6d6; border-radius: 5%;">
+    
+    {% if info["table_dict"]|length > 1 %}
+    <button class="scroll-btn prev" onclick="scrollSection(-1)">&#10094;</button>
+    <button class="scroll-btn next" onclick="scrollSection(1)">&#10095;</button>
+    {% endif %}
+    <div class="sections-wrapper">
+      {% for title, dict_ in info["table_dict"].items() %}
+      <section class="area">
+        <h3 style="text-align:center; text-decoration:underline;">{{ title }}</h3>
+        {% for subtitle, disc in dict_.items() %}
+        <p><b>{{ subtitle }}:</b>{{ disc | safe }}</p>
+        {% endfor %}
+      </section>
+      {% endfor %}
+    </div>
+</div>
+
+</div>
+<hr size="5">
+<div class="other-link-container">
+ 
+    <h3 style="text-align:center">他で調べる</h3>
+  <div style="text-align:center" >
+    <a href="{{info["wiki_url"]}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAM1BMVEUAAAD+/v41NTUBAQEAAABZWVknJycWFhaZmZmIiIjp6ellZWXMzMzX19eurq54eHhHR0dExXFyAAAAAXRSTlMAQObYZgAAAPtJREFUeAG8kAWOBDAMA9d1Sin+/7XXbpZZdBaURlMrhx28ycGCD/n0bvkBwJf8C+AoIvRAWGtMyHGtCWkfxW+DRopuuIjUtTQJDStevNoXWaRjRSllLd1O8FFhgEZx2BmkAmHC8HwpOUyxSA50VqOjXgAl50URvNWPBRcAnmwnhbcduthqQCO9KYTFBG7eDWoK1T47AZX9DuiUYT/TuhX3MGpnD51kPprSA9Dl+BCKl7jWHHEHmHsLWhNZZMxPQCLTEuy+cYF6D9i8Q5e2Lcyz4AGwKdJbX0p7AegC2qnvxAsAxQRAYH8J6Dg1a/lvpKRJinMW4cxLMPsDAJjSCaG8cPmnAAAAAElFTkSuQmCC" 
+      alt="wikipedia" height="32px">
+    </a>
+  
+    <a href="{{" https://dic.pixiv.net/search?query=" + info["title"]}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAP1BMVEVHcEwzmuC7lWWmclgybJUzbphwnbo+l9j0/fkrj9QMh9LM0NWoOwCnPwCco6snbpvL1d7M09nK09tsosGkQRhY3HE1AAAAAXRSTlMAQObYZgAAAFtJREFUGJVtj9sSgCAIRLE0Qym6/f+3FhROaedx58yyADT03bEPxh1MLhoeYF4XchEVDbIYOCqoRt5IgpSewAxEM6Tjz2g76itY7yjDLoM+S4GZfSHIM+FF+zucU+UGBWtxq6UAAAAASUVORK5CYII="
+       alt="ピクシブ百科事典" height="32px">
+    </a>
+  
+    <a href="{{" https://dic.nicovideo.jp/s/al/t/" +info["title"]+ "/rev_created/desc/1-?query_type=t" }}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAAPFBMVEX///+6AAD9+Pj56enxzc3fjY378fG+ExPuv7/MRUXTXl7ZdHS6GBjLQEDcf3/45ub34uLpr6/jmJjfiYmrdX9DAAAAYElEQVR4AV3MxQHAMAwEwbswmfvvNWban8eSkKIPrQTL9G4jcyt9WxraDw/72YA7cPFu0zcvPHzBHF4+oIevASNwhloBkYsg28rnQULd/uhX4FaANu2E1fAtm0sn3LYAP/IwAxHHophpAAAAAElFTkSuQmCC" 
+      alt="ニコニコ大百科" height="32px">
+    </a>
+    <a href="{{ 'https://twitter.com/search?q=' + info["title"] +  '&src=recent_search_click' }}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAAAAABWESUoAAAA3ElEQVR4Ac2SGQDFMBBE1ylOcYpTner0neK0TnGpU53iFKc6xWl+p+f25D7InZ295Cv0mGjFUOzWDVVVa/WykaBiaBBFfsiyory3JASRjs8mInqxUGRw47CIBIy7Ew0Sh0nED4OXCwkNh8h7GrrgCkVK9a7w6Q2BjoVa6Oo9EZEDVJ7I1M4UeMDXzIEhvoukFxNMaP8o4gpon1l9qnqc7DcPIgpd7Ce0t/fJVO0q0qIsVeuY1XwNYK1gwm8J2GAqvHRF5mD7BcG0Rl6yegjw0BqdakE8Bni0RyjyDf4Y1Y0n0wNT4wAAAABJRU5ErkJggg=="
+        alt="X" height="32px">
+    </a>
+  
+    <a href="{{"https://www.google.co.jp/search?q=" + info["title"]}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADmUlEQVR4Ab1XA5AjQRQ9G6UrnV0627Zt27Zt27Zt27Z9FyeXiZN3v1NzW9vTmd3J6lW9cKbf6690EmlFIBDIQGzr9/vXE+8RjUSPTIP82Xq6pg27VvPCGoTz08KbiE5oBF3rIG6ge/PGWBhAGlpkAdEHzRCMeInzyEjqcHedj258gbgBM/KU1syjVbwo3aBHCPh+foe0YyMsw/vC0KI2dDVLQ1ejFAzNasI8tDekLWvh+/5VzYQOQGENOxfFfb9+wDplNHTVS0JXrUTUpGusk0aye0Ka4CPBi6cNFXbn2RPQ16vIi2igvn4luC6dVUuHWBOs4KCAtGtzOKICbXOnqKVjbqhW8yl2rrqwqUcb2Nctg/P4QThPHKLXy2Hq2ZYXXzgTCARUu4NLBetzZbHp61YQhI3tG8N9/zbU4L53C4bW9fF3+XwtnbH+f79nVA4Z++IBgri5fxcEbDZEh4Bk19qaEkUhPQt/W24Bxwd4z6SEdVSOCHHWcn6LCXEN0m7Fwr+ec/ZpJrznkwcpLcsEfZ3icJ4+hvgAaa9hBu5x+X9Qk4lH0H0wJ+D1xpeB28yAEZHgvZqFM+B71gZRoeoMu2ZeeuEVBhMz4OEMXEjJGfC/nxBnBnbc8CgNuBPUwKYr7pAGDFGm4GnrODOw97YQAZ1YhA9rcQa+Xy0Ij9+LcPFR5xcMXHnlFYtQbMPZEeLHTuRE+d2NcfjDeYSL3bc8goFfloDYhuwMxw+iT3CcT42Zh4uh+O5mQdY83BUGpxla8dcZQPPFEifeeY0j1CBqGTxskhPu20W3pjJhju3PjIDFHf0o9viAUbucwu73iPmXAKT7/2O0AZHw065Dxf3tBBP1j/bC1R/3oYa35s/odmQ3CVo5cRYNh1sI/9rIP8d5/X6+0k59vioLi2x+ciAWPNyEvW9PYd+701jxdAe6nx+HErubB78vtXkUqsz5FmHg2mufUtxDmrmVB5J5UGDb6yOCuFaW2NEZFRfeFXpfNjBL7Rj+DAqc+XKd0tE+bAOl9rTEuqdHQok/BpBK7VyYRz69cvgl6THu5iKU3NNck3ivixPxyvQhlPhvALmi+0NSmDfBF+eWV4fQ//JU1DnSA6X3tmQ7pTbthh4XJgRr4bXpI2QI4rTBQurKYiSeIo7Awi7sXIOJ1Oz0SvTGQthDnKWW83CisZ4ohSEsEdfKrRY3YAdIYis2v4m3iTqiW6ZO/mwNG6/yhNOEf6HhfzYhUKeuAAAAAElFTkSuQmCC"
+        alt="amazon" height="32px">
+    </a>
+
+    <a href="{{"https://www.pixiv.net/tags/" + info["title"]}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAADqUlEQVR4AbxWA7AlSRC8x8DZtsJn2w6dbTN8DpzNz7PNtW3btr/xumdys7YqthcTE/tWHZHjrsxCV88u60ZVKWfni4iORB2B7Yw6s31R4NSLjJ3fJrCT8Hbg3pjcEZ6IdwBpbLZdEKHklxGRojziTEC5QoyP3Dz8ay/8lhDmqkvI15SQrbbnlYaEdykwLnLzsIpAmvcZM5wRok+Ij+xcSdIaQggriI8Nn+uzFCHGRe5UYkIIMhVKWqTBS/53+GhchCHLYixpBta0A3XEYl53WxDj2UEeR//kKFDnqYgUIckvdGKuSj064JsSXh0RQQhlLGsBfpkR4YWhHg/39XhqgMcn4yPMbogho80D30yNcMi3nP+pOJEiIuGhTviMZ3rwHD1a1abEfRfHOPcfh2ylRMTwsZ4zhIT+hi4eC5ri9ULP+1uikSIikZxGT/jZYfjyGDbQUAIO/UrJslVaExvDaoHvj/zeYUa9zpUUnfqbE4eS07Fx2JX8hs4eLR4Scvw2M4KMRgo4jIZZeKl5LdaqjQvouTP9I+hIIdRVogCq13zd3ctDRpMDTmQU7uuh9/X05BAR8HmaAEXeovjnrAg2cFdPL8/IkyaAuXq0nxLe24sT3mpnVZcrINi6pZuHDfw9O6KDKQIUGoWu82Nc/A/J3muXCoeMujIEyHv5TiJYsiDMYk0Ua7R3ZJIF2AtW/n4str2+1oJ6YisEZEyAfC+1I0NW0r7fqP3MhvOTJkvHy1tBPtF/6yNw9I8OrQ4cWtB7fJUagYCMFtJWCggFfcV/xs4xeGms3qf3AcM2CijUaPoqJ4RV8NIwXQW0uzUCdBUc/oOjF+kCCrW6Ak7+1aHZh/AfFPK/NQK0ox38lea2sGEHrA7XWeuEQjZuVeiit3X32o6VvEwBtgraI+AmMWTbbtgLDLYXXN3Jc8kpuedJNqtAvhUCnjQBztK5ug3owj7x+qgIjzM6d7DDPUiS98ZGmLomeD2ERXfWXy6p+219Ci781+HZgR69Fuq/gA98iHg9oy5G5cQIF7H6sxUpW3EZAjbuhFJI77cj87EW1O6sicNYmLJJ7f5lKaTnE90xg+dbK+CDEh6xzWllKyvZGklBvVLCzw0VoX8kEKcKiJMakRDtRq9+se3Yx5Cd0ogCWPmEzSkfcdJPKQ3qH5Hk8p85MWonR/hheiRnikpop2tHMkY0SvE3y6fAW8CI7EaRxZjNcrwdE8YZsMKGQNxS0DEZ6K7ZwHdOB7x7DgDk/b2t3wK9bgAAAABJRU5ErkJggg=="
+       alt="ピクシブ" height="32px">
+    </a>
+
+    <a href="{{"https://seiga.nicovideo.jp/search/" + info["title"] + '?target=illust'}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAgMAAAAOFJJnAAAADFBMVEUAAAD///8zMzMz/wD7IzGqAAAAAXRSTlMAQObYZgAAAH1JREFUeAGFjoEJgCAQRU+AJqjmCYAm6NpBW8ag2sFriOapIbKfgoUBfR7wQP/dESkGDREVYgGklglABr8DfInSULH5Y/WnfUQZWRZx6EdBq+J25C5IPwcxguBJRcGcmZHevkUz6z/5trAiF+NyyVrpjHQYVfeKjhAdQMrABfe1YqRAJseVAAAAAElFTkSuQmCC"
+       alt="ニコニコ静止画" height="32px">
+    </a>
+
+    <a href="{{"https://www.pinterest.jp/search/pins/?q=" + info["title"] + '&rs=typed'}}">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAAZlBMVEVHcEzmACLnCynmACLmACPmACPmACPmACPmACPmACHjACDmACLmABvsUGLmACPmABrmABDlAAHrN07zkp76xs3////94ub3tr7uZnP2p7H+7vH82uDpK0LsS1z6ztPwe4b/9/npETQSvJBdAAAAFXRSTlMAJUybvur/9sYgD4ujGdH///////pX1IjeAAABh0lEQVR4AW1TBwKDMAiMK7Z1ENS45/8/2QDGzuvmrmzUC0EYxYnW6S0K7+oXj8yRHkl+/6H1F7LHO1+U+gflmyJM9R+k4eX/5MEgItDrVBQnf/o3Vd1Yh7brNbxHkfwAh9F6TDNKpsTfhV9aR4yrA+tqUZCLnL/hSNZFG6OXmhSLOV3cE47fuNgVggRbnHqs6EcSqJBtZFoMVcDyjdyxi1BFHGCwdkCYh32VgK1zwdpI3dgw2b0HHPwfDaXB8WKVssBVdoCxDh36GJKEkiKtXTVUlj18CDQLxIMIDvCCgymVnEmNC4Dl1HwO/C1VsTcMiCN3UJK2K3+7qejqAye5UQpwXH2IpFHa9HbHxZl7IH6leYE0KkhEsdU4cJUGsfGudHL309bGwMqTrofxNc2c9kULoGqdAyuotcA5uFxAT6Ut09ROw4HnavuV86WuCHqeDwOfi13IPBpf5LXWj4+1l4n+rr2PQoL143CKz9MjQW9+T+/CPW9W9GzyQ3OuYXRLHRlHYfCyPgEPdSsJLTPFFAAAAABJRU5ErkJggg=="
+       alt="pinterest" height="32px">
+    </a>
+    <hr size="5">
+    <h3 style="text-align:center">購入する</h3>
+    <a href="{{info["amazon_url"] }}">
+      <img src=https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/220px-Amazon_logo.svg.png
+        alt="amazon" height="32px">
+    </a>
+
+
+  </div>
+  
+</div>
+<hr size="5">
+<div class="main_content">
+  <p>以下は<a href="{{info["wiki_url"]}}">Wikipedia</a>より引用</p>
+  <div class="details">
+      {% if info["h2_html"] %}
+    {{ info["h2_html"] | safe}}
+    {% endif %}
+  </div>
+  
+  <hr size="5">
+  
+
+  <div id="sections-container" class="similar_table_list-container" name="sections-container_2" >
+    <button class="similar_scroll-btn similar_prev" onclick="similar_scrollSection(-1)">&#10094;</button>
+    <button class="similar_scroll-btn similar_next" onclick="similar_scrollSection(1)">&#10095;</button>
+    <div class="similar_sections-wrapper">
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている漫画</h2>
+        <div class="similar-manga-table">
+          <table>
+            {% for manga in info['similar_manga_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in manga %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ているアニメ</h2>
+        <div class="similar-anime-table">
+          <table>
+            {% for anime in info['similar_anime_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in anime %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている小説</h2>
+        <div class="similar-novel-table">
+          <table>
+            {% for novel in info['similar_novel_list']|batch(2, '&nbsp;') %}
+            <tr>
+                {% for item in novel %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+    </div>
+
+  </div>
+
+  <div id="sections-container" class="similar_table_list-container" name="sections-container_4">
+    <button class="similar_scroll-btn similar_prev" onclick="similar_scrollSection(-1)">&#10094;</button>
+    <button class="similar_scroll-btn similar_next" onclick="similar_scrollSection(1)">&#10095;</button>
+    <div class="similar_sections-wrapper">
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている漫画</h2>
+        <div class="similar-manga-table">
+          <table>
+            {% for manga in info['similar_manga_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in manga %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ているアニメ</h2>
+        <div class="similar-anime-table">
+          <table>
+            {% for anime in info['similar_anime_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in anime %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+
+      <section class="similar_area">
+        <h2 style="text-align:center; text-decoration:underline;">似ている小説</h2>
+        <div class="similar-novel-table">
+          <table>
+            {% for novel in info['similar_novel_list']|batch(4, '&nbsp;') %}
+            <tr>
+                {% for item in novel %}
+                <td width="50%">
+                    <div class="manga-item">
+                        <a href="{{ item.url }}">
+                            {% if item.img_url %}
+                            <img src="{{ item.img_url }}" alt="{{ item.title }}">
+                            {% else %}
+                            <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No image available">
+                            {% endif %}
+                            <div class="manga-title" style="color:black">{{ item.title }}</div>
+                        </a>
+                    </div>
+                </td>
+                {% endfor %}
+            </tr>
+            {% endfor %}
+        </table>
+      </div>
+      </section>
+
+    </div>
+  </div>
+  
+</div>
+
+
+  
+  <div class="categories_container">
+      <hr size="5">
+    <h2 style="text-align:center">関連カテゴリ</h2>
+    <ul id="list-container">
+      {% for category,category_id in info["categories"] %}
+      <li><a href="{{" /search_by_category?category=" + category_id }}"><b>{{category}}</b></a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  
+
+ 
+
+</div>
+
+<script>
+  //スマホかPCかで表示する類似作品リストを決める
+  var sw = window.screen.width;
+  const container_2 = document.getElementsByName("sections-container_2").item(0);
+  const container_4 = document.getElementsByName("sections-container_4").item(0);
+  
+  if(sw<500){
+    container_4.remove();
+    console.log("deleted contaier4");
+  }else{
+    container_2.remove();
+    console.log("deleted contaier2");
+
+  }
+</script>
+
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const hash = "{{character_id}}"; //ここにどこに飛ぶのかを記載する
+    console.log(hash);
+  
+    if (hash) {
+      // ハッシュ値に対応するdetails要素を取得
+      const detail = document.querySelector(hash);
+      console.log(detail);
+      if (detail) {
+        // 親要素がdetailsタグであれば、再帰的に開く
+        const openDetails = function(element) {
+          try{
+            element.open = true;
+            openDetails(element.parentElement);
+          }
+          catch{
+            console.log(element.tagName);
+          }
+        };
+        openDetails(detail);
+        // スクロール位置を調整
+         // スクロール位置を調整するために少し遅延させる
+      setTimeout(() => {
+        detail.scrollIntoView({ behavior: 'smooth', block: 'start' }); //block:'center'とすれば真ん中に表示されるようになる
+      }, 100); // 100ミリ秒後に実行
+      }
+    }
+  });
+
+
+  //以下は任意の点にスクロールした後に最も近いsectionに移るためのもの
+
+  
+  let isScrolling;
+let disableAutoScrollAdjustment = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+  updateArrowVisibility(); // ページ読み込み時に矢印の可視性を更新
+});
+
+
+document.querySelector('.sections-wrapper').addEventListener('scroll', function() {
+  if (disableAutoScrollAdjustment) {
+    return;
+  }
+  updateArrowVisibility(); // スクロール時に矢印の可視性を更新
+
+  window.clearTimeout(isScrolling);
+  isScrolling = setTimeout(function() {
+    const sections = document.querySelectorAll('.area');
+    let closest = null;
+    let closestDist = Infinity;
+    const wrapper = document.querySelector('.sections-wrapper');
+    const wrapperScrollLeft = wrapper.scrollLeft;
+    const wrapperWidth = wrapper.offsetWidth;
+
+    sections.forEach(section => {
+      const sectionX = section.offsetLeft - wrapperScrollLeft + section.offsetWidth / 2 - wrapperWidth / 2;
+      const dist = Math.abs(sectionX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = section;
+      }
+    });
+
+    if (closest) {
+      wrapper.scrollTo({
+        top: 0,
+        left: closest.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, 150);
+});
+
+function scrollSection(direction) {
+  disableAutoScrollAdjustment = true;
+  const container = document.querySelector('.sections-wrapper');
+  const sections = document.querySelectorAll('.area');
+  const currentScroll = container.scrollLeft;
+  let targetIndex = 0;
+
+  // 現在のセクションを見つける
+  for (let i = 0; i < sections.length; i++) {
+    const sectionStart = sections[i].offsetLeft;
+    const sectionEnd = sectionStart + sections[i].offsetWidth;
+    if (currentScroll >= sectionStart && currentScroll < sectionEnd) {
+      targetIndex = i;
+      break;
+    }
+  }
+
+  // 移動方向に応じてターゲットセクションを決定
+  if (direction > 0 && targetIndex < sections.length - 1) {
+    // 右に移動
+    targetIndex++;
+  } else if (direction < 0 && targetIndex > 0) {
+    // 左に移動
+    targetIndex--;
+  }
+
+  // ターゲットセクションへスクロール
+  container.scrollTo({
+    top: 0,
+    left: sections[targetIndex].offsetLeft,
+    behavior: 'smooth'
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+    updateArrowVisibility(); // スクロール完了時に矢印の可視性を更新
+  });
+
+}
+
+function updateArrowVisibility() {
+  const container = document.querySelector('.sections-wrapper');
+  const totalScrollWidth = container.scrollWidth;
+  const currentScroll = container.scrollLeft;
+  const containerWidth = container.offsetWidth;
+
+  const prevButton = document.querySelector('.prev');
+  const nextButton = document.querySelector('.next');
+
+  // スクロール位置に基づいてボタンの表示を制御
+  if(currentScroll <= 0) {
+    prevButton.style.display = 'none';
+  } else {
+    prevButton.style.display = 'block';
+  }
+
+  if(currentScroll >= totalScrollWidth - containerWidth) {
+    nextButton.style.display = 'none';
+  } else {
+    nextButton.style.display = 'block';
+  }
+}
+</script>
+
+
+
+
+
+
+<!-- ここからは上記jsのコピペ、似ている作品用のもの -->
+<script>
+  //以下は任意の点にスクロールした後に最も近いsectionに移るためのもの
+
+  
+  let similar_sectionisScrolling;
+let similar_section_disableAutoScrollAdjustment = false;
+
+document.addEventListener('DOMContentLoaded', function() {
+  similar_updateArrowVisibility(); // ページ読み込み時に矢印の可視性を更新
+});
+
+
+document.querySelector('.similar_sections-wrapper').addEventListener('scroll', function() {
+  if (similar_section_disableAutoScrollAdjustment) {
+    return;
+  }
+  similar_updateArrowVisibility(); // スクロール時に矢印の可視性を更新
+
+  window.clearTimeout(similar_sectionisScrolling);
+  similar_sectionisScrolling = setTimeout(function() {
+    const sections = document.querySelectorAll('.similar_area');
+    let closest = null;
+    let closestDist = Infinity;
+    const wrapper = document.querySelector('.similar_sections-wrapper');
+    const wrapperScrollLeft = wrapper.scrollLeft;
+    const wrapperWidth = wrapper.offsetWidth;
+
+    sections.forEach(section => {
+      const sectionX = section.offsetLeft - wrapperScrollLeft + section.offsetWidth / 2 - wrapperWidth / 2;
+      const dist = Math.abs(sectionX);
+      if (dist < closestDist) {
+        closestDist = dist;
+        closest = section;
+      }
+    });
+
+    if (closest) {
+      wrapper.scrollTo({
+        top: 0,
+        left: closest.offsetLeft,
+        behavior: 'smooth'
+      });
+    }
+  }, 150);
+});
+
+function similar_scrollSection(direction) {
+  similar_section_disableAutoScrollAdjustment = true;
+  const container = document.querySelector('.similar_sections-wrapper');
+  const sections = document.querySelectorAll('.similar_area');
+  const currentScroll = container.scrollLeft;
+  let targetIndex = 0;
+
+  // 現在のセクションを見つける
+  for (let i = 0; i < sections.length; i++) {
+    const sectionStart = sections[i].offsetLeft;
+    const sectionEnd = sectionStart + sections[i].offsetWidth;
+    if (currentScroll >= sectionStart && currentScroll < sectionEnd) {
+      targetIndex = i;
+      break;
+    }
+  }
+
+  // 移動方向に応じてターゲットセクションを決定
+  if (direction > 0 && targetIndex < sections.length - 1) {
+    // 右に移動
+    targetIndex++;
+  } else if (direction < 0 && targetIndex > 0) {
+    // 左に移動
+    targetIndex--;
+  }
+
+  // ターゲットセクションへスクロール
+  container.scrollTo({
+    top: 0,
+    left: sections[targetIndex].offsetLeft,
+    behavior: 'smooth'
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    similar_section_disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+  });
+
+  // スムーズスクロールが終了した後にフラグをリセットする
+  container.addEventListener('scroll', function onScroll() {
+    similar_section_disableAutoScrollAdjustment = false;
+    container.removeEventListener('scroll', onScroll);
+    similar_updateArrowVisibility(); // スクロール完了時に矢印の可視性を更新
+  });
+
+}
+
+function similar_updateArrowVisibility() {
+  const container = document.querySelector('.similar_sections-wrapper');
+  const totalScrollWidth = container.scrollWidth;
+  const currentScroll = container.scrollLeft;
+  const containerWidth = container.offsetWidth;
+
+  const prevButton = document.querySelector('.similar_prev');
+  const nextButton = document.querySelector('.similar_next');
+
+  // スクロール位置に基づいてボタンの表示を制御
+  if(currentScroll <= 0) {
+    prevButton.style.display = 'none';
+  } else {
+    prevButton.style.display = 'block';
+  }
+
+  if(currentScroll >= totalScrollWidth - containerWidth) {
+    nextButton.style.display = 'none';
+  } else {
+    nextButton.style.display = 'block';
+  }
+}
+</script>
+
+
+{% endblock %}
