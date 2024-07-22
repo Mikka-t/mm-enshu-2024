@@ -1221,5 +1221,206 @@
     "https://www.sirogohan.com/recipe/kinpiragomoku/": {
         "nodes": [],
         "edges": []
+    },
+    "https://delishkitchen.tv/recipes/148164455627227635": {
+        "nodes": [
+            {
+                "id": "ごはん",
+                "type": "ingredient",
+                "quantity": "お茶碗2杯(300g)"
+            },
+            {
+                "id": "合いびき肉",
+                "type": "ingredient",
+                "quantity": "200g"
+            },
+            {
+                "id": "玉ねぎ",
+                "type": "ingredient",
+                "quantity": "1/2個(100g)"
+            },
+            {
+                "id": "にんじん",
+                "type": "ingredient",
+                "quantity": "1/2本(75g)"
+            },
+            {
+                "id": "ピーマン",
+                "type": "ingredient",
+                "quantity": "1個(30g)"
+            },
+            {
+                "id": "しょうが",
+                "type": "ingredient",
+                "quantity": "1かけ"
+            },
+            {
+                "id": "にんにく",
+                "type": "ingredient",
+                "quantity": "1かけ"
+            },
+            {
+                "id": "サラダ油",
+                "type": "ingredient",
+                "quantity": "大さじ1/2"
+            },
+            {
+                "id": "コンソメ",
+                "type": "ingredient",
+                "quantity": "小さじ1"
+            },
+            {
+                "id": "水",
+                "type": "ingredient",
+                "quantity": "200cc"
+            },
+            {
+                "id": "乾燥パセリ",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "カレー粉",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "有塩バター",
+                "type": "ingredient",
+                "quantity": "20g"
+            },
+            {
+                "id": "ケチャップ",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "小さじ1/3"
+            },
+            {
+                "id": "卵",
+                "type": "ingredient",
+                "quantity": "2個"
+            },
+            {
+                "id": "酢",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            }
+        ],
+        "edges": [
+            {
+                "source": "玉ねぎ",
+                "target": "カレー",
+                "action": "みじん切りにする"
+            },
+            {
+                "source": "にんじん",
+                "target": "カレー",
+                "action": "みじん切りにする"
+            },
+            {
+                "source": "ピーマン",
+                "target": "カレー",
+                "action": "みじん切りにする"
+            },
+            {
+                "source": "しょうが",
+                "target": "カレー",
+                "action": "みじん切りにする"
+            },
+            {
+                "source": "にんにく",
+                "target": "カレー",
+                "action": "みじん切りにする"
+            },
+            {
+                "source": "サラダ油",
+                "target": "カレー",
+                "action": "炒める"
+            },
+            {
+                "source": "玉ねぎ",
+                "target": "カレー",
+                "action": "炒める"
+            },
+            {
+                "source": "にんじん",
+                "target": "カレー",
+                "action": "炒める"
+            },
+            {
+                "source": "ピーマン",
+                "target": "カレー",
+                "action": "炒める"
+            },
+            {
+                "source": "合いびき肉",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "コンソメ",
+                "target": "カレー",
+                "action": "水と一緒に加える"
+            },
+            {
+                "source": "水",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "カレー粉",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "有塩バター",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "ケチャップ",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "塩",
+                "target": "カレー",
+                "action": "加える"
+            },
+            {
+                "source": "卵",
+                "target": "ポーチドエッグ",
+                "action": "加熱する"
+            },
+            {
+                "source": "酢",
+                "target": "ポーチドエッグ",
+                "action": "加える"
+            },
+            {
+                "source": "ごはん",
+                "target": "料理",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "カレー",
+                "target": "料理",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "ポーチドエッグ",
+                "target": "料理",
+                "action": "のせる"
+            },
+            {
+                "source": "乾燥パセリ",
+                "target": "料理",
+                "action": "ちらす"
+            }
+        ]
     }
 }
