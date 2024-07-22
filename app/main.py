@@ -5,7 +5,7 @@ from graph2recipe import get_subgraph_str, subgraph2recipe_str
 import json
 import time
 # LLM にレシピを生成させる時は True にする。無駄なプロンプト実行を防ぐためテスト時は False
-USE_LLM_FLAG = False
+USE_LLM_FLAG = True
 
 app = Flask(__name__)
 @app.context_processor
