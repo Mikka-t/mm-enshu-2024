@@ -86,29 +86,38 @@ def subgraph2recipe_str(graph):
         output_str = "".join(output_list)
 
     elif SELECT_LLM == "ChatGPT":
+        # GPT特有の```によるコードブロックを削除
+        def remove_first_and_last_line(text):
+            lines = text.split('\n')
+            if len(lines) > 2:
+                return '\n'.join(lines[1:-1])
+            else:
+                return ''
+            
         with open('./.token/openai_api_key', 'r') as f:
             api_key = f.read().strip()
         openai.api_key = api_key
 
         messages = [
-            {"role": "system", "content": "あなたは料理のレシピの知識グラフから、料理のレシピを復元することができます。"}
+            {"role": "system", "content": "あなたは料理のレシピの知識グラフから、料理のレシピを復元することができます。レシピを記述したHTMLコードのみを出力することができます。"}
         ]
         messages.append({"role": "system", "content": "与えられたデータ以外の知識を用いてはいけません。レシピ以外のことを書いてはいけません。"})
         messages.append({"role": "assistant", "content": f"与えられたjsonファイル形式の知識グラフの内容: {graph_text}"})
-        messages.append({"role": "user", "content": "レシピの文章を書いてください。返答はレシピのみにしてください。"})
-        messages.append({"role": "user", "content": "レシピ名から初めて、材料と作り方を書いてください。"})
+        messages.append({"role": "user", "content": "このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。"})
+        messages.append({"role": "user", "content": "レシピ名から初めて、材料と作り方を書いてください。ただし、HTMLの形で出力し、改行は改行タグ<br>を使用してください。"})
 
         response = openai.chat.completions.create(
-            # model="gpt-3.5-turbo",
-            model="gpt-4o",
+            model="gpt-3.5-turbo",
+            # model="gpt-4o",
             messages=messages,
         )
         
         output = response 
         output_str = response.choices[0].message.content
+        
+        output_str = remove_first_and_last_line(output_str)
 
     return output_str
-
 
 # ノードID等がintで管理されていることを前提にした関数．
 # 中間発表時点ではtoy_graphのノードIDがstrで管理されているので、使いません
