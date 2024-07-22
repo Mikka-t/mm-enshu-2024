@@ -19,7 +19,7 @@ if (document.getElementById('liData').value){
 var form = document.getElementById('searchForm');
 
 const autoCompleteJS = new autoComplete({
-placeHolder: "作者・声優・舞台・ジャンル・題材・属性　など",
+placeHolder: "例:いちごタルト、カレー、ショートケーキ　など",
 data: {
 src: full_categoires_list,
 cache: true,
