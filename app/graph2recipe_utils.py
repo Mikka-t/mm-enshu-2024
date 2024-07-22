@@ -29,9 +29,9 @@ def get_subgraph_dfs_str(target_node, reverse_edges, visited, subgraph_edges):
 # 中間発表用
 def create_node_dict_str(nodes, node_dict):
     for node in nodes:
-        node_id, node_type = node["id"], node["type"]
+        node_id = node["id"]
         if node_id not in node_dict:
-            node_dict[node_id] = node_type
+            node_dict[node_id] = node
         else:
             print("ノードの重複を検知")
 
@@ -50,15 +50,10 @@ def get_node_info_str(node):
 def parse_dish_name(dish_name):
     """
     Future work: 単語の類似度など検索機能？
-    中間発表用なので単純に対応してるものだけ格納
+    中間発表用なので単純に返すだけ．
+    フロントエンドで存在する料理だけ指定できるようにするのを期待
     """
-    dish_set = set(["デコレーションケーキ", "カレーライス", "いちごタルト"])
-    if dish_name in dish_set:
-        ret = dish_name
-    else:
-        # Error
-        ret = "デコレーションケーキ"
-    return ret
+    return dish_name
 
 
 ##############

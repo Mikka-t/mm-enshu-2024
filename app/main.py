@@ -5,7 +5,7 @@ from graph2recipe import get_subgraph_str, subgraph2recipe_str
 import json
 
 # LLM にレシピを生成させる時は True にする。無駄なプロンプト実行を防ぐためテスト時は False
-USE_LLM_FLAG = False
+USE_LLM_FLAG = True
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ def index():
             print("LLM Output: ", recipe)
     else:
         try:
-            with open('data/toy_graph.json', 'r', encoding='utf-8') as f:
+            with open('data/toy_graph_big.json', 'r', encoding='utf-8') as f:
                 graph = json.load(f)
         except FileNotFoundError:
             return "File not found", 404

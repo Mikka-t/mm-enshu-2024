@@ -1,5 +1,6 @@
 from graph2recipe_utils import *
 import replicate
+import openai
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
 def get_subgraph_str(target_node: str):
@@ -8,7 +9,7 @@ def get_subgraph_str(target_node: str):
     Output: graph (json形式)
     """
 
-    # 料理名パース ex: curry → カレーライス
+    # 料理名パース 今はそのまま料理名返すだけ
     target_node = parse_dish_name(target_node)
 
     # get_edges: サーバーと通信する関数，edgesを取得
@@ -39,7 +40,7 @@ def get_subgraph_str(target_node: str):
     # ノード説明文を取得
     for node in subgraph_nodes_set:
         # node_info = get_node_info_str(node) # ノードIDがそのままノードの説明なので，中間発表時はいらない
-        subgraph_nodes.append({"id": node, "type": node_dict[node]})
+        subgraph_nodes.append(node_dict[node])
 
     # エッジ説明文を取得
     for edge in subgraph_edges:
@@ -60,19 +61,17 @@ def subgraph2recipe_str(graph):
     client = replicate.Client(api_token=api_token)
 
     # ノードとエッジの情報をテキスト形式で整形
-    nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}"}}' for node in nodes])
+    nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}", "quantity":"{node["quantity"]}"}}' for node in nodes])
     edges_text = ', '.join([f'{{"source": "{edge["source"]}", "target": "{edge["target"]}", "action": "{edge["action"]}"}}' for edge in edges])
     
     graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
-
-    print("サブグラフ: ",graph_text)
     
     prompt = "jsonファイルの内容: " + graph_text + "\n" + \
         "このようなjsonファイルがあります。このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。" + \
         "レシピ名から始めて、材料と作り方を書いてください。\n"
     
-    # Replicate APIを使用してLLMにプロンプトを送信し、レシピの文章を生成
-    # Why llama-2 ? generate_graph.pyと統一
+    # LLMにプロンプトを送信し、レシピの文章を生成
+    # TODO: ChatGPT対応
     output = client.run(
         "meta/meta-llama-3-70b-instruct",
         input={"prompt": prompt}
