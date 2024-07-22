@@ -80,6 +80,10 @@ def convert_json(data:json)->dict:
     for node in nodes:
         try:
             quantity = node["quantity"]
+            if quantity == None:
+                quantity = ""
+            else:
+                quantity = "（"+quantity+"）"
         except:
             quantity =""
         convert_nodes.append({"id": node["id"], "label": node["id"] +quantity, "group": node_type[node["type"]]})
