@@ -82,7 +82,7 @@ def convert_json(data:json)->dict:
             quantity = node["quantity"]
         except:
             quantity =""
-        convert_nodes.append({"id": node["id"], "label": node["id"] +quantity, "group": node_type[node["type"]]})
+        convert_nodes.append({"id": node["id"], "label": node["id"]  +quantity, "group": node_type[node["type"]]})
 
     for edge in edges:
         convert_edges.append({"from": edge['source'], "to": edge['target'], "label": edge['action']})

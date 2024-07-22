@@ -7,8 +7,8 @@ import json
 import openai
 
 # 使用するLLMの選択，デフォルトはLLama
-SELECT_LLM = "LLama" 
-# SELECT_LLM = "ChatGPT" 
+# SELECT_LLM = "LLama" 
+SELECT_LLM = "ChatGPT" 
 
 
 def parse_to_json(input_string):

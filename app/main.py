@@ -1,7 +1,3 @@
-import os
-CD = os.getcwd() + "/app/" #ローカルで動作させる用,app/CDにcurrent directoryを保存して他のpyでも使用する
-os.chdir(CD)
-
 from flask import Flask, request,render_template
 from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
