@@ -6,7 +6,8 @@ import re
 import json
 import openai
 
-# 使用するLLMの選択，デフォルトはLLama
+
+# 使用するLLMの選択，デフォルトはChatGPT
 # SELECT_LLM = "LLama" 
 SELECT_LLM = "ChatGPT" 
 
@@ -14,15 +15,26 @@ SELECT_LLM = "ChatGPT"
 def parse_to_json(input_string):
     # TODO: 色々なパターンのテキストに対応する
     # ノードのセクションを解析
-    node_pattern = re.compile(r"Node \d+: ([^\n]+)\nType: ([^\n]+)\nQuantity: ([^\n]+)")
+    node_pattern = re.compile(r"Node (\d+): ([^\n]+)\nType: ([^\n]+)(?:\nQuantity: ([^\n]+))?")
     nodes = []
     for match in node_pattern.finditer(input_string):
-        node_id, node_type, quantity = match.groups()
-        nodes.append({"id": node_id, "type": node_type, "quantity": quantity})
+        groups = match.groups() # example: ('1', '鶏もも肉', 'ingredient', '1枚(200g)')
+        
+        # quantityがある場合
+        if len(groups) == 4:
+            _, node_id, node_type, quantity = groups
+            node = {"id": node_id, "type": node_type, "quantity": quantity}
+        
+        # quantityがない場合
+        else:
+            _, node_id, node_type = groups
+            node = {"id": node_id, "type": node_type}
+        
+        nodes.append(node)
     
     # エッジのセクションを解析
     # edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+) \(([^)]+)\)") # コメント：修正前のコード．
-    edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+)（([^）]+)）") # コメント：修正後のコード．制限によりLLamaで動くかのチェックができていない・
+    edge_pattern = re.compile(r"Edge \d+: ([^\s]+) - ([^\s]+)（([^）]+)）") # コメント：修正後のコード．制限によりLLamaで動くかのチェックができていない．
     edges = []
     for match in edge_pattern.finditer(input_string):
         source, target, action = match.groups()
@@ -125,6 +137,7 @@ def generate_graph(url):
         
         output = response 
         output_str = response.choices[0].message.content
+        
         
         
     else:
