@@ -1,0 +1,50 @@
+Knowledge Graph:
+
+Node 1: 食パン
+Type: ingredient
+Quantity: 2枚
+
+Node 2: 卵
+Type: ingredient
+Quantity: 1個
+
+Node 3: 牛乳
+Type: ingredient
+Quantity: 100ml
+
+Node 4: 砂糖
+Type: ingredient
+Quantity: 大さじ1
+
+Node 5: 有塩バター
+Type: ingredient
+Quantity: 10g
+
+Node 6: オレンジ
+Type: ingredient
+Quantity: 2枚
+
+Node 7: 粉糖
+Type: ingredient
+Quantity: 適量
+
+Node 8: はちみつ
+Type: ingredient
+Quantity: 大さじ1
+
+Node 9: 卵液
+Type: intermediate
+
+Node 10: フレンチトースト
+Type: final
+
+Edge 1: 食パン - 卵液（浸す）
+Edge 2: 卵 - 卵液（混ぜる）
+Edge 3: 牛乳 - 卵液（混ぜる）
+Edge 4: 砂糖 - 卵液（混ぜる）
+Edge 5: 卵液 - 食パン（浸す）
+Edge 6: 有塩バター - 食パン（焼く）
+Edge 7: 食パン - フレンチトースト（盛り付ける）
+Edge 8: オレンジ - フレンチトースト（添える）
+Edge 9: 粉糖 - フレンチトースト（かける）
+Edge 10: はちみつ - フレンチトースト（かける）

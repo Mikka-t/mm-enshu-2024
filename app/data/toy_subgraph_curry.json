@@ -1,0 +1,98 @@
+{
+    "nodes": [
+        {
+            "id": "炒めた野菜と肉",
+            "type": "intermediate"
+        },
+        {
+            "id": "じゃがいも",
+            "type": "ingredient",
+            "quantity": "3個"
+        },
+        {
+            "id": "カレーライス",
+            "type": "final"
+        },
+        {
+            "id": "牛肉",
+            "type": "ingredient",
+            "quantity": "200g"
+        },
+        {
+            "id": "にんじん",
+            "type": "ingredient",
+            "quantity": "1本"
+        },
+        {
+            "id": "水",
+            "type": "ingredient",
+            "quantity": "500ml"
+        },
+        {
+            "id": "カレールー",
+            "type": "ingredient",
+            "quantity": "100g"
+        },
+        {
+            "id": "玉ねぎ",
+            "type": "ingredient",
+            "quantity": "2個"
+        },
+        {
+            "id": "カレーソース",
+            "type": "intermediate"
+        },
+        {
+            "id": "ご飯",
+            "type": "ingredient",
+            "quantity": "適量"
+        }
+    ],
+    "edges": [
+        {
+            "source": "カレーソース",
+            "target": "カレーライス",
+            "action": "かける"
+        },
+        {
+            "source": "ご飯",
+            "target": "カレーライス",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "炒めた野菜と肉",
+            "target": "カレーソース",
+            "action": "煮る"
+        },
+        {
+            "source": "カレールー",
+            "target": "カレーソース",
+            "action": "溶かす"
+        },
+        {
+            "source": "水",
+            "target": "カレーソース",
+            "action": "加える"
+        },
+        {
+            "source": "玉ねぎ",
+            "target": "炒めた野菜と肉",
+            "action": "炒める"
+        },
+        {
+            "source": "にんじん",
+            "target": "炒めた野菜と肉",
+            "action": "炒める"
+        },
+        {
+            "source": "じゃがいも",
+            "target": "炒めた野菜と肉",
+            "action": "炒める"
+        },
+        {
+            "source": "牛肉",
+            "target": "炒めた野菜と肉",
+            "action": "炒める"
+        }
+    ]
+}

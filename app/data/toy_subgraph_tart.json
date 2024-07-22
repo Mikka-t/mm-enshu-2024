@@ -1,0 +1,156 @@
+{
+    "nodes": [
+        {
+            "id": "牛乳",
+            "type": "ingredient",
+            "quantity": "200ml"
+        },
+        {
+            "id": "卵黄",
+            "type": "ingredient",
+            "quantity": "2個"
+        },
+        {
+            "id": "いちごタルト",
+            "type": "final"
+        },
+        {
+            "id": "いちご",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "生クリーム",
+            "type": "ingredient",
+            "quantity": "100ml"
+        },
+        {
+            "id": "カスタードクリーム",
+            "type": "intermediate"
+        },
+        {
+            "id": "バター",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "小麦粉",
+            "type": "ingredient",
+            "quantity": "200g"
+        },
+        {
+            "id": "ホイップクリーム",
+            "type": "intermediate"
+        },
+        {
+            "id": "バニラエッセンス",
+            "type": "ingredient",
+            "quantity": "少々"
+        },
+        {
+            "id": "グラニュー糖",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "焼いたタルト生地",
+            "type": "intermediate"
+        },
+        {
+            "id": "タルト生地",
+            "type": "intermediate"
+        },
+        {
+            "id": "砂糖",
+            "type": "ingredient",
+            "quantity": "100g"
+        }
+    ],
+    "edges": [
+        {
+            "source": "焼いたタルト生地",
+            "target": "いちごタルト",
+            "action": "詰める"
+        },
+        {
+            "source": "カスタードクリーム",
+            "target": "いちごタルト",
+            "action": "詰める"
+        },
+        {
+            "source": "ホイップクリーム",
+            "target": "いちごタルト",
+            "action": "飾る"
+        },
+        {
+            "source": "いちご",
+            "target": "いちごタルト",
+            "action": "飾る"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "グラニュー糖",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "砂糖",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "牛乳",
+            "target": "カスタードクリーム",
+            "action": "煮る"
+        },
+        {
+            "source": "砂糖",
+            "target": "カスタードクリーム",
+            "action": "煮る"
+        },
+        {
+            "source": "卵黄",
+            "target": "カスタードクリーム",
+            "action": "加える"
+        },
+        {
+            "source": "バニラエッセンス",
+            "target": "カスタードクリーム",
+            "action": "加える"
+        },
+        {
+            "source": "タルト生地",
+            "target": "焼いたタルト生地",
+            "action": "焼く"
+        },
+        {
+            "source": "小麦粉",
+            "target": "タルト生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "バター",
+            "target": "タルト生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "砂糖",
+            "target": "タルト生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "卵黄",
+            "target": "タルト生地",
+            "action": "混ぜる"
+        }
+    ]
+}
