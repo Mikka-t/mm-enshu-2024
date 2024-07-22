@@ -6,7 +6,8 @@
         },
         {
             "id": "じゃがいも",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "3個"
         },
         {
             "id": "カレーライス",
@@ -14,23 +15,28 @@
         },
         {
             "id": "牛肉",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "200g"
         },
         {
             "id": "にんじん",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "1本"
         },
         {
             "id": "水",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "500ml"
         },
         {
             "id": "カレールー",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100g"
         },
         {
             "id": "玉ねぎ",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "2個"
         },
         {
             "id": "カレーソース",
@@ -38,7 +44,8 @@
         },
         {
             "id": "ご飯",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         }
     ],
     "edges": [

@@ -2,11 +2,13 @@
     "nodes": [
         {
             "id": "牛乳",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "200ml"
         },
         {
             "id": "卵黄",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "2個"
         },
         {
             "id": "いちごタルト",
@@ -14,11 +16,13 @@
         },
         {
             "id": "いちご",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         },
         {
             "id": "生クリーム",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100ml"
         },
         {
             "id": "カスタードクリーム",
@@ -26,11 +30,13 @@
         },
         {
             "id": "バター",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "50g"
         },
         {
             "id": "小麦粉",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "200g"
         },
         {
             "id": "ホイップクリーム",
@@ -38,11 +44,13 @@
         },
         {
             "id": "バニラエッセンス",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "少々"
         },
         {
             "id": "グラニュー糖",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "50g"
         },
         {
             "id": "焼いたタルト生地",
@@ -54,7 +62,8 @@
         },
         {
             "id": "砂糖",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100g"
         }
     ],
     "edges": [
