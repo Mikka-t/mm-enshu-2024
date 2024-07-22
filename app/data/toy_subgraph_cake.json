@@ -10,19 +10,23 @@
         },
         {
             "id": "小麦粉",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "200g"
         },
         {
             "id": "いちご",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "適量"
         },
         {
             "id": "生クリーム",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "200ml"
         },
         {
             "id": "卵",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "3個"
         },
         {
             "id": "ホイップクリーム",
@@ -30,7 +34,8 @@
         },
         {
             "id": "グラニュー糖",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100g"
         },
         {
             "id": "焼いたスポンジ生地",
@@ -42,11 +47,13 @@
         },
         {
             "id": "砂糖",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "50g"
         },
         {
             "id": "無塩バター",
-            "type": "ingredient"
+            "type": "ingredient",
+            "quantity": "100g"
         }
     ],
     "edges": [

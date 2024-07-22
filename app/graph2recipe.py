@@ -61,7 +61,7 @@ def subgraph2recipe_str(graph):
     client = replicate.Client(api_token=api_token)
 
     # ノードとエッジの情報をテキスト形式で整形
-    nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}", "quantity":"{node["quantity"]}"}}' for node in nodes])
+    nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}", "quantity":"{node["quantity"] if "quantity" in node else "未定義"}"}}' for node in nodes])
     edges_text = ', '.join([f'{{"source": "{edge["source"]}", "target": "{edge["target"]}", "action": "{edge["action"]}"}}' for edge in edges])
     
     graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
