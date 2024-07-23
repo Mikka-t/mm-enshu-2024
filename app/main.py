@@ -4,6 +4,7 @@ from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
 import json
 import time
+import markdown2
 # LLM にレシピを生成させる時は True にする。無駄なプロンプト実行を防ぐためテスト時は False
 USE_LLM_FLAG = True
 
@@ -41,10 +42,7 @@ def submit_url():
     
     if dish_name:
         graph = get_subgraph_str(dish_name)
-        if USE_LLM_FLAG:
-            # TODO: フロントエンドに表示
-            recipe = subgraph2recipe_str(graph)
-            print("LLM Output: ", recipe)
+        
     elif url:
         with open(f'data/url2graph.json', 'r', encoding='utf-8') as f:
             url2graph = json.load(f)
@@ -60,9 +58,15 @@ def submit_url():
                 json.dump(url2graph, f, ensure_ascii=False, indent=4)
 
     print(graph)
+    if USE_LLM_FLAG:
+        # TODO: フロントエンドに表示
+        recipe = subgraph2recipe_str(graph)
+        print("LLM Output: ", recipe)
+    # recipe = recipe.replace("\n","<br>")
+    recipe = markdown2.markdown(recipe)
     send_data = convert_json(graph)
     # print(send_data)
-    return render_template("search/result.html",json_data=send_data,full_categories_list =[])
+    return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe = recipe)
 
 
 if __name__ == '__main__':
