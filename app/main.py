@@ -2,9 +2,11 @@ from flask import Flask, request,render_template
 from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
+from merge_new_graph import add_new_graph
 import json
 import time
 import markdown2
+import os
 # LLM にレシピを生成させる時は True にする。無駄なプロンプト実行を防ぐためテスト時は False
 USE_LLM_FLAG = True
 
@@ -56,6 +58,12 @@ def submit_url():
             url2graph[url] = graph
             with open(f'data/url2graph.json', 'w', encoding='utf-8') as f:
                 json.dump(url2graph, f, ensure_ascii=False, indent=4)
+
+        graph_path = os.path.join(os.path.dirname(__file__), 'data', 'toy_graph.json')
+        with open(graph_path, 'w', encoding='utf-8') as f:
+            json.dump(graph, f, ensure_ascii=False, indent=4)
+
+        add_new_graph(graph_path)
 
     print(graph)
     if USE_LLM_FLAG:
