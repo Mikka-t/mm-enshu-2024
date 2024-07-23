@@ -128,7 +128,8 @@ def generate_graph(url):
         # メインのプロンプトを追加
         messages.append({"role": "user", "content": "スクレイピングしたWebページ全体のテキストが与えられます，その中からレシピを抜き出し，知識グラフを作成してください"})
         messages.append({"role": "assistant", "content": "【Webページ全体のテキスト】" + text_content})
-        messages.append({"role": "system", "content": "次のフォーマットに従って知識グラフを作成してください．また，知識グラフのみを返答してください"})
+        # messages.append({"role": "system", "content": "次のフォーマットに従って知識グラフを作成してください．また，知識グラフのみを返答してください．"})
+        messages.append({"role": "system", "content": "次のフォーマットに従って知識グラフを作成してください．また，知識グラフのみを返答してください．ただし，料理名は一般的な名前を使用し，リード文は削除してください．"})
         messages.append({"role": "system", "content": "【フォーマット】\n" + format_text})
         
         
