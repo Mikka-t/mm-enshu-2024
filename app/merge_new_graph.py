@@ -19,8 +19,7 @@ def add_new_graph(new_graph_path):
     save_merged_graph(big_graph, big_graph_path)
     update_final_nodes(new_graph, final_nodes_path)
 
-# Process new generated graph
-new_graph_path = os.path.join(os.path.dirname(__file__), 'data', 'toy_graph.json')
-add_new_graph(new_graph_path)
-
-
+# For testing purposes
+if __name__ == '__main__':
+    new_graph_path = os.path.join(os.path.dirname(__file__), 'data', 'toy_graph.json')
+    add_new_graph(new_graph_path)
