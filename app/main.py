@@ -62,10 +62,15 @@ def submit_url():
         # TODO: フロントエンドに表示
         recipe = subgraph2recipe_str(graph)
         print("LLM Output: ", recipe)
-    # recipe = recipe.replace("\n","<br>")
-    recipe = markdown2.markdown(recipe)
+        if recipe == "NO_API":
+            recipe = ""
+        else:            
+            # recipe = recipe.replace("\n","<br>")
+            recipe = markdown2.markdown(recipe)
+    
     send_data = convert_json(graph)
     # print(send_data)
+            
     return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe = recipe)
 
 
