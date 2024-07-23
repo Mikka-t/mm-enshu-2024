@@ -54,6 +54,9 @@ def generate_graph(url):
     text_content = scrape(url)
     if text_content is None:
         return None, None
+    
+    # デバッグ
+    print('text_content', text_content)
 
     if SELECT_LLM == "LLama":
         # api_token = os.getenv("REPLICATE_API_TOKEN")
@@ -138,6 +141,8 @@ def generate_graph(url):
         output = response 
         output_str = response.choices[0].message.content
         
+        # デバッグ
+        print('output_str', output_str)
         
         
     else:

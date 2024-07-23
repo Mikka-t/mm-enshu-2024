@@ -35,7 +35,7 @@ Quantity: 大さじ1
 Node 9: 卵液
 Type: intermediate
 
-Node 10: フレンチトースト
+Node 10: 基本のフレンチトースト
 Type: final
 
 Edge 1: 食パン - 卵液（浸す）
