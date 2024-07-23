@@ -28,6 +28,7 @@ $ ./scripts/replace_app.sh
 $ docker logs [コンテナ名]
 ```
 llamaを使う際はapp/.token/lammaにtokenを入れる．（generate_graph.pyでtokenを読込む）
+ChatGPTを使う際はapp/.token/openai_api_key を入れる．
 
 例：app/.token/lamma 内
 ```

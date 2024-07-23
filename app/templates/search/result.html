@@ -17,52 +17,78 @@
 {% block content %}
 
 <div id="mynetwork"></div>
+<div id="recipe-description">
+    <p>
+        {{ recipe | safe }}
+    </p>
+    
+</div>
 <div class="slider-container">
-    ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20">
+    <!-- ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20"> -->
     エッジ幅: <input type="range" id="edgeWidth" min="1" max="10" value="1">
     エッジ長: <input type="range" id="edgeLength" min="300" max="1000" value="1">
-    フォントサイズ: <input type="range" id="fontSize" min="10" max="30" value="15">
+    フォントサイズ: <input type="range" id="fontSize" min="10" max="50" value="30">
     
 </div>
 <script>
     // JSONデータ
     const data = JSON.parse('{{ json_data | tojson | safe }}');
     console.log(data);
+    
+    // 固定したいノードのIDと固定する位置を指定(今回はfinalを固定する)
+    var fixedNodeId = '';
+    for(node of data.nodes){
+        console.log(node)
+        if(node["group"]===3){
+            fixedNodeId = node["id"]
+            break
+        }
+    }
+    
+    const fixedPosition = { x: 0, y: 0 };  // 固定したい位置を指定
+
+    // ノードデータに固定情報を追加
+    data.nodes = data.nodes.map(node => {
+        if (node.id === fixedNodeId) {
+            node.x = fixedPosition.x;
+            node.y = fixedPosition.y;
+            node.fixed = { x: true, y: true };
+        }
+        return node;
+    });
+
     const container = document.getElementById('mynetwork');
     const nodes = new vis.DataSet(data.nodes);
     const edges = new vis.DataSet(data.edges);
     const networkData = { nodes, edges };
     const options = {
-    nodes: {
-        shape: 'circle',
-        size: 20,
-        font: { size: 30, face: 'Arial', align: 'center', multi: 'html' }
-    },
-    edges: {
-        width: 1,
-        length: 250,
-        font: { size: 30, align: 'horizontal' },
-        arrows: { to: { enabled: true, scaleFactor: 1 } }
-    },
-    physics: {
-        enabled: true,
-        barnesHut: {
-            gravitationalConstant: -20000,
-            centralGravity: 0.3,
-            springLength: 95,
-            springConstant: 0.04,
-            damping: 0.09,
-            avoidOverlap: 0.1
+        nodes: {
+            shape: 'circle',
+            size: 20,
+            font: { size: 30, face: 'Arial', align: 'center', multi: 'html' }
+        },
+        edges: {
+            width: 1,
+            length: 250,
+            font: { size: 30, align: 'horizontal' },
+            arrows: { to: { enabled: true, scaleFactor: 1 } }
+        },
+        physics: {
+            enabled: true,
+            barnesHut: {
+                gravitationalConstant: -20000,
+                centralGravity: 0.3,
+                springLength: 95,
+                springConstant: 0.04,
+                damping: 0.09,
+                avoidOverlap: 0.1
+            }
         }
-    }
-};
+    };
 
     const network = new vis.Network(container, networkData, options);
 
     // スライダーの設定
-    document.getElementById('nodeSize').addEventListener('input', function () {
-        network.setOptions({ nodes: { size: parseInt(this.value) } });
-    });
     document.getElementById('edgeWidth').addEventListener('input', function () {
         network.setOptions({ edges: { width: parseInt(this.value) } });
     });

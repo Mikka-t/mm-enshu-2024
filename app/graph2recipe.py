@@ -2,6 +2,9 @@ from graph2recipe_utils import *
 import replicate
 import openai
 
+SELECT_LLM = "ChatGPT"
+# SELECT_LLM = "LLama"
+
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
 def get_subgraph_str(target_node: str,):
     """
@@ -53,36 +56,68 @@ def get_subgraph_str(target_node: str,):
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
 def subgraph2recipe_str(graph):
+    ### プロンプト作成
     nodes, edges = graph["nodes"], graph["edges"]
-
-    with open('./app/.token/llama', 'r') as f:
-        api_token = f.read().strip()
-    print('api_token:', api_token)
-    client = replicate.Client(api_token=api_token)
 
     # ノードとエッジの情報をテキスト形式で整形
     nodes_text = ', '.join([f'{{"id": "{node["id"]}", "type": "{node["type"]}", "quantity":"{node["quantity"] if "quantity" in node else "未定義"}"}}' for node in nodes])
     edges_text = ', '.join([f'{{"source": "{edge["source"]}", "target": "{edge["target"]}", "action": "{edge["action"]}"}}' for edge in edges])
     
     graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
-    
-    prompt = "jsonファイルの内容: " + graph_text + "\n" + \
+
+    if SELECT_LLM == "LLama":
+        with open('./.token/llama', 'r') as f:
+            api_token = f.read().strip()
+        print('api_token:', api_token)
+        client = replicate.Client(api_token=api_token)
+
+        prompt = "jsonファイルの内容: " + graph_text + "\n" + \
         "このようなjsonファイルがあります。このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。" + \
         "レシピ名から始めて、材料と作り方を書いてください。\n"
-    
-    # LLMにプロンプトを送信し、レシピの文章を生成
-    # TODO: ChatGPT対応
-    output = client.run(
-        "meta/meta-llama-3-70b-instruct",
-        input={"prompt": prompt}
-    )
-    
-    # 出力を結合してレシピの文章を生成
-    output_list = list(output)
-    output_str = "".join(output_list)
-    
-    return output_str
 
+        # LLMにプロンプトを送信し、レシピの文章を生成
+        output = client.run(
+            "meta/meta-llama-3-70b-instruct",
+            input={"prompt": prompt}
+        )
+
+        # 出力を結合してレシピの文章を生成
+        output_list = list(output)
+        output_str = "".join(output_list)
+
+    elif SELECT_LLM == "ChatGPT":
+        # GPT特有の```によるコードブロックを削除
+        def remove_first_and_last_line(text):
+            lines = text.split('\n')
+            if len(lines) > 2:
+                return '\n'.join(lines[1:-1])
+            else:
+                return ''
+            
+        with open('./.token/openai_api_key', 'r') as f:
+            api_key = f.read().strip()
+        openai.api_key = api_key
+
+        messages = [
+            {"role": "system", "content": "あなたは料理のレシピの知識グラフから、料理のレシピを復元することができます。レシピを記述したHTMLコードのみを出力することができます。"}
+        ]
+        messages.append({"role": "system", "content": "与えられたデータ以外の知識を用いてはいけません。レシピ以外のことを書いてはいけません。"})
+        messages.append({"role": "assistant", "content": f"与えられたjsonファイル形式の知識グラフの内容: {graph_text}"})
+        messages.append({"role": "user", "content": "このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。"})
+        messages.append({"role": "user", "content": "レシピ名から初めて、材料と作り方を書いてください。ただし、HTMLの形で出力し、改行は改行タグ<br>を使用してください。"})
+
+        response = openai.chat.completions.create(
+            model="gpt-3.5-turbo",
+            # model="gpt-4o",
+            messages=messages,
+        )
+        
+        output = response 
+        output_str = response.choices[0].message.content
+        
+        output_str = remove_first_and_last_line(output_str)
+
+    return output_str
 
 # ノードID等がintで管理されていることを前提にした関数．
 # 中間発表時点ではtoy_graphのノードIDがstrで管理されているので、使いません
