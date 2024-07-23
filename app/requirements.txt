@@ -7,3 +7,4 @@ replicate
 requests
 beautifulsoup4
 openai
+markdown2

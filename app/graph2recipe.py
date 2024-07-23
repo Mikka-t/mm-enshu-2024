@@ -94,9 +94,13 @@ def subgraph2recipe_str(graph):
             else:
                 return ''
             
-        with open('./.token/openai_api_key', 'r') as f:
-            api_key = f.read().strip()
-        openai.api_key = api_key
+        try:
+            with open('./.token/openai_api_key', 'r') as f:
+                api_key = f.read().strip()
+            openai.api_key = api_key
+        except:
+            print("No API key.")
+            return "NO_API"
 
         messages = [
             {"role": "system", "content": "あなたは料理のレシピの知識グラフから、料理のレシピを復元することができます。レシピを記述したHTMLコードのみを出力することができます。"}
