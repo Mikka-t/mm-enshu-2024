@@ -32,3 +32,4 @@ def initialize_empty_graph():
 def save_merged_graph(graph, file_path):
     save_json(graph, file_path)
     print(f'Merged graph saved to {file_path}')
+

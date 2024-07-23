@@ -29,3 +29,4 @@ def update_final_nodes(graph, final_nodes_file):
             final_node_ids.add(node['id'])
     
     save_final_nodes(final_nodes, final_nodes_file)
+

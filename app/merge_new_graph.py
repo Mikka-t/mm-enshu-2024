@@ -1,7 +1,6 @@
 import os
 from merge_graphs import merge_graphs, initialize_empty_graph, save_merged_graph, load_json
 from final_nodes import update_final_nodes
-from id_replacement import replace_ids_with_numbers
 
 # Set file paths
 big_graph_path = os.path.join(os.path.dirname(__file__), 'data', 'toy_graph_big.json')
@@ -16,7 +15,6 @@ else:
 def add_new_graph(new_graph_path):
     global big_graph
     new_graph = load_json(new_graph_path)
-    new_graph, id_map = replace_ids_with_numbers(new_graph)
     big_graph = merge_graphs(big_graph, new_graph)
     save_merged_graph(big_graph, big_graph_path)
     update_final_nodes(new_graph, final_nodes_path)
@@ -24,4 +22,5 @@ def add_new_graph(new_graph_path):
 # Process new generated graph
 new_graph_path = os.path.join(os.path.dirname(__file__), 'data', 'toy_graph.json')
 add_new_graph(new_graph_path)
+
 
