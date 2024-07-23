@@ -5,30 +5,88 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
 <style>
     #mynetwork {
-        width: 800px;
-        height: 600px;
+        width: 1000px;
+        height: 1000px;
         border: 1px solid lightgray;
+        
     }
     .slider-container {
         margin: 10px;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        background-color: #ff69d529; /*半透明*/
+    }
+
+    .ingredients {
+        position: fixed;
+        top: 150px;
+        left: 30px;
+        width: 300px;
+        overflow-y: scroll;
+        direction: rtl; /*スクロールバーの場所を左に移動*/
+
+
+        height:600px;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        padding : 5px ;
+        z-index: 100;
+        background-color: #85fffd29; /*半透明*/
+
+    }
+
+    .HowToMake {
+        position: fixed;
+        top: 150px;
+        right: 30px;
+        width: 300px;
+        height:300px;
+        overflow-y: scroll;
+        border: 2px solid #000000;
+        border-radius: 10px;
+        padding : 5px ;
+        background-color: #85fffd29; /*半透明*/
+    }
+    
+    .slider-container{
+        position: fixed;
+        bottom: 100px;
+        right: 30px;
+        width: 300px;
+        padding : 5px ;
     }
 </style>
 {% endblock %}
 {% block content %}
 
-<div id="mynetwork"></div>
-<div id="recipe-description">
-    <p>
-        {{ recipe | safe }}
-    </p>
-    
+<div class="recipe-title" style="text-align: center;">
+    {{ recipe_title | safe }}
 </div>
-<div class="slider-container">
-    <!-- ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20"> -->
-    エッジ幅: <input type="range" id="edgeWidth" min="1" max="10" value="1">
-    エッジ長: <input type="range" id="edgeLength" min="300" max="1000" value="1">
-    フォントサイズ: <input type="range" id="fontSize" min="10" max="50" value="30">
+
+<div class="recipe-and-graph" style="display:flex;">
+
+    <div class="ingredients">
+        <div style="direction: ltr;">
+            <h3>材料</h3>
+        {{ ingredients | safe }}
+        </div>
+        
+    </div>
+
+    <div id="mynetwork" style="display: flex;"></div>
+    <div class="slider-container">
+        <!-- ノードサイズ: <input type="range" id="nodeSize" min="10" max="50" value="20"> -->
+        エッジ幅: <input type="range" id="edgeWidth" min="1" max="10" value="5">
+        エッジ長: <input type="range" id="edgeLength" min="100" max="1000" value="300">
+        フォントサイズ: <input type="range" id="fontSize" min="10" max="50" value="30">
     
+    </div>
+
+    <div class="HowToMake">
+        <h3>作り方</h3>
+        {{ HowToCook | safe }}
+    </div>
+
 </div>
 <script>
     // JSONデータ
@@ -61,16 +119,21 @@
     const nodes = new vis.DataSet(data.nodes);
     const edges = new vis.DataSet(data.edges);
     const networkData = { nodes, edges };
+
+    var node_font_size = parseFloat(document.getElementById('fontSize').value);
+    var edgeWidth = parseFloat(document.getElementById('edgeWidth').value);
+    var  edgeLength = parseFloat(document.getElementById('edgeLength').value);
+
     const options = {
         nodes: {
             shape: 'circle',
             size: 20,
-            font: { size: 30, face: 'Arial', align: 'center', multi: 'html' }
+            font: { size: node_font_size, face: 'Arial', align: 'center', multi: 'html' }
         },
         edges: {
-            width: 1,
-            length: 250,
-            font: { size: 30, align: 'horizontal' },
+            width: edgeWidth,
+            length: edgeLength,
+            font: { size: node_font_size, align: 'horizontal' },
             arrows: { to: { enabled: true, scaleFactor: 1 } }
         },
         physics: {
