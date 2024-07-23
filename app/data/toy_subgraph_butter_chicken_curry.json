@@ -60,7 +60,7 @@
             "type": "intermediate"
         },
         {
-            "id": "料理",
+            "id": "バターチキンカレー",
             "type": "final"
         }
     ],
@@ -122,12 +122,12 @@
         },
         {
             "source": "ルー",
-            "target": "料理",
+            "target": "バターチキンカレー",
             "action": "盛り付ける"
         },
         {
             "source": "ごはん",
-            "target": "料理",
+            "target": "バターチキンカレー",
             "action": "盛り付ける"
         },
         {

@@ -86,7 +86,13 @@ def convert_json(data:json)->dict:
                 quantity = "（"+quantity+"）"
         except:
             quantity =""
-        convert_nodes.append({"id": node["id"], "label": node["id"] + "\\n" + quantity, "group": node_type[node["type"]]})
+        
+        # 料理タイトルが長い場合に対処するため，10文字ずつで改行する
+        name = ""
+        for i in range(0,len(node["id"]),10):
+            name += node["id"][i:i+10] + "\\n"
+
+        convert_nodes.append({"id": node["id"], "label": name + "\\n" + quantity, "group": node_type[node["type"]]})
 
     for edge in edges:
         convert_edges.append({"from": edge['source'], "to": edge['target'], "label": edge['action']})

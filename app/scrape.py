@@ -22,6 +22,10 @@ def fetch_soup(url, headers):
 # クラシル用のスクレイピング
 def extract_kurashiru(soup):
     result = []
+    
+    # Extract title
+    title = soup.find("h1", class_="title").get_text(strip=True)
+    result.append(f"タイトル: {title}")
 
     # Extract ingredients
     ingredients_section = soup.find("ul", class_="ingredient-list")
@@ -60,6 +64,12 @@ def extract_kurashiru(soup):
 # デリッシュキッチン用のスクレイピング
 def extract_delish_kitchen(soup):
     result = []
+    
+    # Extract title
+    lead_title = soup.find("span", class_="lead")
+    main_title = soup.find("span", class_="title")
+    if lead_title and main_title:
+        result.append(f"タイトル: {lead_title.get_text(strip=True)} {main_title.get_text(strip=True)}")
 
     # Extract ingredients
     ingredients_section = soup.find("ul", class_="ingredient-list")
@@ -100,6 +110,10 @@ def extract_delish_kitchen(soup):
 # 白ごはん.com用のスクレイピング
 def extract_sirogohan_com(soup):
     result = []
+
+    # Extract title
+    title = soup.find("h1", id="recipe-name").get_text(strip=True)
+    result.append(f"タイトル: {title}")
 
     # Extract ingredients
     ingredients_section = soup.find("div", class_="material-halfbox")
