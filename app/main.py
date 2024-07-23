@@ -27,7 +27,13 @@ def index():
         
     # send_data = convert_json(graph)
     # print(send_data)
-    category_list = ["デコレーションケーキ","いちごタルト","カレーライス"]
+    category_list = []
+    with open(f"data/final_nodes.json","r",encoding="utf-8") as f:
+        data = json.load(f)
+        # print(data)
+        for d in data:
+            category_list.append(d["id"])
+    
     # return render_template("result.html",json_data = send_data)
     return render_template('search/index.html',full_categories_list=category_list)
 
