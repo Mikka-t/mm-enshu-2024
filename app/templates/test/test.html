@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+  <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js"></script> -->
+
+  <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous"> -->
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.3/dist/css/autoComplete.min.css">
+  <link rel="stylesheet" href="AutoComplete.css">
+  <title>{% block title %}{% endblock %} - Managa Search</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.3/dist/css/autoComplete.min.css">
+</head>
+
+<body>
+  <nav>
+    <h1><a href="/">Managa Search</a></h1>
+  </nav>
+
+  <div class="container">
+    <aside class="sidebar"></aside>
+
+    <section class="content">
+      <header>
+        <!-- {% block header %}{% endblock %} -->
+        <div>
+          <h1>ベクトル漫画検索</h1>
+        </div>
+      </header>
+
+      <form method="post" action="/search" id="searchForm">
+        <!-- テキストエリア -->
+        <textarea id="inputText" name="inputText" rows="4" placeholder="検索したい質問の要素を入力してください" required></textarea>
+        <!-- <input type="type" id="inputText" name="inputText" placeholder="検索したい質問の要素を入力してください" required> -->
+
+        <!-- トグル -->
+        <details>
+          <summary>作品の年代を指定</summary>
+          <div class="story_age_container">
+            <label for="story_age"><span class="range_bar">作品の年代</span></label>
+            <input type="range" id="story_age" name="story_age" min="0" max="100">
+          </div>
+        </details>
+
+
+        <details>
+          <summary>検索の割合を指定</summary>
+          <div class="slider_container">
+            <label for="overview_rate"><span class="range_bar">概要</span></label>
+            <input type="range" id="overview_rate" name="overview_rate" min="0" max="100">
+            <label for="story_rate"><span class="range_bar">ストーリー</span></label>
+            <input type="range" id="story_rate" name="story_rate" min="0" max="100">
+            <label for="character_rate"><span class="range_bar">キャラクター</span></label>
+            <input type="range" id="character_rate" name="character_rate" min="0" max="100">
+          </div>
+        </details>
+
+
+        <details>
+          <summary>ジャンル検索</summary>
+          <!-- フォーム内に隠しフィールドを追加 -->
+          <input type="hidden" id="liData" name="liData">
+          <div class="autoComplete_container">
+            <input type="radio" name="AndOR" value="AND" />AND
+            <input type="radio" name="AndOR" value="OR" checked/>OR
+            <input type="text" id="autoComplete">
+            <ul id="list-container"></ul>
+          </div>
+        </details>
+
+
+
+        <!-- トグルスイッチ検証 -->
+        <label class="switch">
+          <input type="checkbox" id="toggle-switch">
+          <span class="slider"></span>
+        </label>
+
+        <!-- トグルによって表示/非表示が切り替わるコンテンツ -->
+        <div id="toggle-content" style="display:none;">
+          <p>ここに詳細情報が表示されます。</p>
+        </div>
+
+
+        <input type="submit" value="検索">
+
+        <div id="loadingIndicator" style="display: none;">
+          Loading...
+        </div>
+      </form>
+    </section>
+
+    <aside class="sidebar"></aside>
+  </div>
+
+  <footer>
+    <ul>
+      <li><a href="/">ホーム</a></li>
+      <li><a href="{{ url_for('nav.aboutsite')}}">サイトについて</a></li>
+      <li><a href="{{ url_for('nav.sitepolicy')}}">サイトポリシー</a></li>
+      <li><a href="{{ url_for('nav.contact')}}">お問い合わせ</a></li>
+    </ul>
+    <small>&copy; 2023 Managa Search</small>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tarekraafat/autocomplete.js@10.2.7/dist/autoComplete.min.js"></script>
+  <script src="AutoComplete.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

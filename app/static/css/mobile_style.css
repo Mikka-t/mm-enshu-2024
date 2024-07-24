@@ -1,0 +1,336 @@
+/* 共通 */
+nav {
+  background-color: #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  justify-content: center;
+ 
+}
+
+nav a {
+  color: #000;
+  text-decoration: none;
+}
+
+nav h1 {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+footer {
+  background-color: #ccc;
+  text-align: center;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+small {
+  font-size: 0.7rem;
+}
+
+header {
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.content {
+  max-width: 600px;
+  margin: auto;
+  /* padding: 20px; */
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebar {
+  /* padding: 100px;
+  width: 160px;
+  height: 600px;
+  background-color: #ddd; */
+}
+
+
+
+/* start-検索画面 */
+#searchForm {
+  font-family: Arial, sans-serif;
+  color: #333;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  max-width: 400px;
+  margin: auto;
+}
+
+/* チェックボックスとスライダーのカスタムスタイル */
+input[type=checkbox] {
+  margin: 10px;
+  accent-color: #4CAF50;
+}
+
+.checkbox-container {
+  display: grid;
+  place-items: center;
+}
+
+input[type=range] {
+  width: 100%;
+  margin: 10px 0;
+}
+
+/* #range {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.range-wrapper {
+  width: 800px;
+  margin: 0 auto;
+  padding: 50px;
+} */
+
+/* テキスト入力フィールドのスタイル */
+input[type=text] {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* ボタンのスタイル */
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+/* ローディング画面 */
+#loadingIndicator {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2em;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 20px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+/* end-検索画面 */
+
+
+
+/* start-結果画面 */
+
+/* 結果のプログレスバー */
+/* 全体のフォントと背景色 */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+  /* overflow-x: hidden; */
+
+}
+
+テーブルのスタイル
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+/* テーブルのヘッダー */
+th {
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+}
+
+/* テーブルのセル */
+td {
+  /* padding: 10px; */
+  border: 1px solid #ddd;
+  text-align: center;
+}
+
+/* 進捗バーのコンテナ */
+.progress-container {
+  background-color: #eee;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+/* 進捗バー自体 */
+.progress-bar {
+  background-color: #4caf50;
+  height: 20px;
+  line-height: 20px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+}
+
+/* 割合のバー */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff; /* Adjust to match the dark background */
+  color: black; /*ここが全体のフォントの色？*/
+  margin: 0;
+  padding: 20px;
+}
+
+.bar-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background: #222; /* Dark background for the chart */
+  border-radius: 10px;
+}
+
+.bar {
+  padding: 10px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Add shadow for depth */
+}
+
+/* Specific styles for each bar */
+.bar-chart {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 10px;
+  background: #222; /* Dark background for the chart */
+  border-radius: 10px;
+}
+
+.bar {
+  padding: 10px;
+  color: white;
+  text-align: center;
+  border-radius: 5px;
+  margin: 0 5px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5); /* Add shadow for depth */
+}
+
+/* Specific styles for each bar */
+.bar:nth-child(1) {
+  background-color: #3498db; /* Blue */
+  border: 2px solid #2980b9;
+}
+
+.bar:nth-child(2) {
+  background-color: #2ecc71; /* Green */
+  border: 2px solid #27ae60;
+}
+
+.bar:nth-child(3) {
+  background-color: #e74c3c; /* Red */
+  border: 2px solid #c0392b;
+}
+
+td a {
+  color: #000000;
+  text-decoration: none;
+}
+
+td a:hover{
+  color : #ff7043;
+}
+
+/* end-結果画面 */
+
+/*検索バーへ向かうためのボタンを表示*/
+
+.result-container{
+  display: flex;
+}
+#search-top {
+  position: fixed;
+  top: 20px;
+  margin:0 auto;
+  font-size: 14px;
+  line-height: 1;
+  z-index: 99;
+}
+#search-top img {
+  /* background: #ab101b; */
+  text-decoration: none;
+  color: #fff;
+  width: 120px;
+  /* padding: 28px 5px; */
+  text-align: center;
+  display: block;
+  /* border-radius: 90px; */
+  opacity: 0.9;
+  transition: all .3s ease;
+}
+#search-top img:hover {
+  text-decoration: none;
+  opacity: .5;
+  cursor:pointer
+}
+
+.sortable:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.random_work{
+  display: flex;
+  justify-content: center;
+  margin-left: 30px;
+}
+.random_work a{
+  max-width: 150px;
+}
+.random_work img{
+  max-width: 150px;
+}
+.chara_and_random_work{
+  display: flex;
+  justify-content: center;
+
+}
+.chara_and_random_work #pip{
+  max-width: 70px;
+  position: relative;
+  bottom: -80px;
+}
+.chara_and_random_work #mmu-n{
+  max-width: 100px;
+  position: relative;
+  bottom: -80px;
+}

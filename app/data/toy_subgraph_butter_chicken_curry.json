@@ -1,0 +1,144 @@
+{
+    "nodes": [
+        {
+            "id": "ニンニク",
+            "type": "ingredient",
+            "quantity": "3片"
+        },
+        {
+            "id": "玉ねぎ",
+            "type": "ingredient",
+            "quantity": "1個"
+        },
+        {
+            "id": "鶏もも肉",
+            "type": "ingredient",
+            "quantity": "300g"
+        },
+        {
+            "id": "有塩バター",
+            "type": "ingredient",
+            "quantity": "40g"
+        },
+        {
+            "id": "カットトマト缶",
+            "type": "ingredient",
+            "quantity": "250g"
+        },
+        {
+            "id": "生クリーム",
+            "type": "ingredient",
+            "quantity": "100ml"
+        },
+        {
+            "id": "(A)",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "カレールー",
+            "type": "ingredient",
+            "quantity": "3個"
+        },
+        {
+            "id": "しょうゆ",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "ごはん",
+            "type": "ingredient",
+            "quantity": "800g"
+        },
+        {
+            "id": "パセリ",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "ルー",
+            "type": "intermediate"
+        },
+        {
+            "id": "バターチキンカレー",
+            "type": "final"
+        }
+    ],
+    "edges": [
+        {
+            "source": "ニンニク",
+            "target": "料理",
+            "action": "炒める"
+        },
+        {
+            "source": "玉ねぎ",
+            "target": "料理",
+            "action": "炒める"
+        },
+        {
+            "source": "鶏もも肉",
+            "target": "料理",
+            "action": "炒める"
+        },
+        {
+            "source": "有塩バター",
+            "target": "ニンニク",
+            "action": "炒める"
+        },
+        {
+            "source": "有塩バター",
+            "target": "玉ねぎ",
+            "action": "炒める"
+        },
+        {
+            "source": "有塩バター",
+            "target": "鶏もも肉",
+            "action": "炒める"
+        },
+        {
+            "source": "カットトマト缶",
+            "target": "ルー",
+            "action": "混ぜる"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ルー",
+            "action": "混ぜる"
+        },
+        {
+            "source": "(A)",
+            "target": "ルー",
+            "action": "混ぜる"
+        },
+        {
+            "source": "カレールー",
+            "target": "ルー",
+            "action": "溶かす"
+        },
+        {
+            "source": "しょうゆ",
+            "target": "ルー",
+            "action": "混ぜる"
+        },
+        {
+            "source": "ルー",
+            "target": "バターチキンカレー",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "ごはん",
+            "target": "バターチキンカレー",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "パセリ",
+            "target": "ごはん",
+            "action": "散らす"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ルー",
+            "action": "かける"
+        }
+    ]
+}

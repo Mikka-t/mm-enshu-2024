@@ -1,0 +1,126 @@
+{
+    "nodes": [
+        {
+            "id": "生地",
+            "type": "intermediate"
+        },
+        {
+            "id": "デコレーションケーキ",
+            "type": "final"
+        },
+        {
+            "id": "小麦粉",
+            "type": "ingredient",
+            "quantity": "200g"
+        },
+        {
+            "id": "いちご",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "生クリーム",
+            "type": "ingredient",
+            "quantity": "200ml"
+        },
+        {
+            "id": "卵",
+            "type": "ingredient",
+            "quantity": "3個"
+        },
+        {
+            "id": "ホイップクリーム",
+            "type": "intermediate"
+        },
+        {
+            "id": "グラニュー糖",
+            "type": "ingredient",
+            "quantity": "100g"
+        },
+        {
+            "id": "焼いたスポンジ生地",
+            "type": "intermediate"
+        },
+        {
+            "id": "スポンジ生地",
+            "type": "intermediate"
+        },
+        {
+            "id": "砂糖",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "無塩バター",
+            "type": "ingredient",
+            "quantity": "100g"
+        }
+    ],
+    "edges": [
+        {
+            "source": "焼いたスポンジ生地",
+            "target": "デコレーションケーキ",
+            "action": "重ねる"
+        },
+        {
+            "source": "ホイップクリーム",
+            "target": "デコレーションケーキ",
+            "action": "重ねる"
+        },
+        {
+            "source": "いちご",
+            "target": "デコレーションケーキ",
+            "action": "重ねる"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "グラニュー糖",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "生クリーム",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "砂糖",
+            "target": "ホイップクリーム",
+            "action": "ホイップする"
+        },
+        {
+            "source": "スポンジ生地",
+            "target": "焼いたスポンジ生地",
+            "action": "焼く"
+        },
+        {
+            "source": "生地",
+            "target": "スポンジ生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "無塩バター",
+            "target": "スポンジ生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "卵",
+            "target": "生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "グラニュー糖",
+            "target": "生地",
+            "action": "混ぜる"
+        },
+        {
+            "source": "小麦粉",
+            "target": "生地",
+            "action": "混ぜる"
+        }
+    ]
+}

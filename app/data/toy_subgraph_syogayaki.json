@@ -1,0 +1,108 @@
+{
+    "nodes": [
+        {
+            "id": "豚ロース",
+            "type": "ingredient",
+            "quantity": "300g"
+        },
+        {
+            "id": "薄力粉",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "すりおろし生姜",
+            "type": "ingredient",
+            "quantity": "大さじ2"
+        },
+        {
+            "id": "しょうゆ",
+            "type": "ingredient",
+            "quantity": "大さじ2"
+        },
+        {
+            "id": "砂糖",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "料理酒",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "ごま油",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "キャベツ",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "たれ",
+            "type": "intermediate"
+        },
+        {
+            "id": "焼いた豚ロース",
+            "type": "intermediate"
+        },
+        {
+            "id": "豚肉の生姜焼き",
+            "type": "final"
+        }
+    ],
+    "edges": [
+        {
+            "source": "豚ロース",
+            "target": "焼いた豚ロース",
+            "action": "焼く"
+        },
+        {
+            "source": "薄力粉",
+            "target": "豚ロース",
+            "action": "まぶす"
+        },
+        {
+            "source": "すりおろし生姜",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "しょうゆ",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "砂糖",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "料理酒",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "ごま油",
+            "target": "たれ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "たれ",
+            "target": "焼いた豚ロース",
+            "action": "かける"
+        },
+        {
+            "source": "キャベツ",
+            "target": "豚肉の生姜焼き",
+            "action": "付け合わせる"
+        },
+        {
+            "source": "焼いた豚ロース",
+            "target": "豚肉の生姜焼き",
+            "action": "盛り付ける"
+        }
+    ]
+}

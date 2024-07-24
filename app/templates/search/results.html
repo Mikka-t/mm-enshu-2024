@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% block header %}
+  <div>
+    <!-- {% block title %}{{page_title}}{% endblock %} -->
+  </div>
+{% endblock %}
+{% block content %}
+<script>
+  window.onload = function() {
+    document.getElementById('search_result').scrollIntoView(); //検索結果ブロックに自動的に飛ぶ
+  }
+</script>
+
+
+
+
+
+<form method="post" action="/search" id="searchForm">
+    <div class="checkbox-container">
+      
+      <div class="select-year-container" style="display: flex; text-align: center;">
+        <select name="start_year">
+            {%for year in range(start_year, end_year)%}
+            <option value="{{year}}">{{year}}</option>
+            {%endfor%}
+        </select>
+        <span>年から</span>
+        <select name="end_year">
+            {%for year in range(end_year, start_year-1, -1)%}
+            <option value="{{year}}">{{year}}</option>
+            {%endfor%}
+        </select>
+        <span>年までの</span>
+
+        <input type="hidden" id="start_year" name="start_year">
+        <input type="hidden" id="end_year" name="end_year">
+
+    </div>
+      <div class="media-type-checkbox">
+        <div>
+          <label for="toggleSliders">漫画</label>
+          <input type="checkbox" id="manga" name="manga" {{ 'checked' if form_info['manga'] else '' }} >
+          <label for="toggleSliders">アニメ</label>
+          <input type="checkbox" id="anime" name="anime" {{ 'checked' if form_info['anime'] else '' }}>
+          <label for="toggleSliders">小説</label>
+          <input type="checkbox" id="novel" name="novel" {{ 'checked' if form_info['novel'] else '' }}>
+        </div>
+
+      </div>
+
+      <input type="checkbox" id="searchall" name="searchall" hidden checked>
+
+      <!-- <label for="toggleSliders">検索の割合を指定</label>
+      <input type="checkbox" id="toggleSliders"> -->
+
+      <input type="checkbox" id="story_age_checkbox" hidden>
+
+      </div>
+
+  
+
+  <!-- フォーム内に隠しフィールドを追加 -->
+  <input type="hidden" id="liData" name="liData" value={{','.join(categories) if categories else ''}}>
+  <div class="autoComplete_container">
+    <br>
+    <br>
+    <label >関連カテゴリを追加する</label>
+    <br>
+    <input type="radio" name="AndOR" value="AND" {{ 'checked' if form_info['AndOR'] == 'AND' else '' }}  />AND
+    <input type="radio" name="AndOR" value="OR" {{ 'checked' if form_info['AndOR'] == 'OR' else '' }} />OR
+    <input type="text" id="autoComplete">
+        <ul id="list-container">
+          {% if categories %}
+          {% for category in categories %}
+          <li><span>×</span>{{category}}</li>
+          {% endfor %}
+          {% endif %}
+        </ul>
+
+  </div>
+
+  <textarea id="inputText" name="inputText" rows="4" placeholder="気になる単語や文章をここに入力してください。ゆる〜く検索します。" required>{{input_text}}</textarea>
+  <!-- <input type="type" id="inputText" name="inputText" placeholder="検索したい質問の要素を入力してください" required> -->
+
+  <input type="submit" value="検索">
+
+  <div id="loadingIndicator" style="display: none;">
+    Loading...
+  </div>
+</form>
+
+<h2 id="search_result" style="text-align:center">検索結果</h2> 
+<div class="result-container">
+   
+  <table id="manga-table">
+    <tr>
+      <th id="sort-recommendation" class="sortable">おすすめランク↕</th>
+      <th id="sort-started-at" class="sortable">連載開始時↕</th>
+      <th>作品タイトルと画像</th>
+      {% if actor_select %}<th>キャラクター</th>{% endif %}
+    </tr>
+    {% for result in results %}
+    <tr>
+      <td>
+        <div class="progress-container">
+          <div class="progress-bar" style="width: {{ result['similarity'] }}%">{{ result['similarity'] }}%</div>
+          
+        </div>
+      </td>
+      <td>{{ result["started_at"] }}
+        <div style="display: flex;flex-direction:column;padding: 10px;margin: 5px;text-align: center;">
+          {% if result["media_type"]["manga"] %}
+          <a style="border-radius: 5px;background: #37d118;padding: 5px;color: #FFF;">漫</a>
+          <br style='display: block;margin: 5px 0;content: "";'>
+          {% endif %}
+          {% if result["media_type"]["anime"] %}
+          <a style="border-radius: 5px;background: #ff6f6f;padding: 5px;color: #FFF;">ア</a>
+          <br style='display: block;margin: 5px 0;content: "";'>
+          {% endif %}
+          {% if result["media_type"]["novel"] %}
+          <a style="border-radius: 5px;background: #6fa1ff;padding: 5px;color: #FFF;">小</a>
+          {% endif %}
+        </div>
+      </td>
+      <td style="text-align: center;">
+        <a href="{{ result['amazon_url'] }}" rel="noopener noreferrer" style="text-decoration: none; color: black;">
+          <div style="word-wrap: break-word; width: 200px; margin: auto;">
+            <div style="font-weight: bold;">{{ result["title"] }}</div>
+            {% if result['img_url'] %}
+              <img src="{{ result['img_url'] }}" alt="{{ result['title'] }}" style="display:block; margin: auto; width: 100%; max-width: 153px; height: auto;">
+            {% else %}
+              <img src="{{ url_for('static', filename='images/no_image_tate.jpg') }}" alt="No Image" style="display:block; margin: auto; width: 100%; max-width: 153px; height: auto;">
+            {% endif %}
+          </div>
+        </a>
+      </td>
+      {% if actor_select %}
+        <td><div style="width: 100px;"><a href="{{ result['amazon_url'] +'&character_id='+ result["character_id"]}}" >{{result["character"]}}</a></td></div>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+
+  <!-- 右に表示される検索トップに飛ぶやつ -->
+  <p id="search-top"><img href="#" src="{{ url_for('static', filename='images/search_mushimegane.png') }}"></img></p>
+</div>
+
+ 
+{% endblock %}

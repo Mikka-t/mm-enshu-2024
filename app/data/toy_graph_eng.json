@@ -1,0 +1,28 @@
+{
+    "nodes": [
+        {"id": "Egg", "type": "ingredient"},
+        {"id": "Granulated Sugar", "type": "ingredient"},
+        {"id": "Flour", "type": "ingredient"},
+        {"id": "Unsalted Butter", "type": "ingredient"},
+        {"id": "Heavy Cream", "type": "ingredient"},
+        {"id": "Strawberry", "type": "ingredient"},
+        {"id": "Batter", "type": "intermediate"},
+        {"id": "Sponge Batter", "type": "intermediate"},
+        {"id": "Baked Sponge Cake", "type": "intermediate"},
+        {"id": "Whipped Cream", "type": "intermediate"},
+        {"id": "Decoration Cake", "type": "final"}
+    ],
+    "edges": [
+        {"source": "Egg", "target": "Batter", "action": "mix"},
+        {"source": "Granulated Sugar", "target": "Batter", "action": "mix"},
+        {"source": "Flour", "target": "Batter", "action": "mix"},
+        {"source": "Batter", "target": "Sponge Batter", "action": "mix"},
+        {"source": "Unsalted Butter", "target": "Sponge Batter", "action": "mix"},
+        {"source": "Sponge Batter", "target": "Baked Sponge Cake", "action": "bake"},
+        {"source": "Heavy Cream", "target": "Whipped Cream", "action": "whip"},
+        {"source": "Granulated Sugar", "target": "Whipped Cream", "action": "whip"},
+        {"source": "Baked Sponge Cake", "target": "Decoration Cake", "action": "layer"},
+        {"source": "Whipped Cream", "target": "Decoration Cake", "action": "layer"},
+        {"source": "Strawberry", "target": "Decoration Cake", "action": "layer"}
+    ]
+}
