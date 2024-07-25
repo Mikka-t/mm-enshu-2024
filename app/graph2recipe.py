@@ -46,7 +46,12 @@ def get_subgraph_str(target_node: str,):
     # ノード説明文を取得
     for node in subgraph_nodes_set:
         # node_info = get_node_info_str(node) # ノードIDがそのままノードの説明なので，中間発表時はいらない
-        subgraph_nodes.append(node_dict[node])
+        if node in node_dict:
+            subgraph_nodes.append(node_dict[node])
+        else:
+            error_node = {"id": node, "type": "misc"}
+            subgraph_nodes.append(error_node)
+            print("Error node:",error_node)
 
     # エッジ説明文を取得
     for edge in subgraph_edges:
