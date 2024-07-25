@@ -1,28 +1,166 @@
 {
     "nodes": [
-        {"id": "卵", "type": "ingredient"},
-        {"id": "グラニュー糖", "type": "ingredient"},
-        {"id": "小麦粉", "type": "ingredient"},
-        {"id": "無塩バター", "type": "ingredient"},
-        {"id": "生クリーム", "type": "ingredient"},
-        {"id": "いちご", "type": "ingredient"},
-        {"id": "生地", "type": "intermediate"},
-        {"id": "スポンジ生地", "type": "intermediate"},
-        {"id": "焼いたスポンジ生地", "type": "intermediate"},
-        {"id": "ホイップクリーム", "type": "intermediate"},
-        {"id": "デコレーションケーキ", "type": "final"}
+        {
+            "id": "合びき肉",
+            "type": "ingredient",
+            "quantity": "250〜300g"
+        },
+        {
+            "id": "玉ねぎ",
+            "type": "ingredient",
+            "quantity": "1個"
+        },
+        {
+            "id": "パン粉",
+            "type": "ingredient",
+            "quantity": "大さじ4"
+        },
+        {
+            "id": "牛乳",
+            "type": "ingredient",
+            "quantity": "大さじ4〜5"
+        },
+        {
+            "id": "おろしにんにく",
+            "type": "ingredient",
+            "quantity": "1/2片分"
+        },
+        {
+            "id": "塩",
+            "type": "ingredient",
+            "quantity": "小さじ1/2"
+        },
+        {
+            "id": "砂糖",
+            "type": "ingredient",
+            "quantity": "小さじ1/2"
+        },
+        {
+            "id": "こしょう",
+            "type": "ingredient",
+            "quantity": "少々"
+        },
+        {
+            "id": "サラダ油",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "ハンバーグのたね",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "焼き上げたハンバーグ",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "ハンバーグ",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "ケチャップ",
+            "type": "ingredient",
+            "quantity": "大さじ3"
+        },
+        {
+            "id": "ウスターソース",
+            "type": "ingredient",
+            "quantity": "大さじ1と1/2"
+        },
+        {
+            "id": "しょうゆ",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "ハンバーグソース",
+            "type": "intermediate",
+            "quantity": null
+        }
     ],
     "edges": [
-        {"source": "卵", "target": "生地", "action": "混ぜる"},
-        {"source": "グラニュー糖", "target": "生地", "action": "混ぜる"},
-        {"source": "小麦粉", "target": "生地", "action": "混ぜる"},
-        {"source": "生地", "target": "スポンジ生地", "action": "混ぜる"},
-        {"source": "無塩バター", "target": "スポンジ生地", "action": "混ぜる"},
-        {"source": "スポンジ生地", "target": "焼いたスポンジ生地", "action": "焼く"},
-        {"source": "生クリーム", "target": "ホイップクリーム", "action": "ホイップする"},
-        {"source": "グラニュー糖", "target": "ホイップクリーム", "action": "ホイップする"},
-        {"source": "焼いたスポンジ生地", "target": "デコレーションケーキ", "action": "重ねる"},
-        {"source": "ホイップクリーム", "target": "デコレーションケーキ", "action": "重ねる"},
-        {"source": "いちご", "target": "デコレーションケーキ", "action": "重ねる"}
+        {
+            "source": "玉ねぎ",
+            "target": "サラダ油",
+            "action": "炒める"
+        },
+        {
+            "source": "玉ねぎ",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "合びき肉",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "パン粉",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "牛乳",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "おろしにんにく",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "塩",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "砂糖",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "こしょう",
+            "target": "ハンバーグのたね",
+            "action": "混ぜる"
+        },
+        {
+            "source": "サラダ油",
+            "target": "玉ねぎ",
+            "action": "炒める"
+        },
+        {
+            "source": "ハンバーグのたね",
+            "target": "焼き上げたハンバーグ",
+            "action": "焼く"
+        },
+        {
+            "source": "焼き上げたハンバーグ",
+            "target": "ハンバーグ",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "ケチャップ",
+            "target": "ハンバーグソース",
+            "action": "混ぜる"
+        },
+        {
+            "source": "ウスターソース",
+            "target": "ハンバーグソース",
+            "action": "混ぜる"
+        },
+        {
+            "source": "しょうゆ",
+            "target": "ハンバーグソース",
+            "action": "混ぜる"
+        },
+        {
+            "source": "ハンバーグソース",
+            "target": "ハンバーグ",
+            "action": "かける"
+        }
     ]
 }

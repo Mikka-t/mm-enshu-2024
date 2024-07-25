@@ -92,7 +92,11 @@ def convert_json(data:json)->dict:
         for i in range(0,len(node["id"]),10):
             name += node["id"][i:i+10] + "\\n"
 
-        convert_nodes.append({"id": node["id"], "label": name + "\\n" + quantity, "group": node_type[node["type"]]})
+        if node["type"] in node_type:
+            node_group = node_type[node["type"]]
+        else:
+            node_group = "misc"
+        convert_nodes.append({"id": node["id"], "label": name + "\\n" + quantity, "group": node_group})
 
     for edge in edges:
         convert_edges.append({"from": edge['source'], "to": edge['target'], "label": edge['action']})

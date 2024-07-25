@@ -84,9 +84,18 @@ def submit_url():
             recipe = markdown2.markdown(recipe)
     send_data = convert_json(graph)
     # print(send_data)
-    title =re.search(r'<h2>(.*?)</h2>', recipe).group(0) #group(0)で<p></p>とかを保持したまま、group(1)ではtextだけ取得する
-    ingredients_ul = re.search(r'<ul>(.*?)</ul>', recipe, re.DOTALL).group(0)
-    HowToCook_ol = re.search(r'<ol>(.*?)</ol>', recipe, re.DOTALL).group(0)
+    try:
+        title =re.search(r'<h2>(.*?)</h2>', recipe).group(0) #group(0)で<p></p>とかを保持したまま、group(1)ではtextだけ取得する
+    except:
+        title = "<h2>変換失敗</h2>"
+    try: 
+        ingredients_ul = re.search(r'<ul>(.*?)</ul>', recipe, re.DOTALL).group(0)
+    except:
+        ingredients_ul = "<ul>変換失敗</ul>"
+    try:
+        HowToCook_ol = re.search(r'<ol>(.*?)</ol>', recipe, re.DOTALL).group(0)
+    except:
+        HowToCook_ol = "<ol>変換失敗</ol>"
     print(title)
     print(ingredients_ul)
     print(HowToCook_ol)

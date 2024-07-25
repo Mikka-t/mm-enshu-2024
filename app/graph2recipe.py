@@ -109,10 +109,11 @@ def subgraph2recipe_str(graph):
         messages.append({"role": "assistant", "content": f"与えられたjsonファイル形式の知識グラフの内容: {graph_text}"})
         messages.append({"role": "user", "content": "このjsonファイルから得られる知識だけを用いて、レシピの文章を書いてください。返答はレシピのみにしてください。"})
         messages.append({"role": "user", "content": "レシピ名から初めて、材料と作り方を書いてください。ただし、HTMLの形で出力し、改行は改行タグ<br>を使用してください。"})
+        messages.append({"role": "user", "content": "材料は<ul>内で羅列してください。レシピの段階は<ol>内で羅列してください。最初は<h2>で始め，type='final'の'id'を<h2>内で書いてください。"})
 
         response = openai.chat.completions.create(
-            model="gpt-3.5-turbo",
-            # model="gpt-4o",
+            # model="gpt-3.5-turbo",
+            model="gpt-4o",
             messages=messages,
         )
         
