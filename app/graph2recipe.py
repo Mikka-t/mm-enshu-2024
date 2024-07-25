@@ -2,6 +2,7 @@ from graph2recipe_utils import *
 import replicate
 import openai
 import os
+import json
 import time
 
 SELECT_LLM = "ChatGPT"
@@ -58,6 +59,7 @@ def get_subgraph_str(target_node: str,):
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
 def subgraph2recipe_str(graph, dish_name_plus_url):
+    cache_file_path = "./data/subgraph2recipe_cache.json"
     ### プロンプト作成
     nodes, edges = graph["nodes"], graph["edges"]
 
@@ -67,12 +69,19 @@ def subgraph2recipe_str(graph, dish_name_plus_url):
     
     graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
 
-    if os.path.exists("./data/"+dish_name_plus_url+".txt"):
-        with open("./data/"+dish_name_plus_url+".txt", 'r', encoding='utf-8') as file:
-            cached_output = file.read()
-        time.sleep(3)
-        print("Fetched Cache")
-        return cached_output
+    cached_data = {}
+    if os.path.exists(cache_file_path):
+        with open(cache_file_path, 'r', encoding='utf-8') as file:
+            cached_data = json.load(file)
+        
+        if dish_name_plus_url in cached_data:
+            print("Fetched Cache")
+            time.sleep(8 if dish_name_plus_url[:4]=='http' else 5)
+            return cached_data[dish_name_plus_url]
+    else:
+        # ファイルが存在しない場合は新しく作成
+        with open(cache_file_path, 'w', encoding='utf-8') as file:
+            json.dump({}, file)
 
     if SELECT_LLM == "LLama":
         with open('./.token/llama', 'r') as f:
@@ -131,8 +140,13 @@ def subgraph2recipe_str(graph, dish_name_plus_url):
         
         output_str = remove_first_and_last_line(output_str)
 
-    with open("./data/"+dish_name_plus_url+".txt", 'w', encoding='utf-8') as file:
-        file.write(output_str)
+    if os.path.exists(cache_file_path):
+        cached_data[dish_name_plus_url] = output_str
+        # JSONファイルに保存
+        with open(cache_file_path, 'w', encoding='utf-8') as file:
+            json.dump(cached_data, file, ensure_ascii=False, indent=4)
+    else:
+        print("Cache file Not Found.")
 
     return output_str
 
