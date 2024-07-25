@@ -37,6 +37,14 @@ def index():
     # return render_template("result.html",json_data = send_data)
     return render_template('search/index.html',full_categories_list=category_list)
 
+@app.route('/full')
+def show_full_graph():
+    with open(f'data/toy_graph_big.json', 'r', encoding='utf-8') as f:
+        big_graph = json.load(f)
+    send_data = convert_json(big_graph)
+    return render_template("search/result.html",json_data=send_data,full_categories_list =[])
+
+
 @app.route('/search', methods=['POST'])
 def submit_url():
     url = request.form.get('inputText') if request.form.get('inputText')!="" else None
