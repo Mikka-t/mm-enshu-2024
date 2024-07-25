@@ -83,7 +83,10 @@ def submit_url():
     print(graph)
     if USE_LLM_FLAG:
         # TODO: フロントエンドに表示
-        recipe = subgraph2recipe_str(graph)
+        if dish_name:
+            recipe = subgraph2recipe_str(graph, dish_name)
+        else:
+            recipe = subgraph2recipe_str(graph, url.replace('/', '').replace(':',''))
         print("LLM Output: ", recipe)
         if recipe == "NO_API":
             recipe = ""
