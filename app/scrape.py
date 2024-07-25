@@ -154,6 +154,39 @@ def extract_sirogohan_com(soup):
     return '\n'.join(result)
 
 
+# クックパッド用のスクレイピング
+def extract_cookpad(soup):
+    result = []
+    
+    # Extract title
+    title = soup.find("h1", class_="recipe-title").get_text(strip=True)
+    result.append(f"タイトル: {title}")
+
+    # Extract ingredients
+    ingredients_section = soup.find("div", id="ingredients_list")
+    ingredients_items = ingredients_section.find_all("div", class_="ingredient_row")
+
+    result.append("材料:")
+    for item in ingredients_items:
+        name = item.find("span", class_="name").get_text(strip=True)
+        quantity = item.find("div", class_="ingredient_quantity amount").get_text(strip=True)
+        result.append(f"{name} {quantity}")
+
+    # Extract instructions
+    instructions_section = soup.find("section", id="steps_wrapper")
+    steps_items = instructions_section.find_all("li", class_="step")
+
+    result.append("\n手順:")
+    for item in steps_items:
+        step_number = item.find("dt", class_="step_number").get_text(strip=True)
+        instruction_div = item.find("dd", class_="instruction")
+        instruction_text = instruction_div.find("p", class_="step_text").get_text(strip=True)
+        result.append(f"{step_number} {instruction_text}")
+        print(f"{step_number} {instruction_text}")
+    
+    return '\n'.join(result)
+
+
 def scrape(url):
     # Define headers for the request
     headers = {
@@ -175,6 +208,8 @@ def scrape(url):
             return extract_delish_kitchen(soup)
         elif 'sirogohan' in domain:
             return extract_sirogohan_com(soup)
+        elif 'cookpad' in domain:
+            return extract_cookpad(soup)
         else:
             return remove_extra_newlines(soup.get_text(separator='\n'))
         
