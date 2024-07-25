@@ -1,6 +1,8 @@
 from graph2recipe_utils import *
 import replicate
 import openai
+import os
+import time
 
 SELECT_LLM = "ChatGPT"
 # SELECT_LLM = "LLama"
@@ -55,7 +57,7 @@ def get_subgraph_str(target_node: str,):
     return subgraph
 
 # 中間発表用．ノードIDやエッジIDがなく，ノード名はstrで管理されています
-def subgraph2recipe_str(graph):
+def subgraph2recipe_str(graph, dish_name_plus_url):
     ### プロンプト作成
     nodes, edges = graph["nodes"], graph["edges"]
 
@@ -64,6 +66,13 @@ def subgraph2recipe_str(graph):
     edges_text = ', '.join([f'{{"source": "{edge["source"]}", "target": "{edge["target"]}", "action": "{edge["action"]}"}}' for edge in edges])
     
     graph_text = f'{{"nodes": [{nodes_text}], "edges": [{edges_text}]}}'
+
+    if os.path.exists("./data/"+dish_name_plus_url+".txt"):
+        with open("./data/"+dish_name_plus_url+".txt", 'r', encoding='utf-8') as file:
+            cached_output = file.read()
+        time.sleep(3)
+        print("Fetched Cache")
+        return cached_output
 
     if SELECT_LLM == "LLama":
         with open('./.token/llama', 'r') as f:
@@ -121,6 +130,9 @@ def subgraph2recipe_str(graph):
         output_str = response.choices[0].message.content
         
         output_str = remove_first_and_last_line(output_str)
+
+    with open("./data/"+dish_name_plus_url+".txt", 'w', encoding='utf-8') as file:
+        file.write(output_str)
 
     return output_str
 
