@@ -42,7 +42,7 @@ def show_full_graph():
     with open(f'data/toy_graph_big.json', 'r', encoding='utf-8') as f:
         big_graph = json.load(f)
     send_data = convert_json(big_graph)
-    return render_template("search/result.html",json_data=send_data,full_categories_list =[])
+    return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list =[])
 
 
 @app.route('/search', methods=['POST'])

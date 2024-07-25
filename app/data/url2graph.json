@@ -1196,5 +1196,232 @@
                 "action": "かける"
             }
         ]
+    },
+    "https://www.kurashiru.com/recipes/b9399c72-56d9-4a66-b9df-ca421a7b9395": {
+        "nodes": [
+            {
+                "id": "サンマ",
+                "type": "ingredient",
+                "quantity": "1尾"
+            },
+            {
+                "id": "薄力粉",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "しょうゆ",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "酒",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "みりん",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "万能ねぎ",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "白ごま",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "サラダ油",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "ごはん",
+                "type": "ingredient",
+                "quantity": "1膳"
+            },
+            {
+                "id": "調味料",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "焼いたサンマ",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "さんまの蒲焼き丼",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "サンマ",
+                "target": "焼いたサンマ",
+                "action": "焼く"
+            },
+            {
+                "source": "薄力粉",
+                "target": "サンマ",
+                "action": "まぶす"
+            },
+            {
+                "source": "しょうゆ",
+                "target": "調味料",
+                "action": "混ぜる"
+            },
+            {
+                "source": "酒",
+                "target": "調味料",
+                "action": "混ぜる"
+            },
+            {
+                "source": "みりん",
+                "target": "調味料",
+                "action": "混ぜる"
+            },
+            {
+                "source": "調味料",
+                "target": "焼いたサンマ",
+                "action": "煮詰める"
+            },
+            {
+                "source": "サラダ油",
+                "target": "サンマ",
+                "action": "焼く"
+            },
+            {
+                "source": "焼いたサンマ",
+                "target": "さんまの蒲焼き丼",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "ごはん",
+                "target": "さんまの蒲焼き丼",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "万能ねぎ",
+                "target": "さんまの蒲焼き丼",
+                "action": "かける"
+            },
+            {
+                "source": "白ごま",
+                "target": "さんまの蒲焼き丼",
+                "action": "かける"
+            }
+        ]
+    },
+    "https://news.cookpad.com/articles/53013": {
+        "nodes": [
+            {
+                "id": "さんま",
+                "type": "ingredient",
+                "quantity": "2尾"
+            },
+            {
+                "id": "酒",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "みりん",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "しょうゆ",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "おろししょうが(チューブでOK)",
+                "type": "ingredient",
+                "quantity": "小さじ1"
+            },
+            {
+                "id": "片栗粉",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "油",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "さんまの下味",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "さんまの竜田揚げ",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "さんま",
+                "target": "さんまの下味",
+                "action": "切る"
+            },
+            {
+                "source": "酒",
+                "target": "さんまの下味",
+                "action": "混ぜる"
+            },
+            {
+                "source": "みりん",
+                "target": "さんまの下味",
+                "action": "混ぜる"
+            },
+            {
+                "source": "しょうゆ",
+                "target": "さんまの下味",
+                "action": "混ぜる"
+            },
+            {
+                "source": "おろししょうが(チューブでOK)",
+                "target": "さんまの下味",
+                "action": "混ぜる"
+            },
+            {
+                "source": "さんまの下味",
+                "target": "さんま",
+                "action": "つける"
+            },
+            {
+                "source": "片栗粉",
+                "target": "さんま",
+                "action": "まぶす"
+            },
+            {
+                "source": "油",
+                "target": "さんま",
+                "action": "揚げる"
+            },
+            {
+                "source": "塩",
+                "target": "さんまの竜田揚げ",
+                "action": "ふる"
+            },
+            {
+                "source": "さんま",
+                "target": "さんまの竜田揚げ",
+                "action": "盛り付ける"
+            }
+        ]
     }
 }

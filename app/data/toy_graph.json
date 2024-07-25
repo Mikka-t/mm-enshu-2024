@@ -1,166 +1,106 @@
 {
     "nodes": [
         {
-            "id": "合びき肉",
+            "id": "さんま",
             "type": "ingredient",
-            "quantity": "250〜300g"
+            "quantity": "2尾"
         },
         {
-            "id": "玉ねぎ",
+            "id": "酒",
             "type": "ingredient",
-            "quantity": "1個"
+            "quantity": "大さじ2"
         },
         {
-            "id": "パン粉",
+            "id": "みりん",
             "type": "ingredient",
-            "quantity": "大さじ4"
-        },
-        {
-            "id": "牛乳",
-            "type": "ingredient",
-            "quantity": "大さじ4〜5"
-        },
-        {
-            "id": "おろしにんにく",
-            "type": "ingredient",
-            "quantity": "1/2片分"
-        },
-        {
-            "id": "塩",
-            "type": "ingredient",
-            "quantity": "小さじ1/2"
-        },
-        {
-            "id": "砂糖",
-            "type": "ingredient",
-            "quantity": "小さじ1/2"
-        },
-        {
-            "id": "こしょう",
-            "type": "ingredient",
-            "quantity": "少々"
-        },
-        {
-            "id": "サラダ油",
-            "type": "ingredient",
-            "quantity": "大さじ1"
-        },
-        {
-            "id": "ハンバーグのたね",
-            "type": "intermediate",
-            "quantity": null
-        },
-        {
-            "id": "焼き上げたハンバーグ",
-            "type": "intermediate",
-            "quantity": null
-        },
-        {
-            "id": "ハンバーグ",
-            "type": "final",
-            "quantity": null
-        },
-        {
-            "id": "ケチャップ",
-            "type": "ingredient",
-            "quantity": "大さじ3"
-        },
-        {
-            "id": "ウスターソース",
-            "type": "ingredient",
-            "quantity": "大さじ1と1/2"
+            "quantity": "大さじ2"
         },
         {
             "id": "しょうゆ",
             "type": "ingredient",
-            "quantity": "大さじ1"
+            "quantity": "大さじ2"
         },
         {
-            "id": "ハンバーグソース",
+            "id": "おろししょうが(チューブでOK)",
+            "type": "ingredient",
+            "quantity": "小さじ1"
+        },
+        {
+            "id": "片栗粉",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "油",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "塩",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "さんまの下味",
             "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "さんまの竜田揚げ",
+            "type": "final",
             "quantity": null
         }
     ],
     "edges": [
         {
-            "source": "玉ねぎ",
-            "target": "サラダ油",
-            "action": "炒める"
+            "source": "さんま",
+            "target": "さんまの下味",
+            "action": "切る"
         },
         {
-            "source": "玉ねぎ",
-            "target": "ハンバーグのたね",
+            "source": "酒",
+            "target": "さんまの下味",
             "action": "混ぜる"
         },
         {
-            "source": "合びき肉",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "パン粉",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "牛乳",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "おろしにんにく",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "塩",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "砂糖",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "こしょう",
-            "target": "ハンバーグのたね",
-            "action": "混ぜる"
-        },
-        {
-            "source": "サラダ油",
-            "target": "玉ねぎ",
-            "action": "炒める"
-        },
-        {
-            "source": "ハンバーグのたね",
-            "target": "焼き上げたハンバーグ",
-            "action": "焼く"
-        },
-        {
-            "source": "焼き上げたハンバーグ",
-            "target": "ハンバーグ",
-            "action": "盛り付ける"
-        },
-        {
-            "source": "ケチャップ",
-            "target": "ハンバーグソース",
-            "action": "混ぜる"
-        },
-        {
-            "source": "ウスターソース",
-            "target": "ハンバーグソース",
+            "source": "みりん",
+            "target": "さんまの下味",
             "action": "混ぜる"
         },
         {
             "source": "しょうゆ",
-            "target": "ハンバーグソース",
+            "target": "さんまの下味",
             "action": "混ぜる"
         },
         {
-            "source": "ハンバーグソース",
-            "target": "ハンバーグ",
-            "action": "かける"
+            "source": "おろししょうが(チューブでOK)",
+            "target": "さんまの下味",
+            "action": "混ぜる"
+        },
+        {
+            "source": "さんまの下味",
+            "target": "さんま",
+            "action": "つける"
+        },
+        {
+            "source": "片栗粉",
+            "target": "さんま",
+            "action": "まぶす"
+        },
+        {
+            "source": "油",
+            "target": "さんま",
+            "action": "揚げる"
+        },
+        {
+            "source": "塩",
+            "target": "さんまの竜田揚げ",
+            "action": "ふる"
+        },
+        {
+            "source": "さんま",
+            "target": "さんまの竜田揚げ",
+            "action": "盛り付ける"
         }
     ]
 }
