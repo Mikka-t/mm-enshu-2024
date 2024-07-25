@@ -13,7 +13,7 @@
   gtag('config', 'G-JZE3B49YRS');
 </script>
 
-  <link rel="icon" href="{{ url_for('static', filename='images/favicon (1).ico') }}">
+  <link rel="icon" href="{{ url_for('static', filename='images/favicon (1).ico') }}?v={{ now() }} ">
   <meta name="viewport" content="width=device-width,initial-scale=1">  <!-- レスポンシブ対応のためにまず書く必要がある-->
   <script type="text/javascript">
     var full_categoires_list = {{ full_categories_list | tojson | safe }};
