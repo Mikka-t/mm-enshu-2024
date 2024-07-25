@@ -5,14 +5,6 @@
 
 ## 動かし方
 
-一番最初
-```
-$ docker-compose up --build -d
-```
-2回目以降
-```
-$ docker-compose restart
-```
 restartしてからurlを表示するスクリプト
 ```
 $ chmod u+x scripts/run.sh  # 初回のみ
@@ -27,7 +19,18 @@ $ ./scripts/replace_app.sh
 ```
 $ docker logs [コンテナ名]
 ```
+## 動かし方 (ローカル)
+
+```
+$ cd app
+$ docker-compose up --build -d --force-recreate
+```
+その後，localhost:8001に接続
+
+## API Keys
+
 llamaを使う際はapp/.token/lammaにtokenを入れる．（generate_graph.pyでtokenを読込む）
+
 ChatGPTを使う際はapp/.token/openai_api_key を入れる．
 
 例：app/.token/lamma 内
