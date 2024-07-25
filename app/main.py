@@ -67,8 +67,8 @@ def submit_url():
         if url in url2graph:
             graph = url2graph[url]
         else:
-            llm_output, graph = generate_graph(url)
-            if llm_output is None:
+            graph = generate_graph(url)
+            if graph is None:
                 return "error"
             url2graph[url] = graph
             with open(f'data/url2graph.json', 'w', encoding='utf-8') as f:
