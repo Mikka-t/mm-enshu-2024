@@ -13,5 +13,25 @@
         "id": "デコレーションケーキ",
         "type": "final",
         "quantity": null
+    },
+    {
+        "id": "レンジ調理とうもろこし",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "コーンスープ（ポタージュ）",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "もずくスープ",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "ハンバーグ",
+        "type": "final",
+        "quantity": null
     }
 ]

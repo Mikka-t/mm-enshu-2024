@@ -793,5 +793,408 @@
                 "action": "盛り付ける"
             }
         ]
+    },
+    "https://www.sirogohan.com/recipe/toumorokosirenji/": {
+        "nodes": [
+            {
+                "id": "皮つきとうもろこし",
+                "type": "ingredient",
+                "quantity": "1本"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "小さじ1/5"
+            },
+            {
+                "id": "水",
+                "type": "ingredient",
+                "quantity": "小さじ1"
+            },
+            {
+                "id": "塩水",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "ラップ",
+                "type": "material",
+                "quantity": null
+            },
+            {
+                "id": "とうもろこしの皮をむく",
+                "type": "action",
+                "quantity": null
+            },
+            {
+                "id": "ひげを除く",
+                "type": "action",
+                "quantity": null
+            },
+            {
+                "id": "とうもろこしの水気を含ませる",
+                "type": "action",
+                "quantity": null
+            },
+            {
+                "id": "とうもろこしを加熱する",
+                "type": "action",
+                "quantity": null
+            },
+            {
+                "id": "レンジ調理とうもろこし",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": []
+    },
+    "https://www.sirogohan.com/recipe/ko-nsu-pu/": {
+        "nodes": [
+            {
+                "id": "とうもろこし",
+                "type": "ingredient",
+                "quantity": "1本"
+            },
+            {
+                "id": "じゃが芋（男爵）",
+                "type": "ingredient",
+                "quantity": "大1/2個（100g）"
+            },
+            {
+                "id": "昆布だし",
+                "type": "ingredient",
+                "quantity": "250ml"
+            },
+            {
+                "id": "牛乳",
+                "type": "ingredient",
+                "quantity": "150ml"
+            },
+            {
+                "id": "塩（自然塩）",
+                "type": "ingredient",
+                "quantity": "小さじ1/2"
+            },
+            {
+                "id": "こしょう",
+                "type": "ingredient",
+                "quantity": "少々"
+            },
+            {
+                "id": "裏ごししたスープ",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "コーンスープ（ポタージュ）",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "とうもろこし",
+                "target": "裏ごししたスープ",
+                "action": "裏ごし"
+            },
+            {
+                "source": "じゃが芋（男爵）",
+                "target": "裏ごししたスープ",
+                "action": "裏ごし"
+            },
+            {
+                "source": "昆布だし",
+                "target": "じゃが芋（男爵）",
+                "action": "火を通す"
+            },
+            {
+                "source": "じゃが芋（男爵）",
+                "target": "裏ごししたスープ",
+                "action": "火を通す"
+            },
+            {
+                "source": "牛乳",
+                "target": "裏ごししたスープ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "塩（自然塩）",
+                "target": "裏ごししたスープ",
+                "action": "調味する"
+            },
+            {
+                "source": "こしょう",
+                "target": "コーンスープ（ポタージュ）",
+                "action": "調味する"
+            },
+            {
+                "source": "裏ごししたスープ",
+                "target": "コーンスープ（ポタージュ）",
+                "action": "仕上げ"
+            }
+        ]
+    },
+    "https://www.sirogohan.com/recipe/mozukusu-pu/": {
+        "nodes": [
+            {
+                "id": "もずく（生食用）",
+                "type": "ingredient",
+                "quantity": "100g"
+            },
+            {
+                "id": "生姜",
+                "type": "ingredient",
+                "quantity": "1かけ（10g）"
+            },
+            {
+                "id": "刻みねぎ",
+                "type": "ingredient",
+                "quantity": "少々"
+            },
+            {
+                "id": "白いりごま",
+                "type": "ingredient",
+                "quantity": "少々"
+            },
+            {
+                "id": "だし汁",
+                "type": "ingredient",
+                "quantity": "500ml"
+            },
+            {
+                "id": "醤油（あれば薄口）",
+                "type": "ingredient",
+                "quantity": "小さじ1"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "小さじ2/3"
+            },
+            {
+                "id": "しょうがしぼり汁",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "もずくスープ",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "だし汁",
+                "target": "もずくスープ",
+                "action": "入れる"
+            },
+            {
+                "source": "醤油（あれば薄口）",
+                "target": "もずくスープ",
+                "action": "加える"
+            },
+            {
+                "source": "塩",
+                "target": "もずくスープ",
+                "action": "加える"
+            },
+            {
+                "source": "もずく（生食用）",
+                "target": "もずくスープ",
+                "action": "入れる"
+            },
+            {
+                "source": "しょうがしぼり汁",
+                "target": "もずくスープ",
+                "action": "加える"
+            },
+            {
+                "source": "刻みねぎ",
+                "target": "もずくスープ",
+                "action": "ちらす"
+            },
+            {
+                "source": "白いりごま",
+                "target": "もずくスープ",
+                "action": "ちらす"
+            },
+            {
+                "source": "生姜",
+                "target": "しょうがしぼり汁",
+                "action": "おろす"
+            },
+            {
+                "source": "しょうがしぼり汁",
+                "target": "もずくスープ",
+                "action": "しぼる"
+            }
+        ]
+    },
+    "https://www.sirogohan.com/recipe/hanba-gu/": {
+        "nodes": [
+            {
+                "id": "合びき肉",
+                "type": "ingredient",
+                "quantity": "250〜300g"
+            },
+            {
+                "id": "玉ねぎ",
+                "type": "ingredient",
+                "quantity": "1個"
+            },
+            {
+                "id": "パン粉",
+                "type": "ingredient",
+                "quantity": "大さじ4"
+            },
+            {
+                "id": "牛乳",
+                "type": "ingredient",
+                "quantity": "大さじ4〜5"
+            },
+            {
+                "id": "おろしにんにく",
+                "type": "ingredient",
+                "quantity": "1/2片分"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "小さじ1/2"
+            },
+            {
+                "id": "砂糖",
+                "type": "ingredient",
+                "quantity": "小さじ1/2"
+            },
+            {
+                "id": "こしょう",
+                "type": "ingredient",
+                "quantity": "少々"
+            },
+            {
+                "id": "サラダ油",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "ハンバーグのたね",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "焼き上げたハンバーグ",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "ハンバーグ",
+                "type": "final",
+                "quantity": null
+            },
+            {
+                "id": "ケチャップ",
+                "type": "ingredient",
+                "quantity": "大さじ3"
+            },
+            {
+                "id": "ウスターソース",
+                "type": "ingredient",
+                "quantity": "大さじ1と1/2"
+            },
+            {
+                "id": "しょうゆ",
+                "type": "ingredient",
+                "quantity": "大さじ1"
+            },
+            {
+                "id": "ハンバーグソース",
+                "type": "intermediate",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "玉ねぎ",
+                "target": "サラダ油",
+                "action": "炒める"
+            },
+            {
+                "source": "玉ねぎ",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "合びき肉",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "パン粉",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "牛乳",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "おろしにんにく",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "塩",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "砂糖",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "こしょう",
+                "target": "ハンバーグのたね",
+                "action": "混ぜる"
+            },
+            {
+                "source": "サラダ油",
+                "target": "玉ねぎ",
+                "action": "炒める"
+            },
+            {
+                "source": "ハンバーグのたね",
+                "target": "焼き上げたハンバーグ",
+                "action": "焼く"
+            },
+            {
+                "source": "焼き上げたハンバーグ",
+                "target": "ハンバーグ",
+                "action": "盛り付ける"
+            },
+            {
+                "source": "ケチャップ",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ウスターソース",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "しょうゆ",
+                "target": "ハンバーグソース",
+                "action": "混ぜる"
+            },
+            {
+                "source": "ハンバーグソース",
+                "target": "ハンバーグ",
+                "action": "かける"
+            }
+        ]
     }
 }
