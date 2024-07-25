@@ -132,18 +132,29 @@ input[type=submit]:hover {
 }
 
 /* ローディング画面 */
-#loadingIndicator {
+#loadingIndicator-text {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 2em;
+  font-size: 1em;
   color: #ffffff;
   background: rgba(0, 0, 0, 0.5);
   padding: 20px;
   border-radius: 5px;
   z-index: 1000;
 }
+
+.popup-bg-cover{
+	position: fixed; /* ブラウザの定位置に固定 */
+	background: rgba(0, 0, 0, .5); /* 背景色を半透明の黒色に */
+	width: 100%; /* 要素の横幅を画面全体に */
+	height: 100%; /* 要素の高さを画面全体に */
+	top: 0; /* 要素の固定位置をブラウザ最上部に合わせる */
+	left: 0; /* 要素の固定位置をブラウザ左側に合わせる */
+	z-index: 10; /* 要素をコンテンツより前面に（要調整） */
+}
+
 /* end-検索画面 */
 
 
@@ -332,3 +343,4 @@ td a:hover{
   position: relative;
   bottom: -80px;
 }
+

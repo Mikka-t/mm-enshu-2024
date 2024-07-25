@@ -55,23 +55,17 @@
         width: 300px;
         padding : 5px ;
     }
+
+
 </style>
 {% endblock %}
 {% block content %}
 
 <div class="recipe-title" style="text-align: center;">
-    {{ recipe_title | safe }}
+    <h2>全体グラフ</h2>
 </div>
 
 <div class="recipe-and-graph" style="display:flex;">
-
-    <div class="ingredients">
-        <div style="direction: ltr;">
-            <h3>材料</h3>
-        {{ ingredients | safe }}
-        </div>
-        
-    </div>
 
     <div id="mynetwork" style="display: flex;"></div>
     <div class="slider-container">
@@ -82,13 +76,16 @@
     
     </div>
 
-    <div class="HowToMake">
-        <h3>作り方</h3>
-        {{ HowToCook | safe }}
-    </div>
 
 </div>
 <script>
+
+    //読み込み開始時に"loading"を表示させる
+    const loading_indicator =  document.querySelector('.popup-bg-cover');
+    console.log(loading_indicator);
+    loading_indicator.style.display = ''; //初めに表示する
+    
+
     // JSONデータ
     const data = JSON.parse('{{ json_data | tojson | safe }}');
     console.log(data);
@@ -163,6 +160,17 @@
             edges: { font: { size: parseInt(this.value) } }
         });
     });
+
+
+    const sleep = (time) => new Promise((r) => setTimeout(r, time));//timeはミリ秒
+
+    async function hogehoge(){
+        await sleep(3000);
+        loading_indicator.style.display = 'none'; //処理が終了したらローディングを解除する....vis.jsは非同期っぽいのでこれしか現状方法がない
+    }
+    hogehoge();
+
+    
 </script>
 {% endblock %}
 

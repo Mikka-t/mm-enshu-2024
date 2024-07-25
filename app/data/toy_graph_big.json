@@ -347,6 +347,116 @@
             "id": "ハンバーグソース",
             "type": "intermediate",
             "quantity": null
+        },
+        {
+            "id": "ホットケーキミックス",
+            "type": "ingredient",
+            "quantity": "200g"
+        },
+        {
+            "id": "バナナ",
+            "type": "ingredient",
+            "quantity": "2本"
+        },
+        {
+            "id": "ホワイトチョコレート",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "ふわふわバナナおやつパン",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "オレンジマーマレード",
+            "type": "ingredient",
+            "quantity": "大さじ2"
+        },
+        {
+            "id": "オレンジシフォンケーキ",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "絹ごし豆腐",
+            "type": "ingredient",
+            "quantity": "130g"
+        },
+        {
+            "id": "ミルクチョコレート",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "豆腐の焼きチョコドーナツ",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "プリン",
+            "type": "ingredient",
+            "quantity": "3個"
+        },
+        {
+            "id": "プリンマフィン",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "簡単バナナケーキ",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "サンマ",
+            "type": "ingredient",
+            "quantity": "1尾"
+        },
+        {
+            "id": "薄力粉",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "酒",
+            "type": "ingredient",
+            "quantity": "大さじ1"
+        },
+        {
+            "id": "みりん",
+            "type": "ingredient",
+            "quantity": "大さじ2"
+        },
+        {
+            "id": "万能ねぎ",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "白ごま",
+            "type": "ingredient",
+            "quantity": "適量"
+        },
+        {
+            "id": "ごはん",
+            "type": "ingredient",
+            "quantity": "1膳"
+        },
+        {
+            "id": "調味料",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "焼いたサンマ",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "さんまの蒲焼き丼",
+            "type": "final",
+            "quantity": null
         }
     ],
     "edges": [
@@ -718,6 +828,256 @@
         {
             "source": "ハンバーグソース",
             "target": "ハンバーグ",
+            "action": "かける"
+        },
+        {
+            "source": "オーブン",
+            "target": "ふわふわバナナおやつパン",
+            "action": "予熱"
+        },
+        {
+            "source": "クッキングシート",
+            "target": "ふわふわバナナおやつパン",
+            "action": "準備"
+        },
+        {
+            "source": "ホットケーキミックス",
+            "target": "ポリ袋",
+            "action": "入れる"
+        },
+        {
+            "source": "バナナ",
+            "target": "ポリ袋",
+            "action": "入れる"
+        },
+        {
+            "source": "ポリ袋",
+            "target": "ポリ袋",
+            "action": "もむ、混ぜる"
+        },
+        {
+            "source": "ホワイトチョコレート",
+            "target": "ポリ袋",
+            "action": "割り入れる、混ぜる"
+        },
+        {
+            "source": "ポリ袋",
+            "target": "天板",
+            "action": "絞り出す"
+        },
+        {
+            "source": "天板",
+            "target": "ふわふわバナナおやつパン",
+            "action": "170℃のオーブンで焼く"
+        },
+        {
+            "source": "ふわふわバナナおやつパン",
+            "target": "ふわふわバナナおやつパン",
+            "action": "完成"
+        },
+        {
+            "source": "オーブン",
+            "target": "オレンジシフォンケーキ",
+            "action": "予熱"
+        },
+        {
+            "source": "卵",
+            "target": "耐熱ボウル",
+            "action": "割り入れる、かき混ぜる"
+        },
+        {
+            "source": "電子レンジ",
+            "target": "卵",
+            "action": "30秒温める"
+        },
+        {
+            "source": "オレンジマーマレード",
+            "target": "耐熱ボウル",
+            "action": "入れる、泡立てる"
+        },
+        {
+            "source": "ホットケーキミックス",
+            "target": "生地",
+            "action": "混ぜ合わせる"
+        },
+        {
+            "source": "生地",
+            "target": "型",
+            "action": "流し入れる"
+        },
+        {
+            "source": "型",
+            "target": "オレンジシフォンケーキ",
+            "action": "170℃のオーブンで焼く"
+        },
+        {
+            "source": "オレンジシフォンケーキ",
+            "target": "オレンジシフォンケーキ",
+            "action": "完成"
+        },
+        {
+            "source": "オーブン",
+            "target": "豆腐の焼きチョコドーナツ",
+            "action": "予熱"
+        },
+        {
+            "source": "ミルクチョコレート",
+            "target": "ボウル",
+            "action": "刻む、湯煎する"
+        },
+        {
+            "source": "絹ごし豆腐",
+            "target": "ボウル",
+            "action": "潰す、混ぜ合わせる"
+        },
+        {
+            "source": "ホットケーキミックス",
+            "target": "ボウル",
+            "action": "混ぜ合わせる"
+        },
+        {
+            "source": "ドーナツ型",
+            "target": "ボウル",
+            "action": "流し入れる"
+        },
+        {
+            "source": "ドーナツ型",
+            "target": "豆腐の焼きチョコドーナツ",
+            "action": "180℃のオーブンで焼く"
+        },
+        {
+            "source": "豆腐の焼きチョコドーナツ",
+            "target": "豆腐の焼きチョコドーナツ",
+            "action": "完成"
+        },
+        {
+            "source": "オーブン",
+            "target": "プリンマフィン",
+            "action": "予熱"
+        },
+        {
+            "source": "マフィン型",
+            "target": "クッキングシート",
+            "action": "準備"
+        },
+        {
+            "source": "プリン",
+            "target": "ボウル",
+            "action": "混ぜる"
+        },
+        {
+            "source": "サラダ油",
+            "target": "ボウル",
+            "action": "混ぜ合わせる"
+        },
+        {
+            "source": "ボウル",
+            "target": "型",
+            "action": "流し入れる"
+        },
+        {
+            "source": "型",
+            "target": "プリンマフィン",
+            "action": "180℃のオーブンで焼く"
+        },
+        {
+            "source": "プリンマフィン",
+            "target": "器",
+            "action": "型から外す、盛り付ける"
+        },
+        {
+            "source": "プリンマフィン",
+            "target": "プリンマフィン",
+            "action": "完成"
+        },
+        {
+            "source": "オーブン",
+            "target": "簡単バナナケーキ",
+            "action": "予熱"
+        },
+        {
+            "source": "バナナ",
+            "target": "ボウル",
+            "action": "潰す"
+        },
+        {
+            "source": "卵",
+            "target": "ボウル",
+            "action": "混ぜ合わせる"
+        },
+        {
+            "source": "型",
+            "target": "クッキングシート",
+            "action": "準備"
+        },
+        {
+            "source": "型",
+            "target": "簡単バナナケーキ",
+            "action": "180℃のオーブンで焼く"
+        },
+        {
+            "source": "簡単バナナケーキ",
+            "target": "型",
+            "action": "粗熱を取る、外す"
+        },
+        {
+            "source": "簡単バナナケーキ",
+            "target": "簡単バナナケーキ",
+            "action": "完成"
+        },
+        {
+            "source": "サンマ",
+            "target": "焼いたサンマ",
+            "action": "焼く"
+        },
+        {
+            "source": "薄力粉",
+            "target": "サンマ",
+            "action": "まぶす"
+        },
+        {
+            "source": "しょうゆ",
+            "target": "調味料",
+            "action": "混ぜる"
+        },
+        {
+            "source": "酒",
+            "target": "調味料",
+            "action": "混ぜる"
+        },
+        {
+            "source": "みりん",
+            "target": "調味料",
+            "action": "混ぜる"
+        },
+        {
+            "source": "調味料",
+            "target": "焼いたサンマ",
+            "action": "煮詰める"
+        },
+        {
+            "source": "サラダ油",
+            "target": "サンマ",
+            "action": "焼く"
+        },
+        {
+            "source": "焼いたサンマ",
+            "target": "さんまの蒲焼き丼",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "ごはん",
+            "target": "さんまの蒲焼き丼",
+            "action": "盛り付ける"
+        },
+        {
+            "source": "万能ねぎ",
+            "target": "さんまの蒲焼き丼",
+            "action": "かける"
+        },
+        {
+            "source": "白ごま",
+            "target": "さんまの蒲焼き丼",
             "action": "かける"
         }
     ]
