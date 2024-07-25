@@ -90,23 +90,24 @@
     const data = JSON.parse('{{ json_data | tojson | safe }}');
     console.log(data);
     
-    // 固定したいノードのIDと固定する位置を指定(今回はfinalを固定する)
-    var fixedNodeId = '';
+   // 固定したいノードのIDと固定する位置を指定(今回はfinalを固定する)
+   var fixedNodeIds = [];
     for(node of data.nodes){
-        console.log(node)
+        // console.log(node)
         if(node["group"]===3){
-            fixedNodeId = node["id"]
+            fixedNodeIds.push(node["id"]);
         }
     }
     
-    const fixedPosition = { x: 0, y: 0 };  // 固定したい位置を指定
+    console.log(fixedNodeIds);
+    // const fixedPosition = { x: 0, y: 0 };  // 固定したい位置を指定
 
     // ノードデータに固定情報を追加
     data.nodes = data.nodes.map(node => {
-        if (node.id === fixedNodeId) {
-            node.x = fixedPosition.x;
-            node.y = fixedPosition.y;
-            node.fixed = { x: true, y: true };
+        if (fixedNodeIds.includes(node.id)) {
+            // node.x = 1000*Math.random();
+            // node.y = 1000*Math.random();
+            // node.fixed = { x: true, y: true };
         }
         return node;
     });

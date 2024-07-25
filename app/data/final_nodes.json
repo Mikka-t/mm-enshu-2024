@@ -63,5 +63,10 @@
         "id": "さんまの蒲焼き丼",
         "type": "final",
         "quantity": null
+    },
+    {
+        "id": "さんまの竜田揚げ",
+        "type": "final",
+        "quantity": null
     }
 ]

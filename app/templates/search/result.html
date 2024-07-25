@@ -94,21 +94,20 @@
     console.log(data);
     
     // 固定したいノードのIDと固定する位置を指定(今回はfinalを固定する)
-    var fixedNodeId = '';
+    var fixedNodeIds = [];
     for(node of data.nodes){
-        console.log(node)
+        // console.log(node)
         if(node["group"]===3){
-            fixedNodeId = node["id"]
+            fixedNodeIds.push(node["id"]);
         }
     }
     
-    const fixedPosition = { x: 0, y: 0 };  // 固定したい位置を指定
+    console.log(fixedNodeIds);
+    // const fixedPosition = { x: 0, y: 0 };  // 固定したい位置を指定
 
     // ノードデータに固定情報を追加
     data.nodes = data.nodes.map(node => {
-        if (node.id === fixedNodeId) {
-            node.x = fixedPosition.x;
-            node.y = fixedPosition.y;
+        if (fixedNodeIds.includes(node.id)) {
             node.fixed = { x: true, y: true };
         }
         return node;
