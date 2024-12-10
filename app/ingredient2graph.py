@@ -1,0 +1,99 @@
+from graph2recipe_utils import *
+
+def ingredient2graph(ingredient_list: list):
+    """
+    ex) ["牛乳", "卵", "小麦粉"] -> {"nodes":[{"id": "生地", "type":"intermediate"}] , "edges": []}
+    ingredient_list: ノードIDのリスト
+    TODO: 材料名のサジェスト
+    TODO: 軽量化
+    """
+
+    nodes, edges = get_graph_str()
+
+    reverse_edges = {}
+    # [{target : [source, action]}, ...]
+    create_reverse_edges_str(edges, reverse_edges)
+    
+    node_dict = {}
+    create_node_dict_str(nodes, node_dict)
+
+
+
+    # stack = ingredient_list.copy()
+    stack = []
+    for ingredient in ingredient_list:
+        if ingredient in edges:
+            stack.append([ingredient, 1])
+        else:
+            print(f"WARNING: ingredient2graph.py: {ingredient} は存在しません。")
+
+    visited = set()
+    final_nodes = []
+
+    while stack:
+        current_node = stack.pop()
+        if current_node[0] not in visited:
+            visited.add(current_node[0])
+            # sourceがcurrent_nodeなエッジをすべて取得
+            nodes_to_check = []
+            for edge in edges:
+                if edge["source"] == current_node[0]:
+                    score_sum = 0
+                    score_pos = 0
+                    for edge2 in edges:
+                        if edge2["target"] == edge["target"]:
+                            score_sum += 1
+                            if edge2["source"] in ingredient_list:
+                                score_pos += 1
+                    if node_dict[edge["target"]]["type"] == "final":
+                        final_nodes.append([edge["target"], score_pos/score_sum])
+                    else:
+                        nodes_to_check.append([edge["target"], score_pos/score_sum])
+            stack.extend(nodes_to_check)
+
+    final_nodes = sorted(final_nodes, key=lambda x: x[1], reverse=True)
+    final_nodes = [x[0] for x in final_nodes]
+    final_nodes = list(set(final_nodes))
+    final_nodes = final_nodes[:5]
+
+    # final_nodesをfinal_nodeとしたsubgraph5つを作成
+    subgraphs = []
+    for final_node in final_nodes:
+        subgraph_nodes_set = set()
+        subgraph_nodes = []
+        subgraph_edges = []
+        get_subgraph_dfs_str(final_node, reverse_edges, subgraph_nodes_set, subgraph_edges)
+        for node in subgraph_nodes_set:
+            if node in node_dict:
+                subgraph_nodes.append(node_dict[node])
+            else:
+                error_node = {"id": node, "type": "misc"}
+                subgraph_nodes.append(error_node)
+        subgraph = {"nodes": subgraph_nodes, "edges": subgraph_edges}
+        subgraphs.append(subgraph)
+    # 重複が無いようにマージ
+    answer_nodes = []
+    answer_edges = []
+    for subgraph in subgraphs:
+        for node in subgraph["nodes"]:
+            if node["id"] not in answer_nodes:
+                answer_nodes.append(node)
+        # for edge in subgraph["edges"]:
+        #     if edge not in answer_edges:
+        #         answer_edges.append(edge)
+        # edgeの重複判定はsource, target, actionが全て同じなら同じエッジとして扱う
+        for edge in subgraph["edges"]:
+            is_same_edge = False
+            for answer_edge in answer_edges:
+                if edge["source"] == answer_edge["source"] and edge["target"] == answer_edge["target"] and edge["action"] == answer_edge["action"]:
+                    is_same_edge = True
+                    break
+            if not is_same_edge:
+                answer_edges.append(edge) 
+    return {"nodes": answer_nodes, "edges": answer_edges}
+
+
+
+
+
+
