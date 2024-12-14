@@ -91,6 +91,10 @@ def fetch_rakuten_recipes(df_keyword):
 
 def compute_similarity_scores(model, title, material_list, df_recipe):
     """タイトルと材料の類似度スコアを計算"""
+    
+    # クエリのタイトルと一致するレシピを除外
+    df_recipe = df_recipe[df_recipe['recipeTitle'] != title]
+    
     # タイトルの類似度
     titles = [title] + df_recipe['recipeTitle'].to_list()
     embeddings = model.encode(titles)

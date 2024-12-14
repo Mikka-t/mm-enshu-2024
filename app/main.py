@@ -52,7 +52,7 @@ def submit_url():
     # ここでURLを使った処理を行う
       # クエリパラメータを取得
     input_url = "" if request.form.get('input')== None else request.args.get('input')
-    categories =  request.form.get('liData').split(",")
+    categories = request.form.get('liData', '').split(",")
     categories =None if categories== [''] else categories
     dish_name = None if not categories else  categories[0] #とりあえず初めだけ表示する
     print(f"{dish_name=}")
@@ -112,14 +112,15 @@ def submit_url():
     print(ingredients_ul)
     print(HowToCook_ol)
     
-    # TODO: レコメンドレシピの表示
-    # recommend_recipes = recommend_recipe(url)
-    # print('recommend_recipes: ', recommend_recipes)
+    # レコメンドレシピの表示
+    recommend_recipes = recommend_recipe(url) if url else []
+    print('recommend_recipes: ', recommend_recipes)
     
     # k(=5)件のタイトルとURLが入ったリストを返す．
     # [{'recipeTitle': '豚肉のロール巻き♪チーズとろ〜り舞茸入りです♡', 'recipeUrl': 'https://recipe.rakuten.co.jp/recipe/1970019031/?rafcid=wsc_r_cr_1042662640738428361'}, ... , ]
     
-    return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
+    
+    return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol,recommend_recipes=recommend_recipes)
 
 
 if __name__ == '__main__':
