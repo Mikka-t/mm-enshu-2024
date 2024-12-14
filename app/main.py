@@ -3,6 +3,7 @@ from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
 from merge_new_graph import add_new_graph
+from recommend_recipe import recommend_recipe
 import json
 import time
 import markdown2
@@ -111,6 +112,12 @@ def submit_url():
     print(ingredients_ul)
     print(HowToCook_ol)
     
+    # TODO: レコメンドレシピの表示
+    # recommend_recipes = recommend_recipe(url)
+    # print('recommend_recipes: ', recommend_recipes)
+    
+    # k(=5)件のタイトルとURLが入ったリストを返す．
+    # [{'recipeTitle': '豚肉のロール巻き♪チーズとろ〜り舞茸入りです♡', 'recipeUrl': 'https://recipe.rakuten.co.jp/recipe/1970019031/?rafcid=wsc_r_cr_1042662640738428361'}, ... , ]
     
     return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
 
