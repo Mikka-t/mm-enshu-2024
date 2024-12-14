@@ -5,6 +5,7 @@ from scrape import scrape
 import re
 import json
 import openai
+from openai import OpenAI
 
 
 # 使用するLLMの選択，デフォルトはChatGPT
@@ -158,21 +159,23 @@ def generate_graph(url, max_n_loop=3):
     if text_content is None:
         return None, None
 
-    remake = True
-    make_cnt = 0
-    messages = None
-    output_str = ""
-    while remake:
-        print("=================================")
-        print("retry cnt:", make_cnt)
-        tmp, messages = _generate_graph(text_content, messages)
-        if tmp is not None:
-            output_str = tmp
-        if make_cnt >= max_n_loop:
-            break
-        remake, mistake_reason = critic_graph(output_str, text_content)
-        messages.append({"role": "user", "content": mistake_reason})
-        make_cnt += 1
+    # remake = True
+    # make_cnt = 0
+    # messages = None
+    # output_str = ""
+    # while remake:
+    #     print("=================================")
+    #     print("retry cnt:", make_cnt)
+    #     tmp, messages = _generate_graph(text_content, messages)
+    #     if tmp is not None:
+    #         output_str = tmp
+    #     if make_cnt >= max_n_loop:
+    #         break
+    #     remake, mistake_reason = critic_graph(output_str, text_content)
+    #     messages.append({"role": "user", "content": mistake_reason})
+    #     make_cnt += 1
+    
+    output_str, messages = _generate_graph(text_content)
 
     # JSON形式に変換
     try:
@@ -181,13 +184,16 @@ def generate_graph(url, max_n_loop=3):
         print("Failed to parse the output")
         output_json = None
     
+    print("output_json:", output_json)
+    
     return output_json
 
 
 def _generate_graph(text_content, messages=None):
     
-    with open('data/llama_format_ja_input.txt', 'r', encoding='utf-8') as f:
-        example_input = f.read()
+    # with open('data/llama_format_ja_input.txt', 'r', encoding='utf-8') as f:
+    #     example_input = f.read()
+    
     # デバッグ
     print('text_content', text_content)
 
@@ -257,8 +263,8 @@ def _generate_graph(text_content, messages=None):
             messages.append({"role": "system", "content": "次のフォーマットに従って知識グラフを作成してください．また，知識グラフのみを返答してください．ただし，料理名は一般的な名前を使用し，リード文は削除してください．"})
             messages.append({"role": "system", "content": "【フォーマット】\n" + example_output})
             # メインのプロンプトを追加
-            messages.append({"role": "user", "content": f"スクレイピングしたWebページのテキストが与えられます，その中からレシピを抜き出し，知識グラフを作成してください．【Webページ全体のテキスト】{example_input}"})
-            messages.append({"role": "assistant", "content": example_output})
+            # messages.append({"role": "user", "content": f"スクレイピングしたWebページのテキストが与えられます，その中からレシピを抜き出し，知識グラフを作成してください．【Webページ全体のテキスト】{example_input}"})
+            # messages.append({"role": "assistant", "content": example_output})
             # messages.append({"role": "system", "content": "次のフォーマットに従って知識グラフを作成してください．また，知識グラフのみを返答してください．"})
             # messages.append({"role": "user", "content": "スクレイピングしたWebページ全体のテキストが与えられます，その中からレシピを抜き出し，知識グラフを作成してください"})
             # messages.append({"role": "assistant", "content": "【Webページ全体のテキスト】" + text_content})
@@ -269,15 +275,24 @@ def _generate_graph(text_content, messages=None):
         
         output_str = None
         try:
-            print("=================================")
-            print(f"messages:\n{messages}")
-            response = openai.chat.completions.create(
-                # model="gpt-3.5-turbo",
+            # print("=================================")
+            # print(f"messages:\n{messages}")
+            # response = openai.chat.completions.create(
+            #     # model="gpt-3.5-turbo",
+            #     model="gpt-4o",
+            #     messages=messages,
+            # )
+            # output_str = response.choices[0].message.content
+            # messages.append({"role": "assistant", "content": output_str})
+            
+            client = OpenAI(api_key=api_key)
+            response = client.chat.completions.create(
                 model="gpt-4o",
                 messages=messages,
             )
+            
             output_str = response.choices[0].message.content
-            messages.append({"role": "assistant", "content": output_str})
+
         except Exception as e:
             print(f"Error: {e}")
         
