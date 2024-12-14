@@ -6,6 +6,7 @@ from sklearn.metrics.pairwise import cosine_similarity
 from sentence_transformers import SentenceTransformer
 import numpy as np
 import re
+from openai import OpenAI
 
 # 定数設定
 CSV_PATH = './data/rakuten_recipe_category.csv'
@@ -22,7 +23,7 @@ MODEL_NAME = 'sentence-transformers/all-MiniLM-L6-v2'
 
 # スクレイピング関数
 import sys
-sys.path.append('./app')
+# sys.path.append('./app')
 from scrape import scrape
 
 def parse_recipe_text(recipe_text):
@@ -44,12 +45,71 @@ def parse_recipe_text(recipe_text):
     
     return title, material_list
 
+# def extract_main_word(title, material_list):
+#     """タイトルに含まれる主材料を抽出する"""
+#     for material in material_list:
+#         if material in title:
+#             return material
+#     return 'None'
+
+# GPTを使用して主材料の特定精度を向上
 def extract_main_word(title, material_list):
-    """タイトルに含まれる主材料を抽出する"""
-    for material in material_list:
-        if material in title:
-            return material
-    return 'None'
+    """
+    Few-Shot プロンプトを使用して ChatGPT API でタイトルに含まれる主材料をランキング形式で抽出する
+    """
+    # Few-Shot例を作成
+    few_shot_prompt = """
+        You are a helpful assistant for identifying the main ingredients in a recipe based on its title and a given list of ingredients.
+        Each ingredient may contain additional information (e.g., "beef tendon (boiled)"). Return only the simplified ingredient names in a plain list format.
+        Rank the ingredients from the most relevant to the least relevant. If no ingredients match the title, return "None".
+
+        Examples:
+        1. Title: "Tomato Basil Pasta"
+        Ingredients: ["tomato (fresh)", "basil (chopped)", "pasta", "cheese"]
+        Output: ["tomato", "basil", "pasta"]
+
+        2. Title: "Cheesy Garlic Bread"
+        Ingredients: ["garlic (minced)", "bread (whole grain)", "cheese (shredded)", "butter (unsalted)"]
+        Output: ["cheese", "garlic", "bread"]
+
+        3. Title: "Spicy Chicken Curry"
+        Ingredients: ["chicken (diced)", "curry powder", "tomato (pureed)", "onion (sliced)"]
+        Output: ["chicken", "curry powder", "tomato"]
+
+        4. Title: "Vegetarian Stir Fry"
+        Ingredients: ["tofu (firm)", "broccoli (steamed)", "carrot (julienned)", "soy sauce"]
+        Output: ["tofu", "broccoli", "carrot"]
+
+        Now, analyze the following:
+        Title: "{title}"
+        Ingredients: {material_list}
+        Output:
+        """
+
+    # プロンプトを構築
+    prompt = few_shot_prompt.format(title=title, material_list=material_list)
+
+    try:
+        with open('./.token/openai_api_key', 'r') as f:
+            api_key = f.read().strip()
+        client = OpenAI(api_key=api_key)
+        response = client.chat.completions.create(
+            model="gpt-4o-mini",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant for recipe analysis."},
+                {"role": "user", "content": prompt}
+            ],
+        )
+        # ChatGPTの応答から結果を抽出
+        ranked_ingredients = response.choices[0].message.content
+
+        # 結果をリスト化
+        ranked_list = ranked_ingredients.strip("[]").replace('"', '').split(", ")
+        return ranked_list
+    
+    except Exception as e:
+        print(f"Error: {e}")
+        return ['Error']
 
 def fetch_rakuten_recipes(df_keyword):
     """楽天レシピからカテゴリごとのレシピを取得する"""
@@ -121,10 +181,16 @@ def compute_similarity_scores(model, title, material_list, df_recipe):
 def recommend_recipe(QUERY_URL):
     recipe_text = scrape(QUERY_URL)
     title, material_list = parse_recipe_text(recipe_text)
-    keyword = extract_main_word(title, material_list)
+    keywords = extract_main_word(title, material_list)
     df = pd.read_csv(CSV_PATH)
-    df_keyword = df[df['categoryName'].str.contains(keyword, na=False)]
     
+    # 主材料でカテゴリの検索
+    for keyword in keywords:
+        df_keyword = df[df['categoryName'].str.contains(keyword, na=False)]
+        if not df_keyword.empty:
+            break
+    
+    # 全ての材料でカテゴリの検索
     if df_keyword.empty:
         for material in material_list:
             
@@ -143,7 +209,7 @@ def recommend_recipe(QUERY_URL):
     # print('recipe_text:', recipe_text)
     # print('タイトル:', title)
     # print('材料:', material_list)
-    # print('検索キーワード:', keyword)
+    print('検索キーワード:', keyword)
     # print(df_keyword)
     # return
     
