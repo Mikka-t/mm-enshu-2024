@@ -68,5 +68,15 @@
         "id": "さんまの竜田揚げ",
         "type": "final",
         "quantity": null
+    },
+    {
+        "id": "濃厚アイスココア",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "ココアドリンク",
+        "type": "final",
+        "quantity": null
     }
 ]

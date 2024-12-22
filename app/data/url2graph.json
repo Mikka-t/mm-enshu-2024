@@ -1423,5 +1423,139 @@
                 "action": "盛り付ける"
             }
         ]
-    }
+    },
+    "美味しいご飯": [
+        null,
+        null
+    ],
+    "https://recipe.rakuten.co.jp/recipe/1410015495/": {
+        "nodes": [
+            {
+                "id": "ココア（加糖）",
+                "type": "ingredient",
+                "quantity": "大さじ2"
+            },
+            {
+                "id": "牛乳",
+                "type": "ingredient",
+                "quantity": "120ml"
+            },
+            {
+                "id": "氷",
+                "type": "ingredient",
+                "quantity": "6個"
+            },
+            {
+                "id": "チョコアイス",
+                "type": "ingredient",
+                "quantity": "スプーン1杯"
+            },
+            {
+                "id": "チョコスプレー",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "濃厚アイスココア",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "ココア（加糖）",
+                "target": "グラス",
+                "action": "入れる"
+            },
+            {
+                "source": "牛乳",
+                "target": "ココア（加糖）",
+                "action": "練る"
+            },
+            {
+                "source": "牛乳",
+                "target": "ココア（加糖）",
+                "action": "混ぜ合わせる"
+            },
+            {
+                "source": "氷",
+                "target": "濃厚アイスココア",
+                "action": "入れる"
+            },
+            {
+                "source": "チョコアイス",
+                "target": "濃厚アイスココア",
+                "action": "のせる"
+            },
+            {
+                "source": "チョコスプレー",
+                "target": "濃厚アイスココア",
+                "action": "かける"
+            }
+        ]
+    },
+    "https://recipe.rakuten.co.jp/recipe/1580034931/?rafcid=wsc_r_cr_1042662640738428361": {
+        "nodes": [
+            {
+                "id": "牛乳",
+                "type": "ingredient",
+                "quantity": "150cc"
+            },
+            {
+                "id": "純ココア",
+                "type": "ingredient",
+                "quantity": "小さじ2"
+            },
+            {
+                "id": "砂糖",
+                "type": "ingredient",
+                "quantity": "小さじ2"
+            },
+            {
+                "id": "ココアペースト",
+                "type": "intermediate",
+                "quantity": null
+            },
+            {
+                "id": "ココアドリンク",
+                "type": "final",
+                "quantity": null
+            }
+        ],
+        "edges": [
+            {
+                "source": "純ココア",
+                "target": "ココアペースト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "砂糖",
+                "target": "ココアペースト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "牛乳",
+                "target": "ココアペースト",
+                "action": "加える"
+            },
+            {
+                "source": "ココアペースト",
+                "target": "ココアドリンク",
+                "action": "混ぜる"
+            },
+            {
+                "source": "牛乳",
+                "target": "ココアドリンク",
+                "action": "加える"
+            }
+        ]
+    },
+    "マリオ": [
+        null,
+        null
+    ],
+    "まりお": [
+        null,
+        null
+    ]
 }
