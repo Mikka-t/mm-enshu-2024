@@ -187,6 +187,47 @@ def extract_cookpad(soup):
     return '\n'.join(result)
 
 
+def extract_rakuten_recipe(url):
+    # URLからHTMLを取得
+    response = requests.get(url)
+    response.raise_for_status()
+    soup = BeautifulSoup(response.text, 'html.parser')
+    
+    result = []
+    
+    # タイトルの抽出
+    title_tag = soup.find("h1", class_="page_title__text")
+    if title_tag:
+        result.append(f"タイトル: {title_tag.get_text(strip=True)}")
+    
+    # 材料の抽出
+    result.append("\n材料:")
+    materials_section = soup.find("ul", class_="recipe_material__list")
+    if materials_section:
+        material_items = materials_section.find_all("li", class_="recipe_material__item")
+        for item in material_items:
+            name_tag = item.find("span", class_="recipe_material__item_name")
+            serving_tag = item.find("span", class_="recipe_material__item_serving")
+            if name_tag:
+                material = name_tag.get_text(strip=True)
+                if serving_tag:
+                    material += " " + serving_tag.get_text(strip=True)
+                result.append(material)
+    
+    # 手順の抽出
+    result.append("\n手順:")
+    steps_section = soup.find("ol", class_="recipe_howto__list")
+    if steps_section:
+        step_items = steps_section.find_all("li", class_="recipe_howto__item")
+        for step in step_items:
+            text_tag = step.find("span", class_="recipe_howto__text")
+            if text_tag:
+                result.append(text_tag.get_text(strip=True))
+    
+    return '\n'.join(result)
+
+
+
 def scrape(url):
     # Define headers for the request
     headers = {
@@ -210,6 +251,8 @@ def scrape(url):
             return extract_sirogohan_com(soup)
         elif 'cookpad' in domain:
             return extract_cookpad(soup)
+        elif 'recipe.rakuten' in domain:
+            return extract_rakuten_recipe(url)
         else:
             return remove_extra_newlines(soup.get_text(separator='\n'))
         

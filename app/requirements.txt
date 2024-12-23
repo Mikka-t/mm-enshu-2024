@@ -8,3 +8,5 @@ requests
 beautifulsoup4
 openai
 markdown2
+pandas
+sentence-transformers

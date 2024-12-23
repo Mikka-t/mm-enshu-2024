@@ -55,6 +55,15 @@
         width: 300px;
         padding : 5px ;
     }
+
+    .recommend-recipes {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .recommend-recipes button:hover {
+        opacity: 0.7;
+    }
 </style>
 {% endblock %}
 {% block content %}
@@ -85,6 +94,27 @@
     <div class="HowToMake">
         <h3>作り方</h3>
         {{ HowToCook | safe }}
+    </div>
+
+    <div class="recommend-recipes" style="position: fixed; top: 470px; right: 30px; width: 300px; border: 2px solid #000000; border-radius: 10px; padding: 5px; background-color: #85fffd29;">
+        <h3>おすすめレシピ</h3>
+        {% if recommend_recipes %}
+            <ul style="list-style-type: none; padding: 0;">
+            {% for recipe in recommend_recipes %}
+                <li style="margin-bottom: 10px;">
+                    <form action="{{ url_for('submit_url') }}" method="post" style="margin: 0;">
+                        <input type="hidden" name="inputText" value="{{ recipe.recipeUrl }}">
+                        <input type="hidden" name="liData" value="">
+                        <button type="submit" style="background: none; border: none; padding: 0; color: blue; text-decoration: underline; cursor: pointer; text-align: left; width: 100%;">
+                            {{ recipe.recipeTitle }}
+                        </button>
+                    </form>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>おすすめレシピはありません</p>
+        {% endif %}
     </div>
 
 </div>

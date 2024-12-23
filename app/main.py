@@ -4,6 +4,7 @@ from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
 from ingredient2graph import ingredient2graph
 from merge_new_graph import add_new_graph
+from recommend_recipe import recommend_recipe
 import json
 import time
 import markdown2
@@ -60,8 +61,8 @@ def submit_url():
     # ここでURLを使った処理を行う
       # クエリパラメータを取得
     input_url = "" if request.form.get('input')== None else request.args.get('input')
-    categories =  request.form.get('liData').split(",")
-    categories = None if categories== [''] else categories
+    categories = request.form.get('liData', '').split(",")
+    categories =None if categories== [''] else categories
     dish_name = None if not categories else  categories[0] #とりあえず初めだけ表示する
     categories_ing =  request.form.get('IngData').split(",")
     categories_ing = None if categories_ing== [''] else categories_ing
@@ -132,7 +133,7 @@ def submit_url():
     print(HowToCook_ol)
     
     
-    return render_template("search/result.html",json_data=send_data,full_categories_list =[],full_categories_listIng = [],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
+    return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
 
 
 if __name__ == '__main__':
