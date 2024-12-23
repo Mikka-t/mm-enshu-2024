@@ -76,10 +76,10 @@ def submit_url():
     
     elif category_name:
         graph = ingredient2graph(categories_ing)
-        print("send data 処理開始")
         send_data = convert_json(graph)
-        print("send data 処理完了")
-        return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list =[],full_categories_listIng = [])
+        with open(f'data/toy_graph_tmp.json', 'w', encoding='utf-8') as f:
+            json.dump(send_data, f, ensure_ascii=False, indent=4)
+        return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list = [],full_categories_listIng = [])
         
     elif url:
         with open(f'data/url2graph.json', 'r', encoding='utf-8') as f:

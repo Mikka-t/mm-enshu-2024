@@ -65,6 +65,7 @@ def ingredient2graph(ingredient_list: list):
     final_nodes = list(set(final_nodes))
     final_nodes = final_nodes[:5]
 
+    print("final_nodes:", final_nodes)
     print("サブグラフ生成開始")
 
     # final_nodesをfinal_nodeとしたsubgraph5つを作成
@@ -88,8 +89,26 @@ def ingredient2graph(ingredient_list: list):
     print("サブグラフ合成開始")
     for subgraph in subgraphs:
         for node in subgraph["nodes"]:
-            if node["id"] not in answer_nodes:
+            # if node["id"] not in answer_nodes:
+            #     answer_nodes.append(node)
+            # nodeの重複判定はid, type, quantityが全て同じなら同じノードとして扱う
+            is_same_node = False
+            for answer_node in answer_nodes:
+                # if node["id"] == answer_node["id"] and node["type"] == answer_node["type"] and node["quantity"] == answer_node["quantity"]:
+                #     is_same_node = True
+                #     break
+                # ["quantity"]がない場合とある場合に対応する．quantityが両方にない場合は同一ノード、quantityが片方にしかないから異なるノード．
+                if node["id"] == answer_node["id"] and node["type"] == answer_node["type"]:
+                    if "quantity" in node and "quantity" in answer_node:
+                        if node["quantity"] == answer_node["quantity"]:
+                            is_same_node = True
+                            break
+                    elif "quantity" not in node and "quantity" not in answer_node:
+                        is_same_node = True
+                        break
+            if not is_same_node:
                 answer_nodes.append(node)
+
         # for edge in subgraph["edges"]:
         #     if edge not in answer_edges:
         #         answer_edges.append(edge)
