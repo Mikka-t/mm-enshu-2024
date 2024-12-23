@@ -2,6 +2,7 @@ from flask import Flask, request,render_template
 from index import display_knowledge_graph,convert_json
 from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
+from ingredient2graph import ingredient2graph
 from merge_new_graph import add_new_graph
 import json
 import time
@@ -34,15 +35,23 @@ def index():
         for d in data:
             category_list.append(d["id"])
     
+    with open(f"data/final_nodes_ing.json","r",encoding="utf-8") as f:
+        data = json.load(f)
+        # print(data)
+        category_listIng = []
+        for d in data:
+            category_listIng.append(d["id"])
+    
     # return render_template("result.html",json_data = send_data)
-    return render_template('search/index.html',full_categories_list=category_list)
+    return render_template('search/index.html',full_categories_list=category_list, full_categories_listIng = category_listIng)
 
 @app.route('/full')
 def show_full_graph():
     with open(f'data/toy_graph_big.json', 'r', encoding='utf-8') as f:
         big_graph = json.load(f)
     send_data = convert_json(big_graph)
-    return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list =[])
+    print("send_data: ",send_data)
+    return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list =[],full_categories_listIng = [])
 
 
 @app.route('/search', methods=['POST'])
@@ -52,13 +61,24 @@ def submit_url():
       # クエリパラメータを取得
     input_url = "" if request.form.get('input')== None else request.args.get('input')
     categories =  request.form.get('liData').split(",")
-    categories =None if categories== [''] else categories
+    categories = None if categories== [''] else categories
     dish_name = None if not categories else  categories[0] #とりあえず初めだけ表示する
+    categories_ing =  request.form.get('IngData').split(",")
+    categories_ing = None if categories_ing== [''] else categories_ing
+    category_name = None if not categories_ing else  categories_ing[0] #とりあえず初めだけ表示する2
     print(f"{dish_name=}")
+    print(f"{category_name=}")
     print(f"{url=}")
     
     if dish_name:
         graph = get_subgraph_str(dish_name)
+    
+    elif category_name:
+        graph = ingredient2graph(categories_ing)
+        print("send data 処理開始")
+        send_data = convert_json(graph)
+        print("send data 処理完了")
+        return render_template("search/result_big_graph.html",json_data=send_data,full_categories_list =[],full_categories_listIng = [])
         
     elif url:
         with open(f'data/url2graph.json', 'r', encoding='utf-8') as f:
@@ -112,7 +132,7 @@ def submit_url():
     print(HowToCook_ol)
     
     
-    return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
+    return render_template("search/result.html",json_data=send_data,full_categories_list =[],full_categories_listIng = [],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol)
 
 
 if __name__ == '__main__':

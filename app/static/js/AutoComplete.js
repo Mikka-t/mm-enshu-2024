@@ -20,6 +20,7 @@ var form = document.getElementById('searchForm');
 
 const autoCompleteJS = new autoComplete({
 placeHolder: "例:いちごタルト、カレー、ショートケーキ　など",
+selector: "#autoComplete",
 data: {
 src: full_categoires_list,
 cache: true,
@@ -83,6 +84,102 @@ listContainer.addEventListener("click",function(e){
         e.target.parentElement.remove();
         document.getElementById('liData').value = input_categories.join(','); //隠しフォームに追加している
         if (input_categories.length !==0){
+            document.getElementById('inputText').removeAttribute("required");
+        }else{
+            document.getElementById('inputText').setAttribute("required","");
+        }
+        
+    }
+},false);
+
+
+// 材料用のコード．上記のコードとほぼ同じ．改修の余地あり
+let input_categoriesIng =[]
+if (document.getElementById('IngData').value){
+    document.getElementById('IngData').value = document.getElementById('IngData').value.replace('_enc-28', ' '); //まず隠しフォーム内の文字列をreplaceした値に直す
+    const itemsIng = document.querySelectorAll('#list-containerIng li');
+
+    // 各アイテムに対してループ処理
+    itemsIng.forEach(itemIng => {
+        // リストアイテムの内部HTMLから 'enc-28' 文字列を削除
+        const updatedHTMLIng = itemIng.innerHTML.replace('_enc-28', ' ');
+        
+        // 更新されたHTMLをリストアイテムに設定
+        itemIng.innerHTML = updatedHTMLIng;
+    });
+
+    input_categoriesIng = document.getElementById('IngData').value.split(','); //初めから入力されている場合はそちらを使用する
+    document.getElementById('inputText').removeAttribute("required"); //入力されていないあらーとを回避
+}
+// フォームを取得
+var formIng = document.getElementById('searchForm');
+
+const autoCompleteJSIng = new autoComplete({
+placeHolder: "例:いちご、にんじん、じゃがいも　など",
+selector: "#autoCompleteIng",
+data: {
+src: full_categoires_listIng,
+cache: true,
+},
+resultItem: {
+highlight: true
+},
+resultsList: {
+maxResults: 500, // 表示する結果の最大数を設定
+},
+events: {
+input: {
+selection: (event) => {
+    const selection = event.detail.selection.value;
+    //input_categories.push(selection); // 選択されたクエリをリストに追加
+    //console.log(input_categories); // 選択されたクエリをコンソールに表示
+    // alert(selection)
+    
+    autoCompleteJSIng.input.value = ""; // 入力フィールドをクリア
+    addTaskIng(selection);
+}
+}
+}
+});
+
+
+const listContainerIng = document.getElementById("list-containerIng");
+
+function addTaskIng(word){
+
+    if (input_categoriesIng.includes(word)){
+        //すでに存在しているものが選択された場合はエラーが出るように！
+        //alert("すでに存在しています！");
+        console.log("重複して選んでいます！");
+    }else{
+        let Ing =document.createElement("li");
+        Ing.innerHTML = word;
+        listContainerIng.appendChild(Ing);
+        let span =document.createElement("span");
+        span.innerHTML ="\u00d7"; /*クローズのやつ？らしい */
+        Ing.prepend(span); //前に追加する
+        input_categoriesIng.push(word);
+        console.log(input_categoriesIng);
+        document.getElementById('IngData').value = input_categoriesIng.join(','); //隠しフォームに追加している
+        if (input_categoriesIng.length !==0){
+            document.getElementById('inputText').removeAttribute("required");
+        }else{
+            document.getElementById('inputText').setAttribute("required","");
+        }
+    }
+    
+}
+
+listContainerIng.addEventListener("click",function(e){
+
+    if(e.target.tagName === "SPAN"){
+        remove_word = e.target.parentElement.innerHTML.replace(/<span.*<\/span>/, ''); //正規表現でgeneratedされたidを消去している
+        // remove_index = input_categories.indexOf(remove_word);
+        input_categoriesIng = input_categoriesIng.filter((value)=>value !== remove_word);
+        // alert(remove_word+"を消去しました");
+        e.target.parentElement.remove();
+        document.getElementById('IngData').value = input_categoriesIng.join(','); //隠しフォームに追加している
+        if (input_categoriesIng.length !==0){
             document.getElementById('inputText').removeAttribute("required");
         }else{
             document.getElementById('inputText').setAttribute("required","");

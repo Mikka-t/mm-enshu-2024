@@ -30,3 +30,13 @@ def update_final_nodes(graph, final_nodes_file):
     
     save_final_nodes(final_nodes, final_nodes_file)
 
+def update_ing_nodes(graph, ing_nodes_file):
+    ing_nodes = load_final_nodes(ing_nodes_file)
+    ing_node_ids = {node['id'] for node in ing_nodes}
+    
+    for node in graph['nodes']:
+        if node.get('type') == 'ingredient' and node['id'] not in ing_node_ids:
+            ing_nodes.append(node)
+            ing_node_ids.add(node['id'])
+    
+    save_final_nodes(ing_nodes, ing_nodes_file)

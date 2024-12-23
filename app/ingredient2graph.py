@@ -22,13 +22,18 @@ def ingredient2graph(ingredient_list: list):
     # stack = ingredient_list.copy()
     stack = []
     for ingredient in ingredient_list:
-        if ingredient in edges:
-            stack.append([ingredient, 1])
-        else:
+        found = False
+        for edge in edges:
+            if ingredient == edge['source'] or ingredient == edge['target']:
+                stack.append([ingredient, 1])
+                found = True
+                break
+        if not found:
             print(f"WARNING: ingredient2graph.py: {ingredient} は存在しません。")
 
     visited = set()
     final_nodes = []
+    print("検索を開始")
 
     while stack:
         current_node = stack.pop()
@@ -45,16 +50,22 @@ def ingredient2graph(ingredient_list: list):
                             score_sum += 1
                             if edge2["source"] in ingredient_list:
                                 score_pos += 1
-                    if node_dict[edge["target"]]["type"] == "final":
-                        final_nodes.append([edge["target"], score_pos/score_sum])
+                    if edge["target"] in node_dict:
+                        if node_dict[edge["target"]]["type"] == "final":
+                            final_nodes.append([edge["target"], score_pos/score_sum])
+                        else:
+                            nodes_to_check.append([edge["target"], score_pos/score_sum])
                     else:
                         nodes_to_check.append([edge["target"], score_pos/score_sum])
+
             stack.extend(nodes_to_check)
 
     final_nodes = sorted(final_nodes, key=lambda x: x[1], reverse=True)
     final_nodes = [x[0] for x in final_nodes]
     final_nodes = list(set(final_nodes))
     final_nodes = final_nodes[:5]
+
+    print("サブグラフ生成開始")
 
     # final_nodesをfinal_nodeとしたsubgraph5つを作成
     subgraphs = []
@@ -74,6 +85,7 @@ def ingredient2graph(ingredient_list: list):
     # 重複が無いようにマージ
     answer_nodes = []
     answer_edges = []
+    print("サブグラフ合成開始")
     for subgraph in subgraphs:
         for node in subgraph["nodes"]:
             if node["id"] not in answer_nodes:
@@ -90,6 +102,7 @@ def ingredient2graph(ingredient_list: list):
                     break
             if not is_same_edge:
                 answer_edges.append(edge) 
+    print("処理完了")
     return {"nodes": answer_nodes, "edges": answer_edges}
 
 
