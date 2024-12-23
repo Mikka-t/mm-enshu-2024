@@ -1,5 +1,6 @@
 
-#list-container li{
+#list-container li,
+#list-containerIng li{
     list-style: none;
     font-size: 17px;
     padding: 12px 8px 12px 50px;
@@ -9,14 +10,16 @@
 }
 
 /*class='list'のとき、つまりdetalis内のlistのときは点を表示するって感じ*/
-#list-container.list li {
+#list-container.list li,
+#list-containerIng.list li{
     list-style: disc inside; /* マーカーを内側に配置し、ディスクスタイルを適用 */
     padding-left: 0; /* 左側のパディングを調整 */
     margin-left: 0; /* 左側のマージンを調整 */
 }
 
 
-#list-container li span{
+#list-container li span,
+#list-containerIng li span{
     position:absolute;
     left: 0px; /*リストの中身は左側に統一*/
     top: 10px;
@@ -30,7 +33,8 @@
     background: #d6ffe8;
 
 }
-#list-container li span:hover{
+#list-container li span:hover,
+#list-containerIng li span:hover{
     background: #edeef0;
 
 
