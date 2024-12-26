@@ -527,6 +527,231 @@
             "id": "ココアドリンク",
             "type": "final",
             "quantity": null
+        },
+        {
+            "id": "子持ちなめたカレイ切り身",
+            "type": "ingredient",
+            "quantity": "４枚"
+        },
+        {
+            "id": "☆酒",
+            "type": "ingredient",
+            "quantity": "１００ｃｃ"
+        },
+        {
+            "id": "☆醤油",
+            "type": "ingredient",
+            "quantity": "大さじ３強"
+        },
+        {
+            "id": "☆みりん",
+            "type": "ingredient",
+            "quantity": "大さじ３"
+        },
+        {
+            "id": "☆三温糖（ふつうの砂糖でも）",
+            "type": "ingredient",
+            "quantity": "小さじ１弱"
+        },
+        {
+            "id": "☆しょうが",
+            "type": "ingredient",
+            "quantity": "１片"
+        },
+        {
+            "id": "☆ねぎの青い部分（なくても）",
+            "type": "ingredient",
+            "quantity": "１本分"
+        },
+        {
+            "id": "フライパン",
+            "type": "tool",
+            "quantity": null
+        },
+        {
+            "id": "煮立ったなめたカレイを入れる",
+            "type": "action",
+            "quantity": null
+        },
+        {
+            "id": "煮汁を全体に回しかける",
+            "type": "action",
+            "quantity": null
+        },
+        {
+            "id": "落とし蓋をして中弱火で１０分程煮る",
+            "type": "action",
+            "quantity": null
+        },
+        {
+            "id": "殻付きあさり",
+            "type": "ingredient",
+            "quantity": "350g"
+        },
+        {
+            "id": "刻みネギ",
+            "type": "ingredient",
+            "quantity": "お好みで"
+        },
+        {
+            "id": "だし醤油",
+            "type": "ingredient",
+            "quantity": "大2～"
+        },
+        {
+            "id": "あさり",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "あさりの酒蒸し",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "冷凍むきあさり",
+            "type": "ingredient",
+            "quantity": "1/2カップ"
+        },
+        {
+            "id": "乾燥わかめ",
+            "type": "ingredient",
+            "quantity": "大匙2"
+        },
+        {
+            "id": "白葱",
+            "type": "ingredient",
+            "quantity": "大匙1"
+        },
+        {
+            "id": "味噌",
+            "type": "ingredient",
+            "quantity": "大匙山盛り1"
+        },
+        {
+            "id": "お椀",
+            "type": "intermediate",
+            "quantity": null
+        },
+        {
+            "id": "お味噌汁",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "豚ひき肉",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "ごま油",
+            "type": "ingredient",
+            "quantity": "小さじ1/4"
+        },
+        {
+            "id": "豆板醤",
+            "type": "ingredient",
+            "quantity": "小さじ1/8"
+        },
+        {
+            "id": "醤油",
+            "type": "ingredient",
+            "quantity": "小さじ1"
+        },
+        {
+            "id": "すりにんにく",
+            "type": "ingredient",
+            "quantity": "少々"
+        },
+        {
+            "id": "もやし",
+            "type": "ingredient",
+            "quantity": "1/4袋"
+        },
+        {
+            "id": "青ネギ",
+            "type": "ingredient",
+            "quantity": "小さじ2"
+        },
+        {
+            "id": "味噌ラーメン",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "ラーメン",
+            "type": "dish",
+            "quantity": "1人前"
+        },
+        {
+            "id": "クリームチーズ",
+            "type": "ingredient",
+            "quantity": "２１６グラム"
+        },
+        {
+            "id": "レモン汁",
+            "type": "ingredient",
+            "quantity": "大さじ２"
+        },
+        {
+            "id": "クッキー",
+            "type": "ingredient",
+            "quantity": "１００グラム"
+        },
+        {
+            "id": "溶かしバター",
+            "type": "ingredient",
+            "quantity": "２０グラム"
+        },
+        {
+            "id": "チーズケーキ",
+            "type": "final",
+            "quantity": null
+        },
+        {
+            "id": "抹茶フィナンシェ",
+            "type": "recipe",
+            "quantity": "N/A"
+        },
+        {
+            "id": "卵白 2個分",
+            "type": "ingredient",
+            "quantity": "2"
+        },
+        {
+            "id": "グラニュー糖 50g",
+            "type": "ingredient",
+            "quantity": "50g"
+        },
+        {
+            "id": "塩 少々",
+            "type": "ingredient",
+            "quantity": "a small amount"
+        },
+        {
+            "id": "薄力粉 30g",
+            "type": "ingredient",
+            "quantity": "30g"
+        },
+        {
+            "id": "アーモンドプードル 30g",
+            "type": "ingredient",
+            "quantity": "30g"
+        },
+        {
+            "id": "抹茶 5g",
+            "type": "ingredient",
+            "quantity": "5g"
+        },
+        {
+            "id": "無塩バター 40g",
+            "type": "ingredient",
+            "quantity": "40g"
+        },
+        {
+            "id": "蜂蜜（純粋） 10g",
+            "type": "ingredient",
+            "quantity": "10g"
         }
     ],
     "edges": [
@@ -1249,6 +1474,326 @@
             "source": "牛乳",
             "target": "ココアドリンク",
             "action": "加える"
+        },
+        {
+            "source": "子持ちなめたカレイ切り身",
+            "target": "☆酒",
+            "action": "煮る"
+        },
+        {
+            "source": "☆酒",
+            "target": "☆醤油",
+            "action": "煮る"
+        },
+        {
+            "source": "☆醤油",
+            "target": "☆みりん",
+            "action": "煮る"
+        },
+        {
+            "source": "☆みりん",
+            "target": "☆三温糖",
+            "action": "煮る"
+        },
+        {
+            "source": "☆三温糖",
+            "target": "☆しょうが",
+            "action": "煮る"
+        },
+        {
+            "source": "☆しょうが",
+            "target": "☆ねぎの青い部分",
+            "action": "煮る"
+        },
+        {
+            "source": "フライパン",
+            "target": "煮立ったなめたカレイを入れる",
+            "action": "入れる"
+        },
+        {
+            "source": "煮汁を全体に回しかける",
+            "target": "落とし蓋をして中弱火で１０分程煮る",
+            "action": "煮る"
+        },
+        {
+            "source": "落とし蓋をして中弱火で１０分程煮る",
+            "target": "子持ちなめたカレイ切り身",
+            "action": "煮る"
+        },
+        {
+            "source": "煮汁を全体に回しかける",
+            "target": "煮汁を全体に回しかける",
+            "action": "煮る"
+        },
+        {
+            "source": "殻付きあさり",
+            "target": "あさり",
+            "action": "使用する"
+        },
+        {
+            "source": "刻みネギ",
+            "target": "あさりの酒蒸し",
+            "action": "トッピング"
+        },
+        {
+            "source": "酒",
+            "target": "あさり",
+            "action": "使用する"
+        },
+        {
+            "source": "だし醤油",
+            "target": "あさりの酒蒸し",
+            "action": "味付け"
+        },
+        {
+            "source": "あさり",
+            "target": "あさりの酒蒸し",
+            "action": "調理"
+        },
+        {
+            "source": "乾燥わかめ",
+            "target": "水",
+            "action": "戻す"
+        },
+        {
+            "source": "冷凍むきあさり",
+            "target": "水",
+            "action": "入れる"
+        },
+        {
+            "source": "水",
+            "target": "味噌",
+            "action": "溶かし入れる"
+        },
+        {
+            "source": "味噌",
+            "target": "乾燥わかめ",
+            "action": "入れる"
+        },
+        {
+            "source": "お椀",
+            "target": "お味噌汁",
+            "action": "注ぐ"
+        },
+        {
+            "source": "白葱",
+            "target": "お味噌汁",
+            "action": "散らす"
+        },
+        {
+            "source": "乾燥わかめ",
+            "target": "お味噌汁",
+            "action": "完成"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "ごま油",
+            "action": "炒める"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "豆板醤",
+            "action": "炒める"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "酒",
+            "action": "炒める"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "醤油",
+            "action": "炒める"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "すりにんにく",
+            "action": "炒める"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "砂糖",
+            "action": "炒める"
+        },
+        {
+            "source": "もやし",
+            "target": "手順",
+            "action": "湯がく"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "手順",
+            "action": "炒める"
+        },
+        {
+            "source": "青ネギ",
+            "target": "手順",
+            "action": "散らす"
+        },
+        {
+            "source": "味噌ラーメン",
+            "target": "手順",
+            "action": "器に盛り付ける"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "ラーメン",
+            "action": "具材"
+        },
+        {
+            "source": "ごま油",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "豆板醤",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "酒",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "醤油",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "すりにんにく",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "砂糖",
+            "target": "豚ひき肉",
+            "action": "炒める"
+        },
+        {
+            "source": "もやし",
+            "target": "ラーメン",
+            "action": "トッピング"
+        },
+        {
+            "source": "青ネギ",
+            "target": "ラーメン",
+            "action": "トッピング"
+        },
+        {
+            "source": "豚ひき肉",
+            "target": "味噌ラーメン",
+            "action": "具材"
+        },
+        {
+            "source": "ラーメン",
+            "target": "味噌ラーメン",
+            "action": "構成"
+        },
+        {
+            "source": "クリームチーズ",
+            "target": "チーズケーキ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "卵",
+            "target": "チーズケーキ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "砂糖",
+            "target": "チーズケーキ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "生クリーム",
+            "target": "チーズケーキ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "レモン汁",
+            "target": "チーズケーキ",
+            "action": "混ぜる"
+        },
+        {
+            "source": "クッキー",
+            "target": "チーズケーキ",
+            "action": "型に敷き詰める"
+        },
+        {
+            "source": "溶かしバター",
+            "target": "クッキー",
+            "action": "混ぜる"
+        },
+        {
+            "source": "チーズケーキ",
+            "target": "オーブン",
+            "action": "焼く"
+        },
+        {
+            "source": "卵白",
+            "target": "グラニュー糖",
+            "action": "泡立てる"
+        },
+        {
+            "source": "グラニュー糖",
+            "target": "塩",
+            "action": "混ぜる"
+        },
+        {
+            "source": "塩",
+            "target": "薄力粉",
+            "action": "ふるく"
+        },
+        {
+            "source": "薄力粉",
+            "target": "アーモンドプードル",
+            "action": "ふるく"
+        },
+        {
+            "source": "アーモンドプードル",
+            "target": "抹茶",
+            "action": "ふるく"
+        },
+        {
+            "source": "抹茶",
+            "target": "無塩バター",
+            "action": "ボウルに入れる"
+        },
+        {
+            "source": "無塩バター",
+            "target": "蜂蜜",
+            "action": "泡立てる"
+        },
+        {
+            "source": "蜂蜜",
+            "target": "焼き上がり",
+            "action": "入れる"
+        },
+        {
+            "source": "ボウルに材料",
+            "target": "冷蔵庫で冷やす",
+            "action": "1-2時間"
+        },
+        {
+            "source": "冷蔵庫で冷やした生地",
+            "target": "ローズ型に流し込む",
+            "action": "190℃で焼く"
+        },
+        {
+            "source": "ローズ型に生地を流し込んだ後",
+            "target": "190℃で15分焼く",
+            "action": "竹串が生地を通らなければ完成"
+        },
+        {
+            "source": "焼き上がり",
+            "target": "一日おいた後食べごろ",
+            "action": "バターが馴染み、しっとり"
+        },
+        {
+            "source": "ベーキングパウダー（2g）",
+            "target": "選んで入れる",
+            "action": "ふんわりした焼き上がりに"
         }
     ]
 }

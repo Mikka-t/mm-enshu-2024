@@ -187,11 +187,16 @@ def extract_cookpad(soup):
     return '\n'.join(result)
 
 
-def extract_rakuten_recipe(url):
-    # URLからHTMLを取得
-    response = requests.get(url)
-    response.raise_for_status()
-    soup = BeautifulSoup(response.text, 'html.parser')
+def extract_rakuten_recipe(url,html=None):
+
+    if not html:
+        # URLからHTMLを取得
+        response = requests.get(url)
+        response.raise_for_status()
+        soup = BeautifulSoup(response.text, 'html.parser')
+    
+    else:
+        soup = BeautifulSoup(html, 'html.parser') #保存したファイルを利用する
     
     result = []
     
@@ -228,8 +233,12 @@ def extract_rakuten_recipe(url):
 
 
 
-def scrape(url):
+def scrape(url,html=None):
     # Define headers for the request
+
+    if html:
+        return extract_rakuten_recipe(url=None,html=html) #LLM学習用に利用する。すでにlocalに保存しているhtmlを利用する場合
+    
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.3',
     }

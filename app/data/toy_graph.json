@@ -1,4 +1,111 @@
-[
-    null,
-    null
-]
+{
+    "nodes": [
+        {
+            "id": "子持ちなめたカレイ切り身",
+            "type": "ingredient",
+            "quantity": "４枚"
+        },
+        {
+            "id": "☆酒",
+            "type": "ingredient",
+            "quantity": "１００ｃｃ"
+        },
+        {
+            "id": "☆醤油",
+            "type": "ingredient",
+            "quantity": "大さじ３強"
+        },
+        {
+            "id": "☆みりん",
+            "type": "ingredient",
+            "quantity": "大さじ３"
+        },
+        {
+            "id": "☆三温糖（ふつうの砂糖でも）",
+            "type": "ingredient",
+            "quantity": "小さじ１弱"
+        },
+        {
+            "id": "☆しょうが",
+            "type": "ingredient",
+            "quantity": "１片"
+        },
+        {
+            "id": "☆ねぎの青い部分（なくても）",
+            "type": "ingredient",
+            "quantity": "１本分"
+        },
+        {
+            "id": "フライパン",
+            "type": "tool",
+            "quantity": null
+        },
+        {
+            "id": "煮立ったなめたカレイを入れる",
+            "type": "action",
+            "quantity": null
+        },
+        {
+            "id": "煮汁を全体に回しかける",
+            "type": "action",
+            "quantity": null
+        },
+        {
+            "id": "落とし蓋をして中弱火で１０分程煮る",
+            "type": "action",
+            "quantity": null
+        }
+    ],
+    "edges": [
+        {
+            "source": "子持ちなめたカレイ切り身",
+            "target": "☆酒",
+            "action": "煮る"
+        },
+        {
+            "source": "☆酒",
+            "target": "☆醤油",
+            "action": "煮る"
+        },
+        {
+            "source": "☆醤油",
+            "target": "☆みりん",
+            "action": "煮る"
+        },
+        {
+            "source": "☆みりん",
+            "target": "☆三温糖",
+            "action": "煮る"
+        },
+        {
+            "source": "☆三温糖",
+            "target": "☆しょうが",
+            "action": "煮る"
+        },
+        {
+            "source": "☆しょうが",
+            "target": "☆ねぎの青い部分",
+            "action": "煮る"
+        },
+        {
+            "source": "フライパン",
+            "target": "煮立ったなめたカレイを入れる",
+            "action": "入れる"
+        },
+        {
+            "source": "煮汁を全体に回しかける",
+            "target": "落とし蓋をして中弱火で１０分程煮る",
+            "action": "煮る"
+        },
+        {
+            "source": "落とし蓋をして中弱火で１０分程煮る",
+            "target": "子持ちなめたカレイ切り身",
+            "action": "煮る"
+        },
+        {
+            "source": "煮汁を全体に回しかける",
+            "target": "煮汁を全体に回しかける",
+            "action": "煮る"
+        }
+    ]
+}
