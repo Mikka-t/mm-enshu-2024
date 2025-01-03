@@ -77,6 +77,38 @@
     <div id="range"></div>
   </div>
 
+    <!-- フォーム内に隠しフィールドを追加 -->
+    <input type="hidden" id="liData" name="liData">
+    <div class="autoComplete_container" >
+      <br>
+      <br>
+      <div style="text-align: center;"><label  >料理名で探す</label></div>
+      <!-- <input type="radio" name="AndOR" value="AND" />AND
+      <input type="radio" name="AndOR" value="OR" checked/>OR -->
+      <input type="text" id="autoComplete">
+          <ul id="list-container"></ul>
+
+    </div>
+    
+
+    <!-- フォーム内に隠しフィールドを追加 -->
+    <input type="hidden" id="IngData" name="IngData">
+    <div class="autoComplete_containerIng" >
+      <br>
+      <br>
+      <div style="text-align: center;"><label  >材料名で探す</label></div>
+      <!-- <input type="radio" name="AndOR" value="AND" />AND
+      <input type="radio" name="AndOR" value="OR" checked/>OR -->
+      <input type="text" id="autoCompleteIng">
+          <ul id="list-containerIng"></ul>
+
+    </div>
+
+    <br>
+    <div style="text-align: center;"><label  >URLで検索</label></div>
+    <textarea id="inputText" name="inputText" rows="4" placeholder="料理のレシピURLをここに入力してください&#13;(クラシル・白ご飯.com・DELISH KITCHEN・クックパッド・楽天レシピに対応)" required></textarea>
+    <!-- <input type="type" id="inputText" name="inputText" placeholder="検索したい質問の要素を入力してください" required> -->
+
   <!-- 隠しフィールド -->
   <input type="hidden" id="liData" name="liData">
 
@@ -101,7 +133,7 @@
 
 <br>
 
-<!-- 新增图片检索模块 -->
+<!-- 画像検索 -->
 <div class="image-detection-module">
   <h1 style="text-align: center;">画像から材料を検出</h1>
   <form action="/detect" method="post" enctype="multipart/form-data" style="text-align: center;">
