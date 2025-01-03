@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<h1 style="text-align: center;">画像から材料を検出</h1>
+{% endblock %}
+
+{% block content %}
+<div class="container" style="display: flex; gap: 20px;">
+  <!-- アップロードされた画像 -->
+  <div style="flex: 1; text-align: center;">
+    <h3>アップロードされた画像</h3>
+    {% if uploaded_image %}
+    <img src="{{ url_for('static', filename='uploads/' + uploaded_image|default('default.jpg')) }}" alt="アップロード画像" style="max-width: 100%; height: auto;">
+    {% else %}
+    <p>画像がアップロードされていません。</p>
+    {% endif %}
+  </div>
+
+  <!-- 検出結果 -->
+  <div style="flex: 2;">
+    <h3>検出結果</h3>
+    {% if detected_items %}
+      <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+        {% for item in detected_items %}
+        <div style="text-align: center;">
+          <img src="{{ url_for('static', filename='results/' + item['cropped_path'].split('/')[-1]|default('default.jpg')) }}" alt="{{ item['label']|default('不明') }}" style="max-width: 100px; height: auto;">
+          <p>{{ item['label'] }}</p> <!-- 翻訳された日本語名を表示 -->
+        </div>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p>画像から材料を検出できませんでした。</p>
+    {% endif %}
+  </div>
+</div>
+
+<!-- レシピ提案部分 -->
+<div style="display: flex; justify-content: space-between; margin-top: 40px;">
+  <!-- 検出食材レシピ -->
+  <div style="width: 45%; border: 2px solid #000; border-radius: 10px; padding: 10px; background-color: #f9f9f9;">
+    <h3 style="text-align: center;">検出された食材のみで作れる料理</h3>
+    {% if recipes_1 %}
+    <div style="overflow-y: auto; max-height: 300px;">
+      <!-- 使用 <pre> 标签保持格式 -->
+      <pre style="white-space: pre-wrap; font-family: Arial, sans-serif; line-height: 1.5;">{{ recipes_1 | safe }}</pre>
+    </div>
+    {% else %}
+    <p>利用可能な食材のみで作れる料理が見つかりませんでした。</p>
+    {% endif %}
+  </div>
+
+  <!-- 拡張食材レシピ -->
+  <div style="width: 45%; border: 2px solid #000; border-radius: 10px; padding: 10px; background-color: #f9f9f9;">
+    <h3 style="text-align: center;">食材を追加して作れる料理</h3>
+    {% if recipes_2 %}
+    <div style="overflow-y: auto; max-height: 300px;">
+      <!-- 使用 <pre> 标签保持格式 -->
+      <pre style="white-space: pre-wrap; font-family: Arial, sans-serif; line-height: 1.5;">{{ recipes_2 | safe }}</pre>
+    </div>
+    {% else %}
+    <p>食材を追加して作れる料理が見つかりませんでした。</p>
+    {% endif %}
+  </div>
+</div>
+
+{% endblock %}

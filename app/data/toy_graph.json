@@ -1,106 +1,81 @@
 {
     "nodes": [
         {
-            "id": "さんま",
+            "id": "玉ねぎ",
             "type": "ingredient",
-            "quantity": "2尾"
+            "quantity": "1/4個"
         },
         {
-            "id": "酒",
+            "id": "にんじん",
             "type": "ingredient",
-            "quantity": "大さじ2"
+            "quantity": "1/2本"
         },
         {
-            "id": "みりん",
+            "id": "じゃがいも",
             "type": "ingredient",
-            "quantity": "大さじ2"
+            "quantity": "1個"
         },
         {
-            "id": "しょうゆ",
+            "id": "ウインナー",
             "type": "ingredient",
-            "quantity": "大さじ2"
+            "quantity": "2本"
         },
         {
-            "id": "おろししょうが(チューブでOK)",
+            "id": "コンソメ顆粒",
             "type": "ingredient",
-            "quantity": "小さじ1"
-        },
-        {
-            "id": "片栗粉",
-            "type": "ingredient",
-            "quantity": "適量"
-        },
-        {
-            "id": "油",
-            "type": "ingredient",
-            "quantity": "適量"
+            "quantity": "小さじ2"
         },
         {
             "id": "塩",
             "type": "ingredient",
-            "quantity": "適量"
+            "quantity": "少々"
         },
         {
-            "id": "さんまの下味",
-            "type": "intermediate",
-            "quantity": null
+            "id": "水",
+            "type": "ingredient",
+            "quantity": "600ml"
         },
         {
-            "id": "さんまの竜田揚げ",
+            "id": "ポトフ",
             "type": "final",
             "quantity": null
         }
     ],
     "edges": [
         {
-            "source": "さんま",
-            "target": "さんまの下味",
-            "action": "切る"
+            "source": "玉ねぎ",
+            "target": "ポトフ",
+            "action": "煮る"
         },
         {
-            "source": "酒",
-            "target": "さんまの下味",
-            "action": "混ぜる"
+            "source": "にんじん",
+            "target": "ポトフ",
+            "action": "煮る"
         },
         {
-            "source": "みりん",
-            "target": "さんまの下味",
-            "action": "混ぜる"
+            "source": "じゃがいも",
+            "target": "ポトフ",
+            "action": "煮る"
         },
         {
-            "source": "しょうゆ",
-            "target": "さんまの下味",
-            "action": "混ぜる"
+            "source": "ウインナー",
+            "target": "ポトフ",
+            "action": "煮る"
         },
         {
-            "source": "おろししょうが(チューブでOK)",
-            "target": "さんまの下味",
-            "action": "混ぜる"
-        },
-        {
-            "source": "さんまの下味",
-            "target": "さんま",
-            "action": "つける"
-        },
-        {
-            "source": "片栗粉",
-            "target": "さんま",
-            "action": "まぶす"
-        },
-        {
-            "source": "油",
-            "target": "さんま",
-            "action": "揚げる"
+            "source": "コンソメ顆粒",
+            "target": "ポトフ",
+            "action": "加える"
         },
         {
             "source": "塩",
-            "target": "さんまの竜田揚げ",
-            "action": "ふる"
+            "target": "ポトフ",
+            "action": "混ぜる"
         },
         {
-            "source": "さんま",
-            "target": "さんまの竜田揚げ",
-            "action": "盛り付ける"
+            "source": "水",
+            "target": "ポトフ",
+            "action": "熱する"
         }
     ]
 }

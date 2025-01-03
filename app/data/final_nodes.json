@@ -68,5 +68,10 @@
         "id": "さんまの竜田揚げ",
         "type": "final",
         "quantity": null
+    },
+    {
+        "id": "ポトフ",
+        "type": "final",
+        "quantity": null
     }
 ]

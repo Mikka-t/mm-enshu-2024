@@ -4,6 +4,7 @@ from generate_graph import generate_graph
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
 from merge_new_graph import add_new_graph
 from recommend_recipe import recommend_recipe
+from image_detector import detect_and_crop, generate_recipes
 import json
 import time
 import markdown2
@@ -13,6 +14,12 @@ import re
 USE_LLM_FLAG = True
 
 app = Flask(__name__)
+
+UPLOAD_FOLDER = 'static/uploads/'
+RESULTS_FOLDER = 'static/results/'
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['RESULTS_FOLDER'] = RESULTS_FOLDER
+
 @app.context_processor
 def inject_now():
     return {'now': lambda: int(time.time())} #ブラウザがキャッシュをしないようにcssなどのurlを変更するための対策用。こう書くことによってjinja2がみることができるようになる
@@ -122,6 +129,47 @@ def submit_url():
     
     return render_template("search/result.html",json_data=send_data,full_categories_list =[],recipe_title=title,ingredients=ingredients_ul,HowToCook=HowToCook_ol,recommend_recipes=recommend_recipes)
 
+# 画像のアップロードと食材の検出を処理する
+@app.context_processor
+def inject_defaults():
+    return dict(full_categories_list=[])
+
+@app.route('/detect', methods=['GET', 'POST'])
+def detect_route():
+    uploaded_image = None
+    detected_items = []
+    recipes_1 = ""
+    recipes_2 = ""
+    
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            return "画像がアップロードされていません", 400
+
+        file = request.files['image']
+        file_path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
+        os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+        file.save(file_path)
+
+        # 検出と切り取り関数を呼び出す
+        uploaded_image = file.filename
+        detected_items = detect_and_crop(file_path, app.config['RESULTS_FOLDER'])
+        print(detected_items)  # デバッグログ
+
+        # 検出された食材を抽出する
+        detected_ingredients = [item["label"] for item in detected_items]
+
+        # レシピ提案を生成する
+        if detected_ingredients:
+            recipes_1, recipes_2 = generate_recipes(detected_ingredients)
+
+    # デフォルト値を渡すことを確認
+    return render_template(
+        'search/detect.html',
+        uploaded_image=uploaded_image or "",
+        detected_items=detected_items or [],
+        recipes_1=recipes_1,
+        recipes_2=recipes_2
+    )
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8001,debug=True)
