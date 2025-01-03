@@ -17,7 +17,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">  <!-- レスポンシブ対応のためにまず書く必要がある-->
   <script type="text/javascript">
     var full_categoires_list = {{ full_categories_list | tojson | safe }};
-    var full_categoires_listIng = {{ full_categories_listIng | tojson | safe }};
+    var full_categoires_listIng = {{ full_categories_listIng| default([]) | tojson | safe }};
   </script>
   <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/15.6.1/nouislider.min.js"></script> -->
