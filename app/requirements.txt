@@ -10,3 +10,5 @@ openai
 markdown2
 pandas
 sentence-transformers
+ultralytics
+deep_translator
