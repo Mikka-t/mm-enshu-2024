@@ -1,6 +1,10 @@
 from flask import Flask, request,render_template
 from index import display_knowledge_graph,convert_json
-from generate_graph import generate_graph
+
+# from generate_graph import generate_graph
+from generate_graph_local import Graph_Generator
+graph_generator = Graph_Generator(USE_LOCAL_LLM=True)
+
 from graph2recipe import get_subgraph_str, subgraph2recipe_str
 from ingredient2graph import ingredient2graph
 from merge_new_graph import add_new_graph
@@ -95,7 +99,7 @@ def submit_url():
         if url in url2graph:
             graph = url2graph[url]
         else:
-            graph = generate_graph(url)
+            graph = graph_generator.generate_graph(url)
             if graph is None:
                 return "error"
             url2graph[url] = graph

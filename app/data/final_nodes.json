@@ -70,6 +70,32 @@
         "quantity": null
     },
     {
+        "id": "濃厚アイスココア",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "ココアドリンク",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "あさりの酒蒸し",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "お味噌汁",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "味噌ラーメン",
+        "type": "final",
+        "quantity": null
+    },
+    {
+        "id": "チーズケーキ",
         "id": "ポトフ",
         "type": "final",
         "quantity": null

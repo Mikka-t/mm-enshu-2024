@@ -1,2 +1,9 @@
 app/.token
 app/__pycache__
+
+app/data/recipe_htmls
+app/data/GPT_messages_outputs
+
+app/wandb
+app/Phi-3.5-mini-instruct-lora_ft
+app/results
