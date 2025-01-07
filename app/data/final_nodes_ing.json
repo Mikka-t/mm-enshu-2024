@@ -1,0 +1,272 @@
+[
+    {
+        "id": "卵",
+        "type": "ingredient",
+        "quantity": "3個"
+    },
+    {
+        "id": "グラニュー糖",
+        "type": "ingredient",
+        "quantity": "150g"
+    },
+    {
+        "id": "小麦粉",
+        "type": "ingredient",
+        "quantity": "200g"
+    },
+    {
+        "id": "無塩バター",
+        "type": "ingredient",
+        "quantity": "100g"
+    },
+    {
+        "id": "生クリーム",
+        "type": "ingredient",
+        "quantity": "200ml"
+    },
+    {
+        "id": "いちご",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "バター",
+        "type": "ingredient",
+        "quantity": "50g"
+    },
+    {
+        "id": "砂糖",
+        "type": "ingredient",
+        "quantity": "100g"
+    },
+    {
+        "id": "卵黄",
+        "type": "ingredient",
+        "quantity": "2個"
+    },
+    {
+        "id": "牛乳",
+        "type": "ingredient",
+        "quantity": "200ml"
+    },
+    {
+        "id": "バニラエッセンス",
+        "type": "ingredient",
+        "quantity": "少々"
+    },
+    {
+        "id": "玉ねぎ",
+        "type": "ingredient",
+        "quantity": "2個"
+    },
+    {
+        "id": "にんじん",
+        "type": "ingredient",
+        "quantity": "1本"
+    },
+    {
+        "id": "じゃがいも",
+        "type": "ingredient",
+        "quantity": "3個"
+    },
+    {
+        "id": "牛肉",
+        "type": "ingredient",
+        "quantity": "200g"
+    },
+    {
+        "id": "カレールー",
+        "type": "ingredient",
+        "quantity": "100g"
+    },
+    {
+        "id": "水",
+        "type": "ingredient",
+        "quantity": "500ml"
+    },
+    {
+        "id": "ご飯",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "とうもろこし ",
+        "type": "ingredient",
+        "quantity": "1本"
+    },
+    {
+        "id": "塩 ",
+        "type": "ingredient",
+        "quantity": "小さじ1/5"
+    },
+    {
+        "id": "水 ",
+        "type": "ingredient",
+        "quantity": "小さじ1"
+    },
+    {
+        "id": "皮つきとうもろこし",
+        "type": "ingredient",
+        "quantity": "1本"
+    },
+    {
+        "id": "塩",
+        "type": "ingredient",
+        "quantity": "小さじ1/5"
+    },
+    {
+        "id": "もずく（生食用）",
+        "type": "ingredient",
+        "quantity": "100g"
+    },
+    {
+        "id": "生姜",
+        "type": "ingredient",
+        "quantity": "1かけ（10g）"
+    },
+    {
+        "id": "刻みねぎ",
+        "type": "ingredient",
+        "quantity": "少々"
+    },
+    {
+        "id": "白いりごま",
+        "type": "ingredient",
+        "quantity": "少々"
+    },
+    {
+        "id": "だし汁",
+        "type": "ingredient",
+        "quantity": "500ml"
+    },
+    {
+        "id": "醤油（あれば薄口）",
+        "type": "ingredient",
+        "quantity": "小さじ1"
+    },
+    {
+        "id": "合びき肉",
+        "type": "ingredient",
+        "quantity": "250〜300g"
+    },
+    {
+        "id": "パン粉",
+        "type": "ingredient",
+        "quantity": "大さじ4"
+    },
+    {
+        "id": "おろしにんにく",
+        "type": "ingredient",
+        "quantity": "1/2片分"
+    },
+    {
+        "id": "サラダ油",
+        "type": "ingredient",
+        "quantity": "大さじ1"
+    },
+    {
+        "id": "ケチャップ",
+        "type": "ingredient",
+        "quantity": "大さじ3"
+    },
+    {
+        "id": "ウスターソース",
+        "type": "ingredient",
+        "quantity": "大さじ1と1/2"
+    },
+    {
+        "id": "しょうゆ",
+        "type": "ingredient",
+        "quantity": "大さじ1"
+    },
+    {
+        "id": "ホットケーキミックス",
+        "type": "ingredient",
+        "quantity": "200g"
+    },
+    {
+        "id": "バナナ",
+        "type": "ingredient",
+        "quantity": "2本"
+    },
+    {
+        "id": "ホワイトチョコレート",
+        "type": "ingredient",
+        "quantity": "50g"
+    },
+    {
+        "id": "オレンジマーマレード",
+        "type": "ingredient",
+        "quantity": "大さじ2"
+    },
+    {
+        "id": "絹ごし豆腐",
+        "type": "ingredient",
+        "quantity": "130g"
+    },
+    {
+        "id": "ミルクチョコレート",
+        "type": "ingredient",
+        "quantity": "50g"
+    },
+    {
+        "id": "プリン",
+        "type": "ingredient",
+        "quantity": "3個"
+    },
+    {
+        "id": "サンマ",
+        "type": "ingredient",
+        "quantity": "1尾"
+    },
+    {
+        "id": "薄力粉",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "酒",
+        "type": "ingredient",
+        "quantity": "大さじ1"
+    },
+    {
+        "id": "みりん",
+        "type": "ingredient",
+        "quantity": "大さじ2"
+    },
+    {
+        "id": "万能ねぎ",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "白ごま",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "ごはん",
+        "type": "ingredient",
+        "quantity": "1膳"
+    },
+    {
+        "id": "さんま",
+        "type": "ingredient",
+        "quantity": "2尾"
+    },
+    {
+        "id": "おろししょうが(チューブでOK)",
+        "type": "ingredient",
+        "quantity": "小さじ1"
+    },
+    {
+        "id": "片栗粉",
+        "type": "ingredient",
+        "quantity": "適量"
+    },
+    {
+        "id": "油",
+        "type": "ingredient",
+        "quantity": "適量"
+    }
+]

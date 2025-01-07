@@ -1424,6 +1424,7 @@
             }
         ]
     },
+
     "美味しいご飯": [
         null,
         null
@@ -1452,10 +1453,22 @@
             },
             {
                 "id": "チョコスプレー",
+
+    "https://www.kurashiru.com/lists/ac49b572-5fac-4cbb-bb00-0564a7938a78": {
+        "nodes": [
+            {
+                "id": "市販のタルト台",
+                "type": "ingredient",
+                "quantity": "1個"
+            },
+            {
+                "id": "クリームチーズ",
+
                 "type": "ingredient",
                 "quantity": "適量"
             },
             {
+
                 "id": "濃厚アイスココア",
                 "type": "final",
                 "quantity": null
@@ -1505,10 +1518,16 @@
                 "id": "純ココア",
                 "type": "ingredient",
                 "quantity": "小さじ2"
+
+                "id": "生クリーム",
+                "type": "ingredient",
+                "quantity": "適量"
+
             },
             {
                 "id": "砂糖",
                 "type": "ingredient",
+
                 "quantity": "小さじ2"
             },
             {
@@ -1741,10 +1760,19 @@
                 "id": "乾燥わかめ",
                 "type": "ingredient",
                 "quantity": "大匙2"
+
+                "quantity": "適量"
+            },
+            {
+                "id": "粉ゼラチン",
+                "type": "ingredient",
+                "quantity": "適量"
+
             },
             {
                 "id": "水",
                 "type": "ingredient",
+
                 "quantity": "500cc"
             },
             {
@@ -1855,12 +1883,29 @@
             },
             {
                 "id": "味噌ラーメン",
+
+                "quantity": "適量"
+            },
+            {
+                "id": "いちご",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "お湯",
+                "type": "ingredient",
+                "quantity": "適量"
+            },
+            {
+                "id": "いちごタルト",
+
                 "type": "final",
                 "quantity": null
             }
         ],
         "edges": [
             {
+
                 "source": "豚ひき肉",
                 "target": "ごま油",
                 "action": "炒める"
@@ -2080,10 +2125,25 @@
             {
                 "source": "卵",
                 "target": "チーズケーキ",
+
+                "source": "市販のタルト台",
+                "target": "いちごタルト",
+                "action": "使用する"
+            },
+            {
+                "source": "クリームチーズ",
+                "target": "いちごタルト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "生クリーム",
+                "target": "いちごタルト",
+
                 "action": "混ぜる"
             },
             {
                 "source": "砂糖",
+
                 "target": "チーズケーキ",
                 "action": "混ぜる"
             },
@@ -2165,10 +2225,79 @@
                 "id": "蜂蜜（純粋） 10g",
                 "type": "ingredient",
                 "quantity": "10g"
+
+                "target": "いちごタルト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "粉ゼラチン",
+                "target": "いちごタルト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "水",
+                "target": "いちごタルト",
+                "action": "混ぜる"
+            },
+            {
+                "source": "いちご",
+                "target": "いちごタルト",
+                "action": "飾る"
+            },
+            {
+                "source": "お湯",
+                "target": "粉ゼラチン",
+                "action": "溶かす"
+            }
+        ]
+    },
+    "https://www.kurashiru.com/recipes/81cfe26b-1119-4e1a-991d-5eb802527dc4": {
+        "nodes": [
+            {
+                "id": "玉ねぎ",
+                "type": "ingredient",
+                "quantity": "1/4個"
+            },
+            {
+                "id": "にんじん",
+                "type": "ingredient",
+                "quantity": "1/2本"
+            },
+            {
+                "id": "じゃがいも",
+                "type": "ingredient",
+                "quantity": "1個"
+            },
+            {
+                "id": "ウインナー",
+                "type": "ingredient",
+                "quantity": "2本"
+            },
+            {
+                "id": "コンソメ顆粒",
+                "type": "ingredient",
+                "quantity": "小さじ2"
+            },
+            {
+                "id": "塩",
+                "type": "ingredient",
+                "quantity": "少々"
+            },
+            {
+                "id": "水",
+                "type": "ingredient",
+                "quantity": "600ml"
+            },
+            {
+                "id": "ポトフ",
+                "type": "final",
+                "quantity": null
+
             }
         ],
         "edges": [
             {
+
                 "source": "卵白",
                 "target": "グラニュー糖",
                 "action": "泡立てる"
@@ -2232,6 +2361,41 @@
                 "source": "ベーキングパウダー（2g）",
                 "target": "選んで入れる",
                 "action": "ふんわりした焼き上がりに"
+
+                "source": "玉ねぎ",
+                "target": "ポトフ",
+                "action": "煮る"
+            },
+            {
+                "source": "にんじん",
+                "target": "ポトフ",
+                "action": "煮る"
+            },
+            {
+                "source": "じゃがいも",
+                "target": "ポトフ",
+                "action": "煮る"
+            },
+            {
+                "source": "ウインナー",
+                "target": "ポトフ",
+                "action": "煮る"
+            },
+            {
+                "source": "コンソメ顆粒",
+                "target": "ポトフ",
+                "action": "加える"
+            },
+            {
+                "source": "塩",
+                "target": "ポトフ",
+                "action": "混ぜる"
+            },
+            {
+                "source": "水",
+                "target": "ポトフ",
+                "action": "熱する"
+
             }
         ]
     }

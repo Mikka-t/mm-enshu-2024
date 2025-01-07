@@ -24,36 +24,58 @@
       opacity:0.5;
 	  transition:0.3s;
     }
+
+    .image-detection-module {
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 20px;
+      margin-top: 30px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-detection-module h2 {
+      font-size: 18px;
+      text-align: center;
+    }
+
+    .image-detection-module input[type="file"] {
+      display: block;
+      margin: 10px auto;
+    }
+
+    .image-detection-module ul {
+      list-style-type: none;
+      padding: 0;
+      text-align: center;
+    }
+
+    .image-detection-module ul li {
+      padding: 5px;
+      font-size: 16px;
+      background-color: #f9f9f9;
+      margin: 5px 0;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
   </style>
 {% endblock %}
 
 {% block content %}
 
-<div class="show-big-graph"  >
+<div class="show-big-graph">
   <a href="/full" style="color:black;">全体グラフを表示</a>
 </div>
 
+<br>
 
-  <br>
-  <form method="post" action="/search" id="searchForm">
-    <h1 style="text-align: center;">レシピを検索する</h1>
-    
-    <hr>
+<form method="post" action="/search" id="searchForm">
+  <h1 style="text-align: center;">レシピを検索する</h1>
+  <hr>
 
-    
-
-    <!-- <div class="slider_container">
-      <label for="overview_rate"><span class="range_bar">概要</span></label>
-      <input type="range" id="overview_rate" name="overview_rate" min="0" max="100" disabled>
-      <label for="story_rate"><span class="range_bar">ストーリー</span></label>
-      <input type="range" id="story_rate" name="story_rate" min="0" max="100" disabled>
-      <label for="character_rate"><span class="range_bar">キャラクター</span></label>
-      <input type="range" id="character_rate" name="character_rate" min="0" max="100" disabled>
-    </div> -->
-
-    <div class="range-wrapper">
-      <div id="range"></div>
-    </div>
+  <div class="range-wrapper">
+    <div id="range"></div>
+  </div>
 
     <!-- フォーム内に隠しフィールドを追加 -->
     <input type="hidden" id="liData" name="liData">
@@ -67,15 +89,59 @@
           <ul id="list-container"></ul>
 
     </div>
+    
+
+    <!-- フォーム内に隠しフィールドを追加 -->
+    <input type="hidden" id="IngData" name="IngData">
+    <div class="autoComplete_containerIng" >
+      <br>
+      <br>
+      <div style="text-align: center;"><label  >材料名で探す</label></div>
+      <!-- <input type="radio" name="AndOR" value="AND" />AND
+      <input type="radio" name="AndOR" value="OR" checked/>OR -->
+      <input type="text" id="autoCompleteIng">
+          <ul id="list-containerIng"></ul>
+
+    </div>
 
     <br>
     <div style="text-align: center;"><label  >URLで検索</label></div>
     <textarea id="inputText" name="inputText" rows="4" placeholder="料理のレシピURLをここに入力してください&#13;(クラシル・白ご飯.com・DELISH KITCHEN・クックパッド・楽天レシピに対応)" required></textarea>
     <!-- <input type="type" id="inputText" name="inputText" placeholder="検索したい質問の要素を入力してください" required> -->
 
+  <!-- 隠しフィールド -->
+  <input type="hidden" id="liData" name="liData">
+
+  <input type="submit" value="検索">
+</form>
+
+<br>
+
+<!-- 画像検索 -->
+<div class="image-detection-module">
+  <h1 style="text-align: center;">画像から材料を検出</h1>
+  <form action="/detect" method="post" enctype="multipart/form-data" style="text-align: center;">
+    <input type="file" name="image" accept="image/*" required>
     <input type="submit" value="検索">
-
-
   </form>
-  
+
+  {% if uploaded_image %}
+  <div style="margin-top: 20px; text-align: center;">
+    <h3>アップロードされた画像</h3>
+    <img src="{{ url_for('static', filename='uploads/' + uploaded_image) }}" alt="Uploaded Image" style="max-width: 80%; height: auto;">
+  </div>
+  {% endif %}
+
+  {% if ingredients %}
+  <div style="margin-top: 20px;">
+    <h3>検出された材料</h3>
+    <ul>
+      {% for ingredient in ingredients %}
+      <li>{{ ingredient }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endif %}
+</div>
+
 {% endblock %}
