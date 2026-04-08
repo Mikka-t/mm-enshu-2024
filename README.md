@@ -33,11 +33,7 @@ llamaを使う際はapp/.token/lammaにtokenを入れる．（generate_graph.py�
 
 ChatGPTを使う際はapp/.token/openai_api_key を入れる．
 
-例：app/.token/lamma 内
-```
-r8_Ae7dJFIefdfaejfaioejfioajef
-```
-tokenは[replicateのサイト](https://replicate.com/account/api-tokens)で作る．
+tokenは[replicateのサイト](https://replicate.com/account/api-tokens)で作るなど．
 
 ## 日程
 | 日時                     | イベント                  | 目標                                    |
